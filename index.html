@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>峇里島六天五夜親子度假行程 | Bali Trip 2026</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- media="print" + onload 讓字型 CSS 不阻擋首次繪製；中文字型子集請求多，字重砍到最少 -->
@@ -98,6 +99,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            gap: 8px;
             margin-top: 10px;
         }
 
@@ -174,8 +176,8 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(184, 229, 235, 0.45);
+            border: 1px solid rgba(71, 112, 155, 0.14);
             border-radius: var(--radius-sm);
             padding: 6px 12px;
         }
@@ -270,27 +272,7 @@
             font-weight: 800;
         }
 
-        /* 2. Secondary Persona Sub-Row */
-        .persona-sub-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 10px;
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.08);
-        }
-
-        .persona-sub-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-dim);
-            white-space: nowrap;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-        }
-
+        /* 2. Persona Selector (lives inside each day's outfit card) */
         .persona-selector {
             display: flex;
             gap: 4px;
@@ -332,7 +314,7 @@
         /* Day Card Container */
         .day-section {
             margin-bottom: 40px;
-            scroll-margin-top: 140px;
+            scroll-margin-top: 110px;
         }
 
         .trip-panel[hidden] {
@@ -382,7 +364,7 @@
             font-size: 0.75rem;
             padding: 3px 8px;
             background: var(--gold-glow);
-            border: 1px solid rgba(245, 158, 11, 0.3);
+            border: 1px solid rgba(99, 147, 159, 0.5);
             color: var(--gold-accent);
             border-radius: var(--radius-sm);
             font-weight: 600;
@@ -401,16 +383,20 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            flex-wrap: nowrap;
+            gap: 8px;
             margin-bottom: 8px;
         }
 
         .outfit-title {
+            flex: 0 0 auto;
             font-size: 0.85rem;
             font-weight: 700;
             color: var(--teal-primary);
             display: flex;
             align-items: center;
             gap: 6px;
+            white-space: nowrap;
         }
 
         .outfit-content {
@@ -457,7 +443,7 @@
         }
 
         .timeline-card:hover {
-            background: rgba(255, 255, 255, 0.015);
+            background: rgba(184, 229, 235, 0.22);
             transform: none;
         }
 
@@ -499,14 +485,15 @@
         }
 
         .place-title-row {
-            display: flex;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
             align-items: center;
-            justify-content: space-between;
-            gap: 8px;
+            gap: 10px;
             margin: 1px 0 0;
         }
 
         .place-name {
+            min-width: 0;
             font-size: 0.95rem;
             font-weight: 600;
             color: #ffffff;
@@ -534,6 +521,12 @@
             background: var(--teal-primary);
             color: #0b1116;
             border-color: var(--teal-primary);
+        }
+
+        /* 負外距讓按鈕的最小高度不撐開標題列，避免標題與說明文字間距過大 */
+        .place-title-row>.maps-btn,
+        .place-title-row>.place-actions {
+            margin-block: -5px;
         }
 
         .place-desc {
@@ -692,7 +685,7 @@
 
         .modal-close-btn:hover {
             background: var(--teal-primary);
-            color: #0b1116;
+            color: #f1ffdf;
             border-color: var(--teal-primary);
         }
 
@@ -800,8 +793,8 @@
         }
 
         .checklist-item:hover {
-            background: rgba(255, 255, 255, 0.04);
-            border-color: rgba(45, 212, 191, 0.3);
+            background: rgba(184, 229, 235, 0.45);
+            border-color: rgba(99, 147, 159, 0.55);
         }
 
         .checklist-item input[type="checkbox"] {
@@ -884,7 +877,7 @@
             align-items: baseline;
             justify-content: space-between;
             gap: 8px;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
+            border-bottom: 1px dashed rgba(71, 112, 155, 0.16);
             padding-bottom: 4px;
         }
 
@@ -973,27 +966,27 @@
 
         /* Island editorial refresh */
         :root {
-            --bg-main: #eef4ef;
-            --bg-card: #fffefa;
-            --bg-card-hover: #f8fbf6;
-            --bg-subtle: #e2eee7;
-            --border-color: rgba(26, 75, 61, 0.16);
-            --border-accent: rgba(8, 127, 115, 0.34);
-            --text-main: #17382f;
-            --text-muted: #596b63;
-            --text-dim: #718079;
-            --teal-primary: #087f73;
-            --teal-glow: rgba(8, 127, 115, 0.12);
-            --gold-accent: #b97916;
-            --gold-glow: rgba(213, 156, 47, 0.16);
-            --sky-accent: #287a97;
-            --rose-accent: #c75543;
+            --bg-main: #dce9e9;
+            --bg-card: #f8fcfb;
+            --bg-card-hover: #f1ffdf;
+            --bg-subtle: #b8e5eb;
+            --border-color: rgba(71, 112, 155, 0.22);
+            --border-accent: rgba(99, 147, 159, 0.45);
+            --text-main: #365c7b;
+            --text-muted: #496a7a;
+            --text-dim: #4c6978;
+            --teal-primary: #47709b;
+            --teal-glow: rgba(132, 189, 208, 0.24);
+            --gold-accent: #47709b;
+            --gold-glow: rgba(241, 255, 223, 0.76);
+            --sky-accent: #365c7b;
+            --rose-accent: #365c7b;
             --font-sans: 'Noto Sans TC', sans-serif;
             --font-display: 'Noto Serif TC', serif;
             --radius-sm: 4px;
             --radius-md: 6px;
             --radius-lg: 8px;
-            --shadow-soft: 0 14px 36px rgba(43, 71, 57, 0.1);
+            --shadow-soft: 0 14px 36px rgba(71, 112, 155, 0.14);
         }
 
         html {
@@ -1002,8 +995,8 @@
 
         body {
             background-color: var(--bg-main);
-            background-image: repeating-linear-gradient(90deg, rgba(23, 56, 47, 0.018) 0,
-                    rgba(23, 56, 47, 0.018) 1px, transparent 1px, transparent 24px);
+            background-image: repeating-linear-gradient(90deg, rgba(71, 112, 155, 0.025) 0,
+                    rgba(71, 112, 155, 0.025) 1px, transparent 1px, transparent 24px);
             background-attachment: scroll;
             color: var(--text-main);
             padding-bottom: 48px;
@@ -1024,12 +1017,12 @@
             text-align: left;
             border: 0;
             border-radius: 8px;
-            background-color: #174f48;
+            background-color: #47709b;
             background-image:
-                repeating-linear-gradient(0deg, rgba(255, 254, 250, 0.045) 0,
-                    rgba(255, 254, 250, 0.045) 1px, transparent 1px, transparent 12px),
-                repeating-linear-gradient(90deg, rgba(255, 254, 250, 0.025) 0,
-                    rgba(255, 254, 250, 0.025) 1px, transparent 1px, transparent 12px);
+                repeating-linear-gradient(0deg, rgba(241, 255, 223, 0.06) 0,
+                    rgba(241, 255, 223, 0.06) 1px, transparent 1px, transparent 12px),
+                repeating-linear-gradient(90deg, rgba(220, 233, 233, 0.04) 0,
+                    rgba(220, 233, 233, 0.04) 1px, transparent 1px, transparent 12px);
             box-shadow: var(--shadow-soft);
         }
 
@@ -1043,7 +1036,7 @@
         header::before {
             z-index: -2;
             inset: 0 0 0 42%;
-            background: #f1c15b;
+            background: #63939f;
             clip-path: polygon(36% 0, 100% 0, 100% 100%, 0 100%, 19% 72%, 8% 46%);
         }
 
@@ -1053,14 +1046,14 @@
             height: 76%;
             right: -4%;
             bottom: -24%;
-            border: 18px solid #fff3dc;
+            border: 18px solid #b8e5eb;
             border-bottom: 0;
             border-radius: 50% 50% 0 0;
-            background: #d6674e;
+            background: #84bdd0;
             transform: rotate(-7deg);
             box-shadow:
-                0 -18px 0 #2b8175,
-                0 -36px 0 #fff3dc;
+                0 -18px 0 #dce9e9,
+                0 -36px 0 #f1ffdf;
         }
 
         h1 {
@@ -1068,19 +1061,19 @@
             z-index: 1;
             max-width: 620px;
             margin-bottom: 8px;
-            color: #fffefa;
+            color: #f1ffdf;
             font-family: var(--font-display);
             font-size: 2.35rem;
             font-weight: 900;
             letter-spacing: 0;
             line-height: 1.25;
-            text-shadow: 0 2px 18px rgba(8, 36, 31, 0.45);
+            text-shadow: 0 2px 18px rgba(35, 67, 94, 0.45);
         }
 
         .date-subtitle {
             position: relative;
             z-index: 1;
-            color: rgba(255, 254, 250, 0.92);
+            color: #f1ffdf;
             font-size: 0.92rem;
             letter-spacing: 0;
         }
@@ -1093,36 +1086,66 @@
             margin: 0;
         }
 
+        .currency-btn {
+            display: inline-flex;
+            min-height: 44px;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 8px 14px;
+            border: 1px solid rgba(184, 229, 235, 0.82);
+            border-radius: 6px;
+            background: rgba(184, 229, 235, 0.94);
+            color: #365c7b;
+            font-family: var(--font-sans);
+            font-size: 0.76rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 22px rgba(35, 67, 94, 0.22);
+        }
+
+        .currency-btn:hover {
+            background: #b8e5eb;
+            color: #284864;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(35, 67, 94, 0.28);
+        }
+
+        .currency-btn>[aria-hidden="true"] {
+            font-size: 1rem;
+            line-height: 1;
+        }
+
         .notes-btn {
             min-height: 44px;
             padding: 8px 14px;
-            border-color: rgba(255, 254, 250, 0.72);
+            border-color: rgba(241, 255, 223, 0.78);
             border-radius: 6px;
-            background: rgba(255, 254, 250, 0.94);
-            color: #1c594c;
-            box-shadow: 0 8px 22px rgba(8, 36, 31, 0.22);
+            background: rgba(241, 255, 223, 0.94);
+            color: #47709b;
+            box-shadow: 0 8px 22px rgba(35, 67, 94, 0.22);
         }
 
         .notes-btn:hover {
-            background: #fffefa;
-            color: #17382f;
-            box-shadow: 0 10px 24px rgba(8, 36, 31, 0.28);
+            background: #f1ffdf;
+            color: #365c7b;
+            box-shadow: 0 10px 24px rgba(35, 67, 94, 0.28);
         }
 
         .notes-btn .badge-count,
         .notes-btn:hover .badge-count {
-            background: #dceddf;
-            color: #12685d;
+            background: #b8e5eb;
+            color: #365c7b;
         }
 
         .sticky-control-panel {
             top: 8px;
             padding: 10px;
             margin: 14px 0 30px;
-            border-color: rgba(26, 75, 61, 0.18);
+            border-color: rgba(71, 112, 155, 0.2);
             border-radius: 8px;
-            background: rgba(255, 254, 250, 0.95);
-            box-shadow: 0 10px 28px rgba(43, 71, 57, 0.14);
+            background: rgba(241, 255, 223, 0.95);
+            box-shadow: 0 10px 28px rgba(71, 112, 155, 0.16);
         }
 
         .day-nav {
@@ -1160,49 +1183,41 @@
         }
 
         .day-chip:hover {
-            border-color: rgba(8, 127, 115, 0.2);
-            background: #edf6f1;
+            border-color: rgba(132, 189, 208, 0.65);
+            background: #dce9e9;
             color: var(--text-main);
         }
 
         .day-chip.active {
-            border-color: #12685d;
-            background: #12685d;
-            color: #fffefa;
+            border-color: #47709b;
+            background: #47709b;
+            color: #f1ffdf;
             box-shadow: none;
         }
 
         .day-chip.active .tab-date,
         .day-chip.active .tab-label {
-            color: #fffefa;
-        }
-
-        .persona-sub-row {
-            margin-top: 10px;
-            padding: 10px 4px 0;
-            border-top-color: rgba(26, 75, 61, 0.14);
-        }
-
-        .persona-sub-label {
-            color: var(--text-muted);
+            color: #f1ffdf;
         }
 
         .persona-selector {
-            border-color: rgba(26, 75, 61, 0.14);
+            flex: 0 0 auto;
+            margin-left: auto;
+            border-color: rgba(132, 189, 208, 0.7);
             border-radius: 6px;
-            background: #edf3ee;
+            background: #dce9e9;
         }
 
         .persona-btn {
-            min-height: 40px;
+            min-height: 36px;
             border-radius: 4px;
-            color: var(--text-muted);
+            color: #496a7a;
         }
 
         .persona-btn.active {
-            border-color: rgba(8, 127, 115, 0.26);
-            background: #fffefa;
-            color: #12685d;
+            border-color: rgba(99, 147, 159, 0.68);
+            background: #f1ffdf;
+            color: #365c7b;
         }
 
         .day-section {
@@ -1223,7 +1238,7 @@
         }
 
         .day-header {
-            border-bottom: 2px solid #b9d3c3;
+            border-bottom: 2px solid #84bdd0;
         }
 
         .day-num,
@@ -1233,7 +1248,7 @@
         }
 
         .day-num {
-            color: #12685d;
+            color: #47709b;
             font-size: 1.55rem;
         }
 
@@ -1250,30 +1265,30 @@
         }
 
         .charter-badge {
-            background: #f5ead1;
-            color: #8a5a0e;
+            background: #f1ffdf;
+            color: #365c7b;
         }
 
         .outfit-card {
-            border-left: 4px solid #d59c2f;
-            border-color: rgba(213, 156, 47, 0.35);
-            border-left-color: #d59c2f;
+            border-left: 4px solid #84bdd0;
+            border-color: rgba(132, 189, 208, 0.58);
+            border-left-color: #84bdd0;
             border-radius: 6px;
-            background: #fff8e9;
+            background: #f1ffdf;
         }
 
         .outfit-title {
-            color: #8a5a0e;
+            color: #47709b;
         }
 
         .outfit-content {
-            color: #425b52;
+            color: #496a7a;
             transition: opacity 0.18s ease;
         }
 
         .timeline {
             padding: 0 20px;
-            border-color: rgba(26, 75, 61, 0.14);
+            border-color: rgba(71, 112, 155, 0.18);
             border-radius: 8px;
             background: var(--bg-card);
             box-shadow: var(--shadow-soft);
@@ -1282,7 +1297,62 @@
         .timeline-card {
             padding: 18px 0;
             gap: 7px;
-            border-bottom-color: rgba(26, 75, 61, 0.14);
+            border-bottom-color: rgba(71, 112, 155, 0.18);
+        }
+
+        .timeline-card.is-past {
+            opacity: 0.72;
+            filter: grayscale(0.8);
+        }
+
+        .timeline-card.is-past:hover {
+            opacity: 0.86;
+        }
+
+        .timeline-card.is-current,
+        .timeline-card.is-next {
+            margin-inline: -12px;
+            padding-inline: 12px;
+            border-radius: 6px;
+        }
+
+        .timeline-card.is-current {
+            background: #dce9e9;
+            box-shadow: inset 4px 0 0 #47709b;
+        }
+
+        .timeline-card.is-next {
+            background: #f1ffdf;
+            box-shadow: inset 4px 0 0 #63939f;
+        }
+
+        .timeline-status-tag {
+            order: -1;
+            font-weight: 700;
+        }
+
+        .timeline-status-tag.current {
+            background: #84bdd0;
+            color: #284864;
+        }
+
+        .timeline-status-tag.next {
+            background: #dce9e9;
+            color: #365c7b;
+        }
+
+        .day-section.is-today .day-date::after {
+            content: '今天';
+            display: inline-block;
+            margin-left: 8px;
+            padding: 2px 7px;
+            border-radius: 4px;
+            background: #b8e5eb;
+            color: #365c7b;
+            font-family: var(--font-sans);
+            font-size: 0.68rem;
+            font-weight: 700;
+            vertical-align: middle;
         }
 
         .timeline-card.has-image {
@@ -1303,7 +1373,7 @@
             aspect-ratio: 4 / 3;
             overflow: hidden;
             border-radius: 6px;
-            background: #dce8df;
+            background: #dce9e9;
         }
 
         .place-image img {
@@ -1320,7 +1390,7 @@
             margin: -2px 0 18px;
             overflow: hidden;
             border-radius: 8px;
-            background: #dce8df;
+            background: #dce9e9;
         }
 
         .day-feature img {
@@ -1336,8 +1406,8 @@
             bottom: 10px;
             padding: 4px 8px;
             border-radius: 4px;
-            background: rgba(17, 56, 47, 0.78);
-            color: #fffefa;
+            background: rgba(71, 112, 155, 0.84);
+            color: #f1ffdf;
             font-size: 0.72rem;
         }
 
@@ -1350,46 +1420,210 @@
         }
 
         .time-slot {
-            background: #dceff0;
-            color: #24657b;
+            background: #b8e5eb;
+            color: #365c7b;
         }
 
         .tag {
-            background: #e8efea;
-            color: #52645c;
+            background: #dce9e9;
+            color: #496a7a;
         }
 
         .tag.highlight {
-            background: #f5ead1;
-            color: #8a5a0e;
+            background: #f1ffdf;
+            color: #365c7b;
         }
 
         .maps-btn {
-            min-height: 36px;
-            padding: 5px 10px;
-            border-color: #78a99d;
+            min-height: 32px;
+            padding: 4px 10px;
+            border-color: #63939f;
             background: transparent;
-            color: #12685d;
+            color: #47709b;
         }
 
         .maps-btn:hover {
-            background: #12685d;
-            color: #fffefa;
+            background: #47709b;
+            color: #f1ffdf;
+        }
+
+        .flight-details {
+            margin-top: 5px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(71, 112, 155, 0.18);
+        }
+
+        .flight-route {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 94px minmax(0, 1fr);
+            align-items: center;
+            gap: 12px;
+        }
+
+        .flight-airport {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .flight-airport:last-child {
+            text-align: right;
+            align-items: flex-end;
+        }
+
+        .flight-code {
+            color: #47709b;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .flight-terminal {
+            color: #496a7a;
+            font-size: 0.72rem;
+        }
+
+        .flight-time {
+            color: var(--text-main);
+            font-size: 0.82rem;
+        }
+
+        .flight-path {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #4c6978;
+            font-size: 0.68rem;
+            text-align: center;
+        }
+
+        .flight-path-line {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            color: #47709b;
+        }
+
+        .flight-path-line::before,
+        .flight-path-line::after {
+            content: '';
+            height: 1px;
+            flex: 1;
+            background: #84bdd0;
+        }
+
+        .flight-path-line span {
+            padding: 0 5px;
+            font-size: 1rem;
+        }
+
+        .flight-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .flight-link {
+            display: inline-flex;
+            min-height: 36px;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 6px 10px;
+            border: 1px solid #63939f;
+            border-radius: 4px;
+            color: #47709b;
+            font-size: 0.72rem;
+            font-weight: 700;
+            transition: background 0.18s ease, color 0.18s ease;
+        }
+
+        .flight-link.primary {
+            border-color: #47709b;
+            background: #b8e5eb;
+            color: #365c7b;
+        }
+
+        .flight-link:hover {
+            background: #47709b;
+            color: #f1ffdf;
+        }
+
+        .flight-note {
+            margin-top: 9px;
+            color: #4c6978;
+            font-size: 0.7rem;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 360px) {
+            .currency-btn {
+                width: 44px;
+                padding-inline: 0;
+            }
+
+            .currency-btn-label {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+            }
+
+            .outfit-header {
+                gap: 6px;
+            }
+
+            .outfit-title {
+                gap: 4px;
+                font-size: 0.8rem;
+            }
+
+            .outfit-card .persona-selector {
+                gap: 2px;
+                padding: 2px;
+            }
+
+            .outfit-card .persona-btn {
+                width: 34px;
+                min-height: 36px;
+                padding: 4px;
+                gap: 0;
+                font-size: 0;
+            }
+
+            .outfit-card .persona-btn span {
+                font-size: 1rem;
+                line-height: 1;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .flight-route {
+                grid-template-columns: minmax(0, 1fr) 62px minmax(0, 1fr);
+                gap: 7px;
+            }
+
+            .flight-actions {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
         }
 
         .reservation-chip:not(.active) .tab-date {
-            color: #b65340;
+            color: #47709b;
         }
 
         .reservation-chip.active {
-            border-color: #b65340;
-            background: #b65340;
+            border-color: #47709b;
+            background: #47709b;
         }
 
         .reservation-page {
             margin-bottom: 28px;
             animation: day-reveal 0.42s ease both;
-            scroll-margin-top: 100px;
+            scroll-margin-top: 110px;
         }
 
         .reservation-summary {
@@ -1399,9 +1633,9 @@
             gap: 18px;
             margin: 18px 0;
             padding: 16px 18px;
-            border-left: 4px solid #12685d;
-            background: #e7f1eb;
-            color: var(--text-muted);
+            border-left: 4px solid #47709b;
+            background: #b8e5eb;
+            color: #365c7b;
         }
 
         .reservation-summary strong {
@@ -1418,7 +1652,7 @@
 
         .reservation-count {
             flex: 0 0 auto;
-            color: #12685d;
+            color: #47709b;
             font-size: 1.5rem;
             font-weight: 700;
         }
@@ -1435,16 +1669,16 @@
             gap: 14px;
             min-width: 0;
             padding: 20px;
-            border: 1px solid rgba(26, 75, 61, 0.18);
-            border-top: 4px solid #b65340;
+            border: 1px solid rgba(71, 112, 155, 0.2);
+            border-top: 4px solid #63939f;
             border-radius: 8px;
-            background: #fffefa;
-            box-shadow: 0 10px 26px rgba(43, 71, 57, 0.08);
-            scroll-margin-top: 150px;
+            background: #f8fcfb;
+            box-shadow: 0 10px 26px rgba(71, 112, 155, 0.12);
+            scroll-margin-top: 118px;
         }
 
         .reservation-card:focus {
-            outline: 3px solid #d27743;
+            outline: 3px solid #47709b;
             outline-offset: 3px;
         }
 
@@ -1461,13 +1695,13 @@
         }
 
         .reservation-day {
-            color: #b65340;
+            color: #47709b;
             font-size: 0.74rem;
             font-weight: 700;
         }
 
         .reservation-status {
-            color: #14745f;
+            color: #47709b;
             font-size: 0.74rem;
             font-weight: 700;
         }
@@ -1522,7 +1756,7 @@
         }
 
         .reservation-code-value code {
-            color: #a65d00;
+            color: #47709b;
             font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
             font-size: 0.95rem;
             letter-spacing: 0;
@@ -1540,9 +1774,9 @@
 
         .copy-code-btn {
             padding: 5px 9px;
-            border: 1px solid #d59c2f;
-            background: #fff8e9;
-            color: #8a5a0e;
+            border: 1px solid #84bdd0;
+            background: #f1ffdf;
+            color: #365c7b;
             cursor: pointer;
         }
 
@@ -1563,15 +1797,15 @@
         }
 
         .reservation-day-link {
-            border: 1px solid #78a99d;
+            border: 1px solid #63939f;
             background: transparent;
-            color: #12685d;
+            color: #47709b;
         }
 
         .reservation-map-link {
-            border: 1px solid #12685d;
-            background: #12685d;
-            color: #fffefa;
+            border: 1px solid #47709b;
+            background: #47709b;
+            color: #f1ffdf;
         }
 
         .place-actions {
@@ -1585,32 +1819,32 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            min-height: 36px;
-            padding: 5px 10px;
-            border: 1px solid #d27743;
+            min-height: 32px;
+            padding: 4px 10px;
+            border: 1px solid #84bdd0;
             border-radius: 4px;
-            background: #fff1e9;
-            color: #a84936;
+            background: #b8e5eb;
+            color: #365c7b;
             font-size: 0.7rem;
             font-weight: 700;
+            line-height: 1.2;
             text-decoration: none;
             white-space: nowrap;
         }
 
         .reservation-info-btn:hover {
-            background: #b65340;
-            color: #fffefa;
+            background: #47709b;
+            color: #f1ffdf;
         }
 
         .tag.reservation-tag {
-            background: #f9dfd4;
-            color: #9f4634;
+            background: #dce9e9;
+            color: #365c7b;
             font-weight: 700;
         }
 
         .reservation-view .tips-box,
-        .reservation-view .photo-credits,
-        .reservation-view .persona-sub-row {
+        .reservation-view .photo-credits {
             display: none;
         }
 
@@ -1619,8 +1853,8 @@
         .weather-box,
         .clothing-card,
         .checklist-item {
-            border-color: rgba(26, 75, 61, 0.14);
-            background: #fffefa;
+            border-color: rgba(71, 112, 155, 0.18);
+            background: #f8fcfb;
             color: var(--text-main);
         }
 
@@ -1643,10 +1877,10 @@
         .day-pagination button {
             min-height: 48px;
             padding: 10px 14px;
-            border: 1px solid #78a99d;
+            border: 1px solid #63939f;
             border-radius: 6px;
-            background: #fffefa;
-            color: #12685d;
+            background: #f8fcfb;
+            color: #47709b;
             font-family: var(--font-sans);
             font-size: 0.82rem;
             font-weight: 700;
@@ -1670,7 +1904,7 @@
             padding: 16px 18px;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            background: rgba(255, 254, 250, 0.72);
+            background: rgba(241, 255, 223, 0.78);
             color: var(--text-muted);
             font-size: 0.74rem;
         }
@@ -1689,7 +1923,7 @@
         }
 
         .credit-list a {
-            color: #12685d;
+            color: #47709b;
             text-decoration: underline;
             text-underline-offset: 2px;
         }
@@ -1705,18 +1939,26 @@
 
         .modal-header {
             border-color: var(--border-color);
-            background: rgba(255, 254, 250, 0.96);
+            background: rgba(241, 255, 223, 0.96);
         }
 
         .modal-close-btn {
             min-height: 44px;
             border-radius: 6px;
-            background: #e8efea;
+            background: #dce9e9;
             color: var(--text-main);
         }
 
+        .modal-tab-btn.active,
+        .checklist-progress-text,
+        .checklist-cat-title,
+        .checklist-reset-btn:hover,
+        .clothing-card-tag {
+            color: #365c7b;
+        }
+
         :where(a, button, input):focus-visible {
-            outline: 3px solid #d27743;
+            outline: 3px solid #47709b;
             outline-offset: 3px;
         }
 
@@ -1744,8 +1986,8 @@
                 border-bottom: 0;
                 transform: none;
                 box-shadow:
-                    0 -13px 0 #2b8175,
-                    0 -26px 0 #fff3dc;
+                    0 -13px 0 #dce9e9,
+                    0 -26px 0 #f1ffdf;
             }
 
             h1 {
@@ -1773,7 +2015,7 @@
             }
 
             .persona-btn {
-                min-height: 44px;
+                min-height: 40px;
             }
 
             .timeline {
@@ -1782,6 +2024,7 @@
 
             .timeline-card.has-image {
                 display: flex;
+                align-items: stretch;
             }
 
             .place-image {
@@ -1807,25 +2050,17 @@
 
             .reservation-card {
                 padding: 18px 16px;
-                scroll-margin-top: 132px;
+                scroll-margin-top: 110px;
             }
 
-            .card-top,
-            .place-title-row {
+            .card-top {
                 align-items: flex-start;
             }
 
-            .place-title-row {
-                flex-wrap: wrap;
-            }
-
-            .place-actions {
-                width: 100%;
-                justify-content: flex-end;
-            }
-
-            .maps-btn {
-                min-height: 40px;
+            .maps-btn,
+            .reservation-info-btn {
+                min-height: 34px;
+                font-size: 0.7rem;
             }
         }
 
@@ -1851,15 +2086,18 @@
             <h1>峇里島六天五夜島嶼行</h1>
             <p class="date-subtitle">2026/08/27 — 2026/09/01 ・度假之旅</p>
             <div class="header-btn-wrap">
+                <a class="currency-btn" href="https://granola858.github.io/realtime-currency-converter/"
+                    target="_blank" rel="noopener noreferrer" aria-label="開啟即時匯率換算工具" title="開啟即時匯率換算工具">
+                    <span aria-hidden="true">💱</span><span class="currency-btn-label">匯率換算</span>
+                </a>
                 <button class="notes-btn" onclick="toggleNotesModal(true)">
                     <span>📋</span> 行李備註清單 <span class="badge-count" id="checklistCounter">0/34</span>
                 </button>
             </div>
         </header>
 
-        <!-- Sticky Day Navigation (Primary) & Persona Sub-Filter (Secondary) -->
+        <!-- Sticky Day Navigation -->
         <div class="sticky-control-panel">
-            <!-- 1. 主要選項：日期導航 -->
             <div class="day-nav" role="tablist" aria-label="選擇行程日期">
                 <a class="day-chip active" id="tab-day1" href="#day1" role="tab" aria-controls="day1"
                     aria-selected="true" tabindex="0"><span class="tab-date">8/27</span><span
@@ -1877,25 +2115,6 @@
                 <a class="day-chip reservation-chip" id="tab-reservations" href="#reservations" role="tab"
                     aria-controls="reservations" aria-selected="false" tabindex="-1"><span
                         class="tab-date">訂位</span><span class="tab-label">4 家確認</span></a>
-            </div>
-
-            <!-- 2. 次要選項：穿搭對象切換 -->
-            <div class="persona-sub-row">
-                <span class="persona-sub-label">👗 穿搭對象</span>
-                <div class="persona-selector" role="group" aria-label="切換穿搭對象">
-                    <button class="persona-btn active" data-persona="female" aria-pressed="true"
-                        onclick="switchPersona('female')">
-                        <span>👩</span> 女生
-                    </button>
-                    <button class="persona-btn" data-persona="male" aria-pressed="false"
-                        onclick="switchPersona('male')">
-                        <span>👨</span> 男生
-                    </button>
-                    <button class="persona-btn" data-persona="toddler" aria-pressed="false"
-                        onclick="switchPersona('toddler')">
-                        <span>👶</span> 小寶
-                    </button>
-                </div>
             </div>
         </div>
 
@@ -1919,8 +2138,16 @@
                 <div class="outfit-card">
                     <div class="outfit-header">
                         <span class="outfit-title">
-                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                            <span>👗</span> 穿搭提醒
                         </span>
+                        <div class="persona-selector" role="group" aria-label="切換穿搭對象">
+                            <button class="persona-btn active" type="button" data-persona="female" aria-pressed="true"
+                                onclick="switchPersona('female')"><span>👩</span> 女生</button>
+                            <button class="persona-btn" type="button" data-persona="male" aria-pressed="false"
+                                onclick="switchPersona('male')"><span>👨</span> 男生</button>
+                            <button class="persona-btn" type="button" data-persona="toddler" aria-pressed="false"
+                                onclick="switchPersona('toddler')"><span>👶</span> 小寶</button>
+                        </div>
                     </div>
                     <div class="outfit-content"
                         data-female="寬鬆透氣落地棉麻長褲 + 簡約短 T / 涼感背心 + 外搭寬版防曬亞麻襯衫 + 好穿脫平底拖鞋。舒適應對機艙冷氣與落地濕熱，晚上吃烤肋排自在無束縛。"
@@ -1960,12 +2187,42 @@
                         <div class="card-top">
                             <span class="time-slot">10:00 - 15:50</span>
                             <div class="meta-tags"><span class="tag">長榮航空 BR255</span><span class="tag highlight">直飛
-                                    5.5h</span></div>
+                                    5h50m</span></div>
                         </div>
                         <div class="place-title-row">
                             <div class="place-name">TPE 桃園機場起飛 → DPS 峇里島機場</div>
                         </div>
                         <div class="place-desc">辦理行李託運與出境安檢，搭乘長榮 BR255 班機飛往熱帶島嶼峇里島。</div>
+                        <div class="flight-details" aria-label="BR255 航班詳細資訊">
+                            <div class="flight-route">
+                                <div class="flight-airport">
+                                    <span class="flight-code">TPE · T2</span>
+                                    <span class="flight-terminal">桃園第二航廈</span>
+                                    <strong class="flight-time">10:00 起飛</strong>
+                                </div>
+                                <div class="flight-path" aria-hidden="true">
+                                    <span>BR255</span>
+                                    <span class="flight-path-line"><span>✈</span></span>
+                                    <span>約 5h50m</span>
+                                </div>
+                                <div class="flight-airport">
+                                    <span class="flight-code">DPS · 國際</span>
+                                    <span class="flight-terminal">國際航廈</span>
+                                    <strong class="flight-time">15:50 抵達</strong>
+                                </div>
+                            </div>
+                            <div class="flight-actions">
+                                <a class="flight-link primary" href="https://www.flightaware.com/live/flight/EVA255"
+                                    target="_blank" rel="noopener noreferrer">↻ 即時動態</a>
+                                <a class="flight-link" href="https://www.flightradar24.com/data/flights/br255"
+                                    target="_blank" rel="noopener noreferrer">⌖ 飛機位置</a>
+                                <a class="flight-link" href="https://www.taoyuan-airport.com/flight_depart"
+                                    target="_blank" rel="noopener noreferrer">TPE 起飛資訊</a>
+                                <a class="flight-link" href="https://ngurahrai.injourneyairports.id/" target="_blank"
+                                    rel="noopener noreferrer">DPS 機場資訊</a>
+                            </div>
+                            <p class="flight-note">航廈為目前預定資訊；登機門、報到櫃檯與實際時間請於出發當日再次確認。雷達位置通常於航班執飛後顯示。</p>
+                        </div>
                     </div>
 
                     <div class="timeline-card">
@@ -2086,8 +2343,16 @@
                 <div class="outfit-card">
                     <div class="outfit-header">
                         <span class="outfit-title">
-                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                            <span>👗</span> 穿搭提醒
                         </span>
+                        <div class="persona-selector" role="group" aria-label="切換穿搭對象">
+                            <button class="persona-btn active" type="button" data-persona="female" aria-pressed="true"
+                                onclick="switchPersona('female')"><span>👩</span> 女生</button>
+                            <button class="persona-btn" type="button" data-persona="male" aria-pressed="false"
+                                onclick="switchPersona('male')"><span>👨</span> 男生</button>
+                            <button class="persona-btn" type="button" data-persona="toddler" aria-pressed="false"
+                                onclick="switchPersona('toddler')"><span>👶</span> 小寶</button>
+                        </div>
                     </div>
                     <div class="outfit-content"
                         data-female="快乾機能短褲或防潑水寬褲 + 內搭比基尼/美背泳裝 + 透氣短 T 外罩 + 止滑抓地溯溪涼鞋（或運動涼鞋）。瀑布涉水需踩石頭拍照，聖泉寺現場會圍上沙龍（Sarong）。隨身多備一套乾淨衣服。"
@@ -2227,8 +2492,16 @@
                 <div class="outfit-card">
                     <div class="outfit-header">
                         <span class="outfit-title">
-                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                            <span>👗</span> 穿搭提醒
                         </span>
+                        <div class="persona-selector" role="group" aria-label="切換穿搭對象">
+                            <button class="persona-btn active" type="button" data-persona="female" aria-pressed="true"
+                                onclick="switchPersona('female')"><span>👩</span> 女生</button>
+                            <button class="persona-btn" type="button" data-persona="male" aria-pressed="false"
+                                onclick="switchPersona('male')"><span>👨</span> 男生</button>
+                            <button class="persona-btn" type="button" data-persona="toddler" aria-pressed="false"
+                                onclick="switchPersona('toddler')"><span>👶</span> 小寶</button>
+                        </div>
                     </div>
                     <div class="outfit-content"
                         data-female="渡假風仙氣棉麻長洋裝（黑/米白/大地色）或率性排汗寬褲套裝 + 好走的平底鞋/球鞋 + 墨鏡與草帽。適合梯田美照與法式地中海晚餐。進入聖猴森林前請將帽子、墨鏡與晃動耳環收進包包以防猴子抓取。"
@@ -2385,8 +2658,16 @@
                 <div class="outfit-card">
                     <div class="outfit-header">
                         <span class="outfit-title">
-                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                            <span>👗</span> 穿搭提醒
                         </span>
+                        <div class="persona-selector" role="group" aria-label="切換穿搭對象">
+                            <button class="persona-btn active" type="button" data-persona="female" aria-pressed="true"
+                                onclick="switchPersona('female')"><span>👩</span> 女生</button>
+                            <button class="persona-btn" type="button" data-persona="male" aria-pressed="false"
+                                onclick="switchPersona('male')"><span>👨</span> 男生</button>
+                            <button class="persona-btn" type="button" data-persona="toddler" aria-pressed="false"
+                                onclick="switchPersona('toddler')"><span>👶</span> 小寶</button>
+                        </div>
                     </div>
                     <div class="outfit-content"
                         data-female="俐落率性無袖背心 + 涼感高腰亞麻寬褲 / 開衩及踝長裙 + 墨鏡 + 隨身帶薄針織罩衫（Beachwalk 商場冷氣較強可穿）。長谷週日市集充滿時髦歐美風，極簡度假風最吸睛。"
@@ -2528,8 +2809,16 @@
                 <div class="outfit-card">
                     <div class="outfit-header">
                         <span class="outfit-title">
-                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                            <span>👗</span> 穿搭提醒
                         </span>
+                        <div class="persona-selector" role="group" aria-label="切換穿搭對象">
+                            <button class="persona-btn active" type="button" data-persona="female" aria-pressed="true"
+                                onclick="switchPersona('female')"><span>👩</span> 女生</button>
+                            <button class="persona-btn" type="button" data-persona="male" aria-pressed="false"
+                                onclick="switchPersona('male')"><span>👨</span> 男生</button>
+                            <button class="persona-btn" type="button" data-persona="toddler" aria-pressed="false"
+                                onclick="switchPersona('toddler')"><span>👶</span> 小寶</button>
+                        </div>
                     </div>
                     <div class="outfit-content"
                         data-female="亮眼美背渡假洋裝或兩截式短裙（內著比基尼方便沙灘踩水）+ 墨鏡 + 遮陽大草帽 + 輕便好走平底涼鞋。傍晚前往烏布瓦圖懸崖看火舞海風較大，可準備防風薄披肩或薄外套。"
@@ -2703,8 +2992,16 @@
                 <div class="outfit-card">
                     <div class="outfit-header">
                         <span class="outfit-title">
-                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                            <span>👗</span> 穿搭提醒
                         </span>
+                        <div class="persona-selector" role="group" aria-label="切換穿搭對象">
+                            <button class="persona-btn active" type="button" data-persona="female" aria-pressed="true"
+                                onclick="switchPersona('female')"><span>👩</span> 女生</button>
+                            <button class="persona-btn" type="button" data-persona="male" aria-pressed="false"
+                                onclick="switchPersona('male')"><span>👨</span> 男生</button>
+                            <button class="persona-btn" type="button" data-persona="toddler" aria-pressed="false"
+                                onclick="switchPersona('toddler')"><span>👶</span> 小寶</button>
+                        </div>
                     </div>
                     <div class="outfit-content"
                         data-female="質感寬版休閒棉褲 + 簡約親膚短 T + 輕薄防曬針織小外套 + 舒適包鞋/運動鞋。早晨海灘散步輕鬆，下午搭機舒適保暖。"
@@ -2791,13 +3088,44 @@
 
                     <div class="timeline-card">
                         <div class="card-top">
-                            <span class="time-slot">16:30</span>
-                            <div class="meta-tags"><span class="tag highlight">起飛返台</span></div>
+                            <span class="time-slot">16:30 - 22:00</span>
+                            <div class="meta-tags"><span class="tag">長榮航空 BR256</span><span class="tag highlight">直飛
+                                    5h30m</span></div>
                         </div>
                         <div class="place-title-row">
                             <div class="place-name">BR256 起飛 → 臺灣桃園國際機場 (TPE)</div>
                         </div>
                         <div class="place-desc">滿載美好海島親子回憶，平安返回臺灣！</div>
+                        <div class="flight-details" aria-label="BR256 航班詳細資訊">
+                            <div class="flight-route">
+                                <div class="flight-airport">
+                                    <span class="flight-code">DPS · 國際</span>
+                                    <span class="flight-terminal">國際航廈</span>
+                                    <strong class="flight-time">16:30 起飛</strong>
+                                </div>
+                                <div class="flight-path" aria-hidden="true">
+                                    <span>BR256</span>
+                                    <span class="flight-path-line"><span>✈</span></span>
+                                    <span>約 5h30m</span>
+                                </div>
+                                <div class="flight-airport">
+                                    <span class="flight-code">TPE · T2</span>
+                                    <span class="flight-terminal">桃園第二航廈</span>
+                                    <strong class="flight-time">22:00 抵達</strong>
+                                </div>
+                            </div>
+                            <div class="flight-actions">
+                                <a class="flight-link primary" href="https://www.flightaware.com/live/flight/EVA256"
+                                    target="_blank" rel="noopener noreferrer">↻ 即時動態</a>
+                                <a class="flight-link" href="https://www.flightradar24.com/data/flights/br256"
+                                    target="_blank" rel="noopener noreferrer">⌖ 飛機位置</a>
+                                <a class="flight-link" href="https://ngurahrai.injourneyairports.id/" target="_blank"
+                                    rel="noopener noreferrer">DPS 機場資訊</a>
+                                <a class="flight-link" href="https://www.taoyuan-airport.com/flight_arrival"
+                                    target="_blank" rel="noopener noreferrer">TPE 抵達資訊</a>
+                            </div>
+                            <p class="flight-note">航廈為目前預定資訊；登機門、報到櫃檯與實際時間請於出發當日再次確認。雷達位置通常於航班執飛後顯示。</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -3455,6 +3783,121 @@
             return `${values.year}-${values.month}-${values.day}`;
         }
 
+        function getTripTimeMinutes(date = new Date()) {
+            const parts = new Intl.DateTimeFormat('en-GB', {
+                timeZone: 'Asia/Makassar',
+                hour: '2-digit',
+                minute: '2-digit',
+                hourCycle: 'h23'
+            }).formatToParts(date);
+            const values = Object.fromEntries(parts.map(part => [part.type, part.value]));
+            return Number(values.hour) * 60 + Number(values.minute);
+        }
+
+        function parseTimeSlot(text) {
+            const times = Array.from(text.matchAll(/(\d{1,2}):(\d{2})/g), match =>
+                Number(match[1]) * 60 + Number(match[2])
+            );
+            if (!times.length) return null;
+
+            const normalized = text.trim();
+            if (times.length > 1) return { start: times[0], end: times[1] };
+            if (normalized.startsWith('~')) return { start: 0, end: times[0] };
+            if (normalized.endsWith('~')) return { start: times[0], end: 24 * 60 };
+            return { start: times[0], end: null };
+        }
+
+        function getTimelineWindows(section) {
+            const cards = Array.from(section.querySelectorAll('.timeline-card'));
+            const slots = cards.map(card => parseTimeSlot(card.querySelector('.time-slot')?.textContent || ''));
+
+            return cards.map((card, index) => {
+                const slot = slots[index];
+                if (!slot) return { card, start: null, end: null };
+
+                const nextSlot = slots.slice(index + 1).find(Boolean);
+                const inferredEnd = nextSlot?.start > slot.start ? nextSlot.start : 24 * 60;
+                return { card, start: slot.start, end: slot.end ?? inferredEnd };
+            });
+        }
+
+        function setTimelineCardStatus(card, status) {
+            card.classList.remove('is-past', 'is-current', 'is-next');
+            card.removeAttribute('aria-current');
+            card.querySelector('.timeline-status-tag')?.remove();
+            if (!status) return;
+
+            card.classList.add(`is-${status}`);
+            if (status === 'past') return;
+
+            if (status === 'current') card.setAttribute('aria-current', 'step');
+            const badge = document.createElement('span');
+            badge.className = `tag timeline-status-tag ${status}`;
+            badge.textContent = status === 'current' ? '現在進行' : '下一站';
+            card.querySelector('.meta-tags')?.prepend(badge);
+        }
+
+        function updateTimelineProgress(date = new Date(), { autoScroll = false } = {}) {
+            const todayKey = getTripDateKey(date);
+            const currentMinutes = getTripTimeMinutes(date);
+            const currentDayIndex = tripDates.indexOf(todayKey);
+            let scrollTarget = null;
+
+            document.querySelectorAll('.day-section').forEach((section, sectionIndex) => {
+                const sectionDate = tripDates[sectionIndex];
+                const windows = getTimelineWindows(section);
+                section.classList.toggle('is-today', sectionDate === todayKey);
+                windows.forEach(({ card }) => setTimelineCardStatus(card, null));
+
+                if (sectionDate < todayKey) {
+                    windows.forEach(({ card }) => setTimelineCardStatus(card, 'past'));
+                    return;
+                }
+                if (sectionDate !== todayKey) return;
+
+                let currentWindow = null;
+                let nextWindow = null;
+                windows.forEach(window => {
+                    if (window.start === null) return;
+                    if (currentMinutes >= window.end) {
+                        setTimelineCardStatus(window.card, 'past');
+                    } else if (!currentWindow && currentMinutes >= window.start) {
+                        currentWindow = window;
+                    } else if (!currentWindow && !nextWindow && currentMinutes < window.start) {
+                        nextWindow = window;
+                    }
+                });
+
+                if (currentWindow) {
+                    setTimelineCardStatus(currentWindow.card, 'current');
+                    scrollTarget = currentWindow.card;
+                } else if (nextWindow) {
+                    setTimelineCardStatus(nextWindow.card, 'next');
+                    scrollTarget = nextWindow.card;
+                } else if (windows.length) {
+                    scrollTarget = windows[windows.length - 1].card;
+                }
+            });
+
+            const currentDayId = currentDayIndex >= 0 ? `day${currentDayIndex + 1}` : null;
+            const activePanel = document.querySelector('.trip-panel:not([hidden])');
+            if (autoScroll && scrollTarget && activePanel?.id === currentDayId) {
+                setTimeout(() => scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' }), 0);
+            }
+
+            return {
+                todayKey,
+                currentDayId,
+                currentCard: document.querySelector('.timeline-card.is-current'),
+                nextCard: document.querySelector('.timeline-card.is-next')
+            };
+        }
+
+        function initTimelineProgress(shouldAutoScroll) {
+            updateTimelineProgress(new Date(), { autoScroll: shouldAutoScroll });
+            window.setInterval(() => updateTimelineProgress(), 60 * 1000);
+        }
+
         function getDayIdForDate(date = new Date()) {
             const dateKey = getTripDateKey(date);
             const exactIndex = tripDates.indexOf(dateKey);
@@ -3774,6 +4217,7 @@
         });
 
         document.addEventListener('DOMContentLoaded', () => {
+            const shouldAutoLocateTimeline = !getPanelIdFromHash();
             let savedPersona = 'female';
             try {
                 savedPersona = localStorage.getItem(PERSONA_STORAGE_KEY) || savedPersona;
@@ -3786,6 +4230,7 @@
             const dayNav = document.querySelector('.day-nav');
             enableDragScroll(dayNav);
             initDayNav();
+            initTimelineProgress(shouldAutoLocateTimeline);
             initReservationActions();
             loadChecklistState();
         });
