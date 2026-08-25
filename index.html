@@ -7,9 +7,14 @@
     <title>峇里島六天五夜親子度假行程 | Bali Trip 2026</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
+    <!-- media="print" + onload 讓字型 CSS 不阻擋首次繪製；中文字型子集請求多，字重砍到最少 -->
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@700;900&display=swap"
+        media="print" onload="this.media='all'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Noto+Serif+TC:wght@700;900&display=swap">
+    </noscript>
 
     <style>
         :root {
@@ -330,6 +335,10 @@
             scroll-margin-top: 140px;
         }
 
+        .trip-panel[hidden] {
+            display: none;
+        }
+
         .day-header {
             display: flex;
             align-items: center;
@@ -584,13 +593,29 @@
             inset: 0;
             z-index: 9999;
             background: var(--bg-main);
+            width: 100%;
+            max-width: none;
+            height: 100%;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            color: inherit;
             display: flex;
             flex-direction: column;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.25s ease, visibility 0.25s ease;
+            transition: opacity 0.25s ease;
             overflow-y: auto;
             -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-overlay:not([open]) {
+            display: none;
+        }
+
+        .modal-overlay::backdrop {
+            background: var(--bg-main);
         }
 
         .modal-overlay.active {
@@ -945,6 +970,876 @@
                 padding: 4px 14px;
             }
         }
+
+        /* Island editorial refresh */
+        :root {
+            --bg-main: #eef4ef;
+            --bg-card: #fffefa;
+            --bg-card-hover: #f8fbf6;
+            --bg-subtle: #e2eee7;
+            --border-color: rgba(26, 75, 61, 0.16);
+            --border-accent: rgba(8, 127, 115, 0.34);
+            --text-main: #17382f;
+            --text-muted: #596b63;
+            --text-dim: #718079;
+            --teal-primary: #087f73;
+            --teal-glow: rgba(8, 127, 115, 0.12);
+            --gold-accent: #b97916;
+            --gold-glow: rgba(213, 156, 47, 0.16);
+            --sky-accent: #287a97;
+            --rose-accent: #c75543;
+            --font-sans: 'Noto Sans TC', sans-serif;
+            --font-display: 'Noto Serif TC', serif;
+            --radius-sm: 4px;
+            --radius-md: 6px;
+            --radius-lg: 8px;
+            --shadow-soft: 0 14px 36px rgba(43, 71, 57, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            background-image: repeating-linear-gradient(90deg, rgba(23, 56, 47, 0.018) 0,
+                    rgba(23, 56, 47, 0.018) 1px, transparent 1px, transparent 24px);
+            background-attachment: scroll;
+            color: var(--text-main);
+            padding-bottom: 48px;
+        }
+
+        .container {
+            max-width: 980px;
+            padding: 0 24px;
+        }
+
+        header {
+            position: relative;
+            isolation: isolate;
+            min-height: 290px;
+            margin-top: 20px;
+            padding: 140px 28px 28px;
+            overflow: hidden;
+            text-align: left;
+            border: 0;
+            border-radius: 8px;
+            background-color: #174f48;
+            background-image:
+                repeating-linear-gradient(0deg, rgba(255, 254, 250, 0.045) 0,
+                    rgba(255, 254, 250, 0.045) 1px, transparent 1px, transparent 12px),
+                repeating-linear-gradient(90deg, rgba(255, 254, 250, 0.025) 0,
+                    rgba(255, 254, 250, 0.025) 1px, transparent 1px, transparent 12px);
+            box-shadow: var(--shadow-soft);
+        }
+
+        header::before,
+        header::after {
+            content: '';
+            position: absolute;
+            pointer-events: none;
+        }
+
+        header::before {
+            z-index: -2;
+            inset: 0 0 0 42%;
+            background: #f1c15b;
+            clip-path: polygon(36% 0, 100% 0, 100% 100%, 0 100%, 19% 72%, 8% 46%);
+        }
+
+        header::after {
+            z-index: -1;
+            width: 56%;
+            height: 76%;
+            right: -4%;
+            bottom: -24%;
+            border: 18px solid #fff3dc;
+            border-bottom: 0;
+            border-radius: 50% 50% 0 0;
+            background: #d6674e;
+            transform: rotate(-7deg);
+            box-shadow:
+                0 -18px 0 #2b8175,
+                0 -36px 0 #fff3dc;
+        }
+
+        h1 {
+            position: relative;
+            z-index: 1;
+            max-width: 620px;
+            margin-bottom: 8px;
+            color: #fffefa;
+            font-family: var(--font-display);
+            font-size: 2.35rem;
+            font-weight: 900;
+            letter-spacing: 0;
+            line-height: 1.25;
+            text-shadow: 0 2px 18px rgba(8, 36, 31, 0.45);
+        }
+
+        .date-subtitle {
+            position: relative;
+            z-index: 1;
+            color: rgba(255, 254, 250, 0.92);
+            font-size: 0.92rem;
+            letter-spacing: 0;
+        }
+
+        .header-btn-wrap {
+            position: absolute;
+            z-index: 2;
+            top: 22px;
+            right: 22px;
+            margin: 0;
+        }
+
+        .notes-btn {
+            min-height: 44px;
+            padding: 8px 14px;
+            border-color: rgba(255, 254, 250, 0.72);
+            border-radius: 6px;
+            background: rgba(255, 254, 250, 0.94);
+            color: #1c594c;
+            box-shadow: 0 8px 22px rgba(8, 36, 31, 0.22);
+        }
+
+        .notes-btn:hover {
+            background: #fffefa;
+            color: #17382f;
+            box-shadow: 0 10px 24px rgba(8, 36, 31, 0.28);
+        }
+
+        .notes-btn .badge-count,
+        .notes-btn:hover .badge-count {
+            background: #dceddf;
+            color: #12685d;
+        }
+
+        .sticky-control-panel {
+            top: 8px;
+            padding: 10px;
+            margin: 14px 0 30px;
+            border-color: rgba(26, 75, 61, 0.18);
+            border-radius: 8px;
+            background: rgba(255, 254, 250, 0.95);
+            box-shadow: 0 10px 28px rgba(43, 71, 57, 0.14);
+        }
+
+        .day-nav {
+            gap: 6px;
+            scroll-snap-type: x mandatory;
+        }
+
+        .day-chip {
+            min-height: 52px;
+            min-width: 104px;
+            padding: 6px 10px;
+            gap: 2px;
+            flex-direction: column;
+            border-color: transparent;
+            border-radius: 6px;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 0.76rem;
+            letter-spacing: 0;
+            line-height: 1.18;
+            scroll-snap-align: center;
+        }
+
+        .tab-date {
+            color: var(--text-main);
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .tab-label {
+            color: var(--text-dim);
+            font-size: 0.68rem;
+            font-weight: 500;
+        }
+
+        .day-chip:hover {
+            border-color: rgba(8, 127, 115, 0.2);
+            background: #edf6f1;
+            color: var(--text-main);
+        }
+
+        .day-chip.active {
+            border-color: #12685d;
+            background: #12685d;
+            color: #fffefa;
+            box-shadow: none;
+        }
+
+        .day-chip.active .tab-date,
+        .day-chip.active .tab-label {
+            color: #fffefa;
+        }
+
+        .persona-sub-row {
+            margin-top: 10px;
+            padding: 10px 4px 0;
+            border-top-color: rgba(26, 75, 61, 0.14);
+        }
+
+        .persona-sub-label {
+            color: var(--text-muted);
+        }
+
+        .persona-selector {
+            border-color: rgba(26, 75, 61, 0.14);
+            border-radius: 6px;
+            background: #edf3ee;
+        }
+
+        .persona-btn {
+            min-height: 40px;
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        .persona-btn.active {
+            border-color: rgba(8, 127, 115, 0.26);
+            background: #fffefa;
+            color: #12685d;
+        }
+
+        .day-section {
+            margin-bottom: 28px;
+            animation: day-reveal 0.42s ease both;
+        }
+
+        @keyframes day-reveal {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .day-header {
+            border-bottom: 2px solid #b9d3c3;
+        }
+
+        .day-num,
+        .section-title,
+        .modal-title-group h3 {
+            font-family: var(--font-display);
+        }
+
+        .day-num {
+            color: #12685d;
+            font-size: 1.55rem;
+        }
+
+        .day-date,
+        .place-name {
+            color: var(--text-main);
+        }
+
+        .charter-badge,
+        .tag,
+        .time-slot,
+        .maps-btn {
+            border-radius: 4px;
+        }
+
+        .charter-badge {
+            background: #f5ead1;
+            color: #8a5a0e;
+        }
+
+        .outfit-card {
+            border-left: 4px solid #d59c2f;
+            border-color: rgba(213, 156, 47, 0.35);
+            border-left-color: #d59c2f;
+            border-radius: 6px;
+            background: #fff8e9;
+        }
+
+        .outfit-title {
+            color: #8a5a0e;
+        }
+
+        .outfit-content {
+            color: #425b52;
+            transition: opacity 0.18s ease;
+        }
+
+        .timeline {
+            padding: 0 20px;
+            border-color: rgba(26, 75, 61, 0.14);
+            border-radius: 8px;
+            background: var(--bg-card);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .timeline-card {
+            padding: 18px 0;
+            gap: 7px;
+            border-bottom-color: rgba(26, 75, 61, 0.14);
+        }
+
+        .timeline-card.has-image {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            column-gap: 18px;
+            align-items: start;
+        }
+
+        .timeline-card.has-image> :not(.place-image) {
+            grid-column: 2;
+        }
+
+        .place-image {
+            grid-column: 1;
+            grid-row: 1 / span 3;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #dce8df;
+        }
+
+        .place-image img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .day-feature {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 21 / 8;
+            margin: -2px 0 18px;
+            overflow: hidden;
+            border-radius: 8px;
+            background: #dce8df;
+        }
+
+        .day-feature img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .day-feature figcaption {
+            position: absolute;
+            right: 12px;
+            bottom: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(17, 56, 47, 0.78);
+            color: #fffefa;
+            font-size: 0.72rem;
+        }
+
+        .place-image figcaption {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+        }
+
+        .time-slot {
+            background: #dceff0;
+            color: #24657b;
+        }
+
+        .tag {
+            background: #e8efea;
+            color: #52645c;
+        }
+
+        .tag.highlight {
+            background: #f5ead1;
+            color: #8a5a0e;
+        }
+
+        .maps-btn {
+            min-height: 36px;
+            padding: 5px 10px;
+            border-color: #78a99d;
+            background: transparent;
+            color: #12685d;
+        }
+
+        .maps-btn:hover {
+            background: #12685d;
+            color: #fffefa;
+        }
+
+        .reservation-chip:not(.active) .tab-date {
+            color: #b65340;
+        }
+
+        .reservation-chip.active {
+            border-color: #b65340;
+            background: #b65340;
+        }
+
+        .reservation-page {
+            margin-bottom: 28px;
+            animation: day-reveal 0.42s ease both;
+            scroll-margin-top: 100px;
+        }
+
+        .reservation-summary {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin: 18px 0;
+            padding: 16px 18px;
+            border-left: 4px solid #12685d;
+            background: #e7f1eb;
+            color: var(--text-muted);
+        }
+
+        .reservation-summary strong {
+            display: block;
+            margin-bottom: 3px;
+            color: var(--text-main);
+            font-size: 1rem;
+        }
+
+        .reservation-summary p {
+            margin: 0;
+            font-size: 0.8rem;
+        }
+
+        .reservation-count {
+            flex: 0 0 auto;
+            color: #12685d;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .reservation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .reservation-card {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            min-width: 0;
+            padding: 20px;
+            border: 1px solid rgba(26, 75, 61, 0.18);
+            border-top: 4px solid #b65340;
+            border-radius: 8px;
+            background: #fffefa;
+            box-shadow: 0 10px 26px rgba(43, 71, 57, 0.08);
+            scroll-margin-top: 150px;
+        }
+
+        .reservation-card:focus {
+            outline: 3px solid #d27743;
+            outline-offset: 3px;
+        }
+
+        .reservation-card-head,
+        .reservation-card-actions,
+        .reservation-code-value {
+            display: flex;
+            align-items: center;
+        }
+
+        .reservation-card-head {
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .reservation-day {
+            color: #b65340;
+            font-size: 0.74rem;
+            font-weight: 700;
+        }
+
+        .reservation-status {
+            color: #14745f;
+            font-size: 0.74rem;
+            font-weight: 700;
+        }
+
+        .reservation-card h2 {
+            margin: -4px 0 0;
+            color: var(--text-main);
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            line-height: 1.35;
+        }
+
+        .reservation-card-note {
+            margin: -8px 0 0;
+            color: var(--text-muted);
+            font-size: 0.78rem;
+            line-height: 1.5;
+        }
+
+        .reservation-details {
+            display: grid;
+            gap: 0;
+            margin: 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .reservation-details>div {
+            display: grid;
+            grid-template-columns: 88px minmax(0, 1fr);
+            align-items: center;
+            gap: 10px;
+            min-height: 44px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .reservation-details dt {
+            color: var(--text-dim);
+            font-size: 0.74rem;
+        }
+
+        .reservation-details dd {
+            min-width: 0;
+            margin: 0;
+            color: var(--text-main);
+            font-size: 0.84rem;
+            font-weight: 700;
+        }
+
+        .reservation-code-value {
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .reservation-code-value code {
+            color: #a65d00;
+            font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+            font-size: 0.95rem;
+            letter-spacing: 0;
+        }
+
+        .copy-code-btn,
+        .reservation-day-link,
+        .reservation-map-link {
+            min-height: 40px;
+            border-radius: 6px;
+            font-family: var(--font-sans);
+            font-size: 0.76rem;
+            font-weight: 700;
+        }
+
+        .copy-code-btn {
+            padding: 5px 9px;
+            border: 1px solid #d59c2f;
+            background: #fff8e9;
+            color: #8a5a0e;
+            cursor: pointer;
+        }
+
+        .reservation-card-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .reservation-day-link,
+        .reservation-map-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 10px;
+            text-decoration: none;
+        }
+
+        .reservation-day-link {
+            border: 1px solid #78a99d;
+            background: transparent;
+            color: #12685d;
+        }
+
+        .reservation-map-link {
+            border: 1px solid #12685d;
+            background: #12685d;
+            color: #fffefa;
+        }
+
+        .place-actions {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            flex: 0 0 auto;
+        }
+
+        .reservation-info-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 36px;
+            padding: 5px 10px;
+            border: 1px solid #d27743;
+            border-radius: 4px;
+            background: #fff1e9;
+            color: #a84936;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .reservation-info-btn:hover {
+            background: #b65340;
+            color: #fffefa;
+        }
+
+        .tag.reservation-tag {
+            background: #f9dfd4;
+            color: #9f4634;
+            font-weight: 700;
+        }
+
+        .reservation-view .tips-box,
+        .reservation-view .photo-credits,
+        .reservation-view .persona-sub-row {
+            display: none;
+        }
+
+        .tips-box,
+        .tip-item,
+        .weather-box,
+        .clothing-card,
+        .checklist-item {
+            border-color: rgba(26, 75, 61, 0.14);
+            background: #fffefa;
+            color: var(--text-main);
+        }
+
+        .tips-box {
+            border-radius: 8px;
+        }
+
+        .tip-item {
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        .day-pagination {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+            margin-top: 18px;
+        }
+
+        .day-pagination button {
+            min-height: 48px;
+            padding: 10px 14px;
+            border: 1px solid #78a99d;
+            border-radius: 6px;
+            background: #fffefa;
+            color: #12685d;
+            font-family: var(--font-sans);
+            font-size: 0.82rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .day-pagination button:last-child {
+            text-align: right;
+        }
+
+        .day-pagination button:first-child {
+            text-align: left;
+        }
+
+        .day-pagination button:disabled {
+            visibility: hidden;
+        }
+
+        .photo-credits {
+            margin-top: 20px;
+            padding: 16px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: rgba(255, 254, 250, 0.72);
+            color: var(--text-muted);
+            font-size: 0.74rem;
+        }
+
+        .photo-credits summary {
+            color: var(--text-main);
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .credit-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 6px 22px;
+            margin: 12px 0 0 18px;
+        }
+
+        .credit-list a {
+            color: #12685d;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        footer {
+            color: var(--text-muted);
+        }
+
+        .modal-overlay,
+        .modal-card {
+            background: var(--bg-main);
+        }
+
+        .modal-header {
+            border-color: var(--border-color);
+            background: rgba(255, 254, 250, 0.96);
+        }
+
+        .modal-close-btn {
+            min-height: 44px;
+            border-radius: 6px;
+            background: #e8efea;
+            color: var(--text-main);
+        }
+
+        :where(a, button, input):focus-visible {
+            outline: 3px solid #d27743;
+            outline-offset: 3px;
+        }
+
+        @media (max-width: 720px) {
+            .container {
+                padding: 0 14px;
+            }
+
+            header {
+                min-height: 240px;
+                margin-top: 10px;
+                padding: 122px 18px 20px;
+            }
+
+            header::before {
+                inset: 0 0 0 84%;
+            }
+
+            header::after {
+                width: 38%;
+                height: 64%;
+                right: -20%;
+                bottom: -26%;
+                border-width: 13px;
+                border-bottom: 0;
+                transform: none;
+                box-shadow:
+                    0 -13px 0 #2b8175,
+                    0 -26px 0 #fff3dc;
+            }
+
+            h1 {
+                max-width: 260px;
+                font-size: 1.55rem;
+            }
+
+            .header-btn-wrap {
+                top: 14px;
+                right: 14px;
+            }
+
+            .sticky-control-panel {
+                margin-bottom: 22px;
+            }
+
+            .day-nav {
+                margin: 0 -2px;
+                padding: 0 2px 4px;
+            }
+
+            .day-chip {
+                flex: 0 0 92px;
+                min-width: 92px;
+            }
+
+            .persona-btn {
+                min-height: 44px;
+            }
+
+            .timeline {
+                padding: 0 14px;
+            }
+
+            .timeline-card.has-image {
+                display: flex;
+            }
+
+            .place-image {
+                order: -1;
+                aspect-ratio: 16 / 9;
+            }
+
+            .day-feature {
+                aspect-ratio: 16 / 9;
+            }
+
+            .credit-list {
+                grid-template-columns: 1fr;
+            }
+
+            .reservation-summary {
+                align-items: flex-start;
+            }
+
+            .reservation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reservation-card {
+                padding: 18px 16px;
+                scroll-margin-top: 132px;
+            }
+
+            .card-top,
+            .place-title-row {
+                align-items: flex-start;
+            }
+
+            .place-title-row {
+                flex-wrap: wrap;
+            }
+
+            .place-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+
+            .maps-btn {
+                min-height: 40px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
 </head>
 
@@ -965,26 +1860,39 @@
         <!-- Sticky Day Navigation (Primary) & Persona Sub-Filter (Secondary) -->
         <div class="sticky-control-panel">
             <!-- 1. 主要選項：日期導航 -->
-            <div class="day-nav">
-                <a class="day-chip active" href="#day1">8/27</a>
-                <a class="day-chip" href="#day2">8/28</a>
-                <a class="day-chip" href="#day3">8/29</a>
-                <a class="day-chip" href="#day4">8/30</a>
-                <a class="day-chip" href="#day5">8/31</a>
-                <a class="day-chip" href="#day6">9/1</a>
+            <div class="day-nav" role="tablist" aria-label="選擇行程日期">
+                <a class="day-chip active" id="tab-day1" href="#day1" role="tab" aria-controls="day1"
+                    aria-selected="true" tabindex="0"><span class="tab-date">8/27</span><span
+                        class="tab-label">抵達水明漾</span></a>
+                <a class="day-chip" id="tab-day2" href="#day2" role="tab" aria-controls="day2" aria-selected="false"
+                    tabindex="-1"><span class="tab-date">8/28</span><span class="tab-label">瀑布動物園</span></a>
+                <a class="day-chip" id="tab-day3" href="#day3" role="tab" aria-controls="day3" aria-selected="false"
+                    tabindex="-1"><span class="tab-date">8/29</span><span class="tab-label">梯田烏布</span></a>
+                <a class="day-chip" id="tab-day4" href="#day4" role="tab" aria-controls="day4" aria-selected="false"
+                    tabindex="-1"><span class="tab-date">8/30</span><span class="tab-label">海神廟長谷</span></a>
+                <a class="day-chip" id="tab-day5" href="#day5" role="tab" aria-controls="day5" aria-selected="false"
+                    tabindex="-1"><span class="tab-date">8/31</span><span class="tab-label">懸崖火舞</span></a>
+                <a class="day-chip" id="tab-day6" href="#day6" role="tab" aria-controls="day6" aria-selected="false"
+                    tabindex="-1"><span class="tab-date">9/1</span><span class="tab-label">沙努爾返台</span></a>
+                <a class="day-chip reservation-chip" id="tab-reservations" href="#reservations" role="tab"
+                    aria-controls="reservations" aria-selected="false" tabindex="-1"><span
+                        class="tab-date">訂位</span><span class="tab-label">4 家確認</span></a>
             </div>
 
             <!-- 2. 次要選項：穿搭對象切換 -->
             <div class="persona-sub-row">
                 <span class="persona-sub-label">👗 穿搭對象</span>
-                <div class="persona-selector">
-                    <button class="persona-btn active" data-persona="female" onclick="switchPersona('female')">
+                <div class="persona-selector" role="group" aria-label="切換穿搭對象">
+                    <button class="persona-btn active" data-persona="female" aria-pressed="true"
+                        onclick="switchPersona('female')">
                         <span>👩</span> 女生
                     </button>
-                    <button class="persona-btn" data-persona="male" onclick="switchPersona('male')">
+                    <button class="persona-btn" data-persona="male" aria-pressed="false"
+                        onclick="switchPersona('male')">
                         <span>👨</span> 男生
                     </button>
-                    <button class="persona-btn" data-persona="toddler" onclick="switchPersona('toddler')">
+                    <button class="persona-btn" data-persona="toddler" aria-pressed="false"
+                        onclick="switchPersona('toddler')">
                         <span>👶</span> 小寶
                     </button>
                 </div>
@@ -995,7 +1903,7 @@
         <main>
 
             <!-- DAY 1 -->
-            <section id="day1" class="day-section">
+            <section id="day1" class="day-section trip-panel" role="tabpanel" aria-labelledby="tab-day1">
                 <div class="day-header">
                     <div class="day-title-wrap">
                         <div class="day-title-top">
@@ -1075,7 +1983,12 @@
                         <div class="place-desc">辦理落地簽（VOA）、電子報關與海關通關手續，出關與司機會合。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/seminyak-pool.webp" width="960" height="1280" loading="lazy"
+                                decoding="async" alt="水明漾地區飯店的熱帶植栽泳池代表景觀，非 VOCO 官方照片" onerror="this.hidden=true">
+                            <figcaption>水明漾飯店泳池代表景觀</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">18:00 - 19:00</span>
                             <div class="meta-tags"><span class="tag">飯店入住</span><span class="tag">車程 30-45m</span></div>
@@ -1091,22 +2004,26 @@
 
                     <div class="timeline-card">
                         <div class="card-top">
-                            <span class="time-slot">19:00 - 20:30</span>
-                            <div class="meta-tags"><span class="tag highlight">必吃晚餐</span><span class="tag">車程
+                            <span class="time-slot">19:30 - 21:00</span>
+                            <div class="meta-tags"><span class="tag reservation-tag">已訂位 19:30</span><span
+                                    class="tag highlight">必吃晚餐</span><span class="tag">車程
                                     5-10m</span><span class="tag">停留 1.5h</span></div>
                         </div>
                         <div class="place-title-row">
                             <div class="place-name">Naughty Nuri's Seminyak 晚餐</div>
-                            <a class="maps-btn"
-                                href="https://www.google.com/maps/search/?api=1&query=Naughty+Nuri%27s+Warung+Seminyak"
-                                target="_blank">導航</a>
+                            <div class="place-actions">
+                                <a class="reservation-info-btn" href="#reservation-naughty-nuris">訂位資訊</a>
+                                <a class="maps-btn"
+                                    href="https://www.google.com/maps/search/?api=1&query=Naughty+Nuri%27s+Warung+Seminyak"
+                                    target="_blank">導航</a>
+                            </div>
                         </div>
                         <div class="place-desc">峇里島經典炭烤醬汁豬肋排、沙嗲烤肉與熱帶飲品。</div>
                     </div>
 
                     <div class="timeline-card">
                         <div class="card-top">
-                            <span class="time-slot">20:30 - 21:00</span>
+                            <span class="time-slot">21:10 - 21:40</span>
                             <div class="meta-tags"><span class="tag">特色咖啡</span><span class="tag">車程 5-10m</span><span
                                     class="tag">停留 0.5h</span></div>
                         </div>
@@ -1119,9 +2036,14 @@
                         <div class="place-desc">極簡美學韓系打卡咖啡店，品嚐手沖與特色甜點。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/seminyak-street.webp" width="1280" height="960" loading="lazy"
+                                decoding="async" alt="水明漾街道兩側的峇里島石雕建築與店家" onerror="this.hidden=true">
+                            <figcaption>水明漾街景</figcaption>
+                        </figure>
                         <div class="card-top">
-                            <span class="time-slot">21:00 - 22:00</span>
+                            <span class="time-slot">21:40 - 22:30</span>
                             <div class="meta-tags"><span class="tag">市區漫遊</span><span class="tag">步行</span><span
                                     class="tag">停留 1h</span></div>
                         </div>
@@ -1136,7 +2058,7 @@
 
                     <div class="timeline-card">
                         <div class="card-top">
-                            <span class="time-slot">22:00 ~</span>
+                            <span class="time-slot">22:30 ~</span>
                             <div class="meta-tags"><span class="tag">休息</span><span class="tag">車程 5-10m</span></div>
                         </div>
                         <div class="place-title-row">
@@ -1149,7 +2071,7 @@
 
 
             <!-- DAY 2 -->
-            <section id="day2" class="day-section">
+            <section id="day2" class="day-section trip-panel" role="tabpanel" aria-labelledby="tab-day2">
                 <div class="day-header">
                     <div class="day-title-wrap">
                         <div class="day-title-top">
@@ -1186,7 +2108,12 @@
                         </div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/tirta-empul.webp" width="1280" height="960" loading="lazy"
+                                decoding="async" alt="聖泉寺石造泉池中進行傳統淨身祈福儀式的人們" onerror="this.hidden=true">
+                            <figcaption>聖泉寺淨身泉池</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">10:15 - 11:15</span>
                             <div class="meta-tags"><span class="tag highlight">聖泉古寺</span><span class="tag">車程 1h
@@ -1201,7 +2128,12 @@
                         <div class="place-desc">千年天然地下泉水寺廟，體驗峇里島傳統淨身祈福儀式與壯麗石雕建築。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/kanto-lampo.webp" width="1280" height="2266" loading="lazy"
+                                decoding="async" alt="坎托藍波瀑布沿黑色岩層傾瀉而下的層疊水幕" onerror="this.hidden=true">
+                            <figcaption>坎托藍波瀑布</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">11:45 - 12:45</span>
                             <div class="meta-tags"><span class="tag highlight">網美秘境</span><span class="tag">車程
@@ -1231,7 +2163,12 @@
                         <div class="place-desc">座落於烏布稻田旁的經典景觀餐廳，品嚐外皮酥脆香嫩的招牌香料炸髒鴨。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/bali-safari.webp" width="1280" height="960" loading="lazy"
+                                decoding="async" alt="峇里島野生動物園以象牙造型裝飾的入口建築" onerror="this.hidden=true">
+                            <figcaption>峇里島野生動物園入口</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">15:00 - 18:30</span>
                             <div class="meta-tags"><span class="tag highlight">親子重點</span><span class="tag">車程
@@ -1275,7 +2212,7 @@
 
 
             <!-- DAY 3 -->
-            <section id="day3" class="day-section">
+            <section id="day3" class="day-section trip-panel" role="tabpanel" aria-labelledby="tab-day3">
                 <div class="day-header">
                     <div class="day-title-wrap">
                         <div class="day-title-top">
@@ -1327,7 +2264,12 @@
                         <div class="place-desc">漫步熱帶香料與咖啡種植園，品鑑多款峇里島特色茶飲與正統麝香貓咖啡。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/tegallalang.webp" width="1280" height="851" loading="lazy"
+                                decoding="async" alt="德格拉朗山谷中層層延伸的翠綠水稻梯田與椰子樹" onerror="this.hidden=true">
+                            <figcaption>德格拉朗梯田</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">11:10 - 12:15</span>
                             <div class="meta-tags"><span class="tag highlight">世界級美景</span><span class="tag">車程
@@ -1356,7 +2298,12 @@
                         <div class="place-desc">坐擁烏布蓊鬱山林景觀，享受精緻創意料理與放鬆的氛圍。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/ubud-palace.webp" width="853" height="1280" loading="lazy"
+                                decoding="async" alt="烏布皇宮紅磚石雕門樓與金色傳統宮門細節" onerror="this.hidden=true">
+                            <figcaption>烏布皇宮傳統建築</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">14:10 - 15:30</span>
                             <div class="meta-tags"><span class="tag">人文市集</span><span class="tag">車程 10m</span><span
@@ -1370,7 +2317,12 @@
                         <div class="place-desc">欣賞傳統皇宮雕刻建築，走訪市集採買編織包、木雕、香氛與手作伴手禮。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/monkey-forest.webp" width="855" height="1280" loading="lazy"
+                                decoding="async" alt="烏布聖猴森林中棲坐在熱帶樹枝上的長尾獼猴" onerror="this.hidden=true">
+                            <figcaption>烏布聖猴森林</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">15:40 - 17:00</span>
                             <div class="meta-tags"><span class="tag highlight">熱帶森林</span><span class="tag">車程
@@ -1387,14 +2339,19 @@
 
                     <div class="timeline-card">
                         <div class="card-top">
-                            <span class="time-slot">17:30 - 19:00</span>
-                            <div class="meta-tags"><span class="tag highlight">氣氛晚餐</span><span class="tag">車程
+                            <span class="time-slot">17:45 - 19:15</span>
+                            <div class="meta-tags"><span class="tag reservation-tag">已訂位 17:45</span><span
+                                    class="tag highlight">氣氛晚餐</span><span class="tag">車程
                                     10m</span><span class="tag">停留 1.5h</span></div>
                         </div>
                         <div class="place-title-row">
                             <div class="place-name">Kebun Bistro 晚餐</div>
-                            <a class="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Kebun+Bistro+Ubud"
-                                target="_blank">導航</a>
+                            <div class="place-actions">
+                                <a class="reservation-info-btn" href="#reservation-kebun-bistro">訂位資訊</a>
+                                <a class="maps-btn"
+                                    href="https://www.google.com/maps/search/?api=1&query=Kebun+Bistro+Ubud"
+                                    target="_blank">導航</a>
+                            </div>
                         </div>
                         <div class="place-desc">烏布超人氣浪漫法式地中海餐酒館，品嚐手工披薩、義大利麵與牛排料理。</div>
                     </div>
@@ -1413,7 +2370,7 @@
 
 
             <!-- DAY 4 -->
-            <section id="day4" class="day-section">
+            <section id="day4" class="day-section trip-panel" role="tabpanel" aria-labelledby="tab-day4">
                 <div class="day-header">
                     <div class="day-title-wrap">
                         <div class="day-title-top">
@@ -1450,7 +2407,12 @@
                         </div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/tanah-lot.webp" width="1280" height="854" loading="lazy"
+                                decoding="async" alt="海神廟潮間帶旁的黑色石造寺院與傳統紅瓦建築" onerror="this.hidden=true">
+                            <figcaption>海神廟寺院與潮間帶</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">10:00 - 11:00</span>
                             <div class="meta-tags"><span class="tag highlight">峇里地標</span><span class="tag">車程
@@ -1465,7 +2427,12 @@
                         <div class="place-desc">矗立於印度洋巨石之上的古老神廟，漲潮時如同漂浮於海面上的仙境奇景。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/la-brisa.webp" width="960" height="1280" loading="lazy"
+                                decoding="async" alt="La Brisa 海灘俱樂部夜間點燈的木造空間與沙灘座位" onerror="this.hidden=true">
+                            <figcaption>La Brisa 海灘俱樂部</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">11:30 - 14:00</span>
                             <div class="meta-tags"><span class="tag highlight">週日限定市集</span><span class="tag">車程
@@ -1495,7 +2462,13 @@
                         <div class="place-desc">源自挪威奧斯陸、揚名日本東京的頂級淺焙精品咖啡，峇里島風格旗艦店。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/beachwalk.webp" width="1280" height="720" loading="lazy"
+                                decoding="async" alt="庫塔 Beachwalk Shopping Center 綠意環繞的戶外入口廣場"
+                                onerror="this.hidden=true">
+                            <figcaption>Beachwalk Shopping Center</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">15:30 - 18:00</span>
                             <div class="meta-tags"><span class="tag highlight">海濱商場</span><span class="tag">車程
@@ -1540,7 +2513,7 @@
 
 
             <!-- DAY 5 -->
-            <section id="day5" class="day-section">
+            <section id="day5" class="day-section trip-panel" role="tabpanel" aria-labelledby="tab-day5">
                 <div class="day-header">
                     <div class="day-title-wrap">
                         <div class="day-title-top">
@@ -1581,17 +2554,26 @@
                         <div class="place-desc">自水明漾退房，前往沙努爾洲際度假酒店（InterContinental Sanur）寄放行李。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/south-kuta-coast.webp" width="1280" height="960" loading="lazy"
+                                decoding="async" alt="南庫塔海濱度假區的椰林步道與海灘休憩空間代表景觀" onerror="this.hidden=true">
+                            <figcaption>南庫塔海濱度假區代表景觀</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">11:30 - 13:00</span>
-                            <div class="meta-tags"><span class="tag highlight">預訂午餐</span><span class="tag">車程
+                            <div class="meta-tags"><span class="tag reservation-tag">已訂位 11:30</span><span
+                                    class="tag highlight">預訂午餐</span><span class="tag">車程
                                     1h</span><span class="tag">停留 1.5h</span></div>
                         </div>
                         <div class="place-title-row">
                             <div class="place-name">Le Bleu by K Club 午餐 (努沙杜瓦)</div>
-                            <a class="maps-btn"
-                                href="https://www.google.com/maps/search/?api=1&query=Le+Bleu+by+K+Club+Nusa+Dua"
-                                target="_blank">導航</a>
+                            <div class="place-actions">
+                                <a class="reservation-info-btn" href="#reservation-le-bleu">訂位資訊</a>
+                                <a class="maps-btn"
+                                    href="https://www.google.com/maps/search/?api=1&query=Le+Bleu+by+K+Club+Nusa+Dua"
+                                    target="_blank">導航</a>
+                            </div>
                         </div>
                         <div class="place-desc">豪華度假村法式奢華午餐，坐擁泳池與花園景致，享受精緻地中海料理。</div>
                     </div>
@@ -1628,7 +2610,7 @@
 
                     <div class="timeline-card">
                         <div class="card-top">
-                            <span class="time-slot">16:10 - 17:00</span>
+                            <span class="time-slot">15:50 - 16:40</span>
                             <div class="meta-tags"><span class="tag">懸崖海景</span><span class="tag">車程 30m</span><span
                                     class="tag">停留 50m</span></div>
                         </div>
@@ -1641,21 +2623,36 @@
                         <div class="place-desc">矗立在烏魯瓦圖懸崖邊的白色系網美咖啡店，遠眺衝浪客與一望無際的海平線。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/uluwatu-coast.webp" width="1280" height="853" loading="lazy"
+                                decoding="async" alt="烏魯瓦圖海岸的開闊海面、浪線與遠方衝浪者" onerror="this.hidden=true">
+                            <figcaption>烏魯瓦圖海岸景觀</figcaption>
+                        </figure>
                         <div class="card-top">
-                            <span class="time-slot">17:10 - 18:20</span>
-                            <div class="meta-tags"><span class="tag">夕陽簡餐</span><span class="tag">車程 10m</span><span
-                                    class="tag">停留 1h 10m</span></div>
+                            <span class="time-slot">17:00 - 18:00</span>
+                            <div class="meta-tags"><span class="tag reservation-tag">已訂位 17:00</span><span
+                                    class="tag">夕陽簡餐</span><span class="tag">車程 20m</span><span class="tag">停留 1h</span>
+                            </div>
                         </div>
                         <div class="place-title-row">
                             <div class="place-name">Mana Uluwatu 看海與簡餐</div>
-                            <a class="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Mana+Uluwatu+Bali"
-                                target="_blank">導航</a>
+                            <div class="place-actions">
+                                <a class="reservation-info-btn" href="#reservation-mana-uluwatu">訂位資訊</a>
+                                <a class="maps-btn"
+                                    href="https://www.google.com/maps/search/?api=1&query=Mana+Uluwatu+Bali"
+                                    target="_blank">導航</a>
+                            </div>
                         </div>
                         <div class="place-desc">懸崖視野極佳的環保度假村餐廳，在夕陽餘暉下享用輕食飲品。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/kecak-fire-dance.webp" width="1280" height="852" loading="lazy"
+                                decoding="async" alt="烏魯瓦圖露天劇場中圍成圓圈吟唱的 Kecak 舞者與火炬" onerror="this.hidden=true">
+                            <figcaption>烏魯瓦圖 Kecak 火舞</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">18:30 - 20:00</span>
                             <div class="meta-tags"><span class="tag highlight">世界級火舞</span><span class="tag">車程
@@ -1685,7 +2682,7 @@
 
 
             <!-- DAY 6 -->
-            <section id="day6" class="day-section">
+            <section id="day6" class="day-section trip-panel" role="tabpanel" aria-labelledby="tab-day6">
                 <div class="day-header">
                     <div class="day-title-wrap">
                         <div class="day-title-top">
@@ -1696,6 +2693,12 @@
                     </div>
                     <span class="charter-badge">返台日</span>
                 </div>
+
+                <figure class="day-feature">
+                    <img src="assets/images/sanur-coast.webp" width="1280" height="854" loading="lazy" decoding="async"
+                        alt="沙努爾清晨潮間帶上的傳統小船與紫粉色天空倒影" onerror="this.hidden=true">
+                    <figcaption>沙努爾晨光印象</figcaption>
+                </figure>
 
                 <div class="outfit-card">
                     <div class="outfit-header">
@@ -1712,7 +2715,12 @@
                 </div>
 
                 <div class="timeline">
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/sanur-resort.webp" width="1280" height="827" loading="lazy"
+                                decoding="async" alt="沙努爾海濱飯店建築代表景觀，非洲際酒店官方照片" onerror="this.hidden=true">
+                            <figcaption>沙努爾海濱飯店區域代表景觀</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">~ 09:00</span>
                             <div class="meta-tags"><span class="tag">悠閒早晨</span><span class="tag">飯店內</span></div>
@@ -1723,7 +2731,12 @@
                         <div class="place-desc">享用五星度假村早餐，享受清幽的晨間泳池與海濱花園。</div>
                     </div>
 
-                    <div class="timeline-card">
+                    <div class="timeline-card has-image">
+                        <figure class="place-image">
+                            <img src="assets/images/sanur-sunrise.webp" width="1280" height="853" loading="lazy"
+                                decoding="async" alt="沙努爾海灘日出時延伸向涼亭的弧形海岸步道" onerror="this.hidden=true">
+                            <figcaption>沙努爾海灘日出</figcaption>
+                        </figure>
                         <div class="card-top">
                             <span class="time-slot">09:00 - 10:00</span>
                             <div class="meta-tags"><span class="tag">海濱散步</span><span class="tag">停留 1h</span></div>
@@ -1789,6 +2802,169 @@
                 </div>
             </section>
 
+            <section id="reservations" class="reservation-page trip-panel" role="tabpanel"
+                aria-labelledby="tab-reservations" hidden>
+                <div class="day-header">
+                    <div class="day-title-wrap">
+                        <div class="day-title-top">
+                            <span class="day-num">餐廳訂位總覽</span>
+                        </div>
+                        <div class="day-sub-desc">4 家餐廳已確認，可快速查看訂位碼與導航</div>
+                    </div>
+                    <span class="charter-badge">4 / 4 確認</span>
+                </div>
+
+                <div class="reservation-summary">
+                    <div>
+                        <strong>🍽️ 四家熱門餐廳已完成訂位</strong>
+                        <p>抵達現場時出示餐廳名稱與預約 ID；訂位碼可一鍵複製，個人聯絡資料未收錄於此頁。</p>
+                    </div>
+                    <span class="reservation-count">4</span>
+                </div>
+
+                <div class="reservation-grid">
+                    <article class="reservation-card" id="reservation-naughty-nuris" tabindex="-1">
+                        <div class="reservation-card-head">
+                            <span class="reservation-day">Day 1 · 8月27日（四）</span>
+                            <span class="reservation-status">● 確定預約</span>
+                        </div>
+                        <h2>Naughty Nuri's Seminyak</h2>
+                        <p class="reservation-card-note">水明漾招牌炭烤醬汁豬肋排與沙嗲烤肉。</p>
+                        <dl class="reservation-details">
+                            <div>
+                                <dt>預約 ID</dt>
+                                <dd class="reservation-code-value"><code>KPNK6W</code><button class="copy-code-btn"
+                                        type="button" data-copy-code="KPNK6W">⧉ 複製</button></dd>
+                            </div>
+                            <div>
+                                <dt>日期</dt>
+                                <dd><time datetime="2026-08-27">2026/08/27（四）</time></dd>
+                            </div>
+                            <div>
+                                <dt>時間</dt>
+                                <dd><time datetime="2026-08-27T19:30:00+08:00">19:30</time></dd>
+                            </div>
+                            <div>
+                                <dt>人數</dt>
+                                <dd>6 人</dd>
+                            </div>
+                        </dl>
+                        <div class="reservation-card-actions">
+                            <a class="reservation-day-link" href="#day1">查看 Day 1</a>
+                            <a class="reservation-map-link"
+                                href="https://www.google.com/maps/search/?api=1&query=Naughty+Nuri%27s+Seminyak"
+                                target="_blank">餐廳導航</a>
+                        </div>
+                    </article>
+
+                    <article class="reservation-card" id="reservation-kebun-bistro" tabindex="-1">
+                        <div class="reservation-card-head">
+                            <span class="reservation-day">Day 3 · 8月29日（六）</span>
+                            <span class="reservation-status">● 確定預約</span>
+                        </div>
+                        <h2>Kebun Bistro</h2>
+                        <p class="reservation-card-note">烏布法式地中海餐酒館，晚餐訂位已確認。</p>
+                        <dl class="reservation-details">
+                            <div>
+                                <dt>預約 ID</dt>
+                                <dd class="reservation-code-value"><code>BD3CVLJF</code><button class="copy-code-btn"
+                                        type="button" data-copy-code="BD3CVLJF">⧉ 複製</button></dd>
+                            </div>
+                            <div>
+                                <dt>日期</dt>
+                                <dd><time datetime="2026-08-29">2026/08/29（六）</time></dd>
+                            </div>
+                            <div>
+                                <dt>時間</dt>
+                                <dd><time datetime="2026-08-29T17:45:00+08:00">17:45</time></dd>
+                            </div>
+                            <div>
+                                <dt>人數</dt>
+                                <dd>6 人</dd>
+                            </div>
+                        </dl>
+                        <div class="reservation-card-actions">
+                            <a class="reservation-day-link" href="#day3">查看 Day 3</a>
+                            <a class="reservation-map-link"
+                                href="https://www.google.com/maps/search/?api=1&query=Kebun+Bistro+Ubud"
+                                target="_blank">餐廳導航</a>
+                        </div>
+                    </article>
+
+                    <article class="reservation-card" id="reservation-le-bleu" tabindex="-1">
+                        <div class="reservation-card-head">
+                            <span class="reservation-day">Day 5 · 8月31日（一）</span>
+                            <span class="reservation-status">● 確定預約</span>
+                        </div>
+                        <h2>Le Bleu by K-Club</h2>
+                        <p class="reservation-card-note">努沙杜瓦海濱午餐，預約席位為 Lounge。</p>
+                        <dl class="reservation-details">
+                            <div>
+                                <dt>預約 ID</dt>
+                                <dd class="reservation-code-value"><code>EDZKQF</code><button class="copy-code-btn"
+                                        type="button" data-copy-code="EDZKQF">⧉ 複製</button></dd>
+                            </div>
+                            <div>
+                                <dt>日期</dt>
+                                <dd><time datetime="2026-08-31">2026/08/31（一）</time></dd>
+                            </div>
+                            <div>
+                                <dt>時間</dt>
+                                <dd><time datetime="2026-08-31T11:30:00+08:00">11:30</time></dd>
+                            </div>
+                            <div>
+                                <dt>人數</dt>
+                                <dd>6 人</dd>
+                            </div>
+                            <div>
+                                <dt>席位</dt>
+                                <dd>Lounge</dd>
+                            </div>
+                        </dl>
+                        <div class="reservation-card-actions">
+                            <a class="reservation-day-link" href="#day5">查看 Day 5</a>
+                            <a class="reservation-map-link"
+                                href="https://www.google.com/maps/search/?api=1&query=Le+Bleu+by+K-Club+Nusa+Dua"
+                                target="_blank">餐廳導航</a>
+                        </div>
+                    </article>
+
+                    <article class="reservation-card" id="reservation-mana-uluwatu" tabindex="-1">
+                        <div class="reservation-card-head">
+                            <span class="reservation-day">Day 5 · 8月31日（一）</span>
+                            <span class="reservation-status">● Accepted</span>
+                        </div>
+                        <h2>Mana Uluwatu Restaurant & Bar</h2>
+                        <p class="reservation-card-note">Uluwatu Surf Villas 懸崖海景餐廳。</p>
+                        <dl class="reservation-details">
+                            <div>
+                                <dt>預約 ID</dt>
+                                <dd class="reservation-code-value"><code>D9P2XM</code><button class="copy-code-btn"
+                                        type="button" data-copy-code="D9P2XM">⧉ 複製</button></dd>
+                            </div>
+                            <div>
+                                <dt>日期</dt>
+                                <dd><time datetime="2026-08-31">2026/08/31（一）</time></dd>
+                            </div>
+                            <div>
+                                <dt>時間</dt>
+                                <dd><time datetime="2026-08-31T17:00:00+08:00">17:00</time></dd>
+                            </div>
+                            <div>
+                                <dt>人數</dt>
+                                <dd>5 人</dd>
+                            </div>
+                        </dl>
+                        <div class="reservation-card-actions">
+                            <a class="reservation-day-link" href="#day5">查看 Day 5</a>
+                            <a class="reservation-map-link"
+                                href="https://www.google.com/maps/search/?api=1&query=Mana+Uluwatu+Restaurant+and+Bar+Uluwatu+Surf+Villas"
+                                target="_blank">餐廳導航</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
         </main>
 
         <!-- Essential Tips Section -->
@@ -1816,6 +2992,67 @@
             </div>
         </section>
 
+        <details class="photo-credits">
+            <summary>照片來源與授權（18 張）</summary>
+            <p>照片取自 Wikimedia Commons，下載後轉為 WebP 並依版面裁切顯示；點擊景點名稱可查看原始檔案頁。</p>
+            <ol class="credit-list">
+                <li><a href="https://commons.wikimedia.org/wiki/File:Jump!_(Petitengget_Beach,_Seminyak,_Bali).jpg"
+                        target="_blank">水明漾海灘</a>：Bonita Suraputra，<a
+                        href="https://creativecommons.org/licenses/by/2.0/" target="_blank">CC BY 2.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Street_in_Seminyak_1.jpg"
+                        target="_blank">水明漾街景</a>：Christophe95，<a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                        target="_blank">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Hotel_swimming_pool_in_Seminyak.jpg"
+                        target="_blank">水明漾泳池</a>：Christophe95，<a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                        target="_blank">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Pura_Tirta_Empul,_Ubud,_Bali,_Indonesia.JPG"
+                        target="_blank">聖泉寺</a>：Saranabhi，<a href="https://creativecommons.org/licenses/by-sa/3.0/"
+                        target="_blank">CC BY-SA 3.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Kanto_lampo_waterfall.jpg"
+                        target="_blank">坎托藍波瀑布</a>：RienShin14，<a href="https://creativecommons.org/licenses/by/4.0/"
+                        target="_blank">CC BY 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Bali_Safari_%26_Marine_Park.jpg"
+                        target="_blank">峇里島野生動物園</a>：Walter Lim，<a href="https://creativecommons.org/licenses/by/2.0/"
+                        target="_blank">CC BY 2.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Tegallalang_Rice_Terraces_Bali.jpg"
+                        target="_blank">德格拉朗梯田</a>：Philip Nalangan，<a
+                        href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Ubud_Bali_Indonesia_Royal-Palace-Puri-Saren-Agung-01.jpg"
+                        target="_blank">烏布皇宮</a>：CEphoto, Uwe Aranas，<a
+                        href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank">CC BY-SA 3.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Macaca_fascicularis,_Ubud_Monkey_Forest,_Bali,_20220822_1012_9935.jpg"
+                        target="_blank">烏布聖猴森林</a>：Jakub Hałun，<a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                        target="_blank">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Tanah_Lot,_Bali,_Indonesia,_20220827_0957_1098.jpg"
+                        target="_blank">海神廟</a>：Jakub Hałun，<a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                        target="_blank">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:La_Brisa_beach_club_at_Echo_Beach,_Canggu,_Bali.jpg"
+                        target="_blank">La Brisa</a>：Meetvas，<a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                        target="_blank">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Beachwalk_shopping_complex_along_Kuta_beach.jpg"
+                        target="_blank">Beachwalk</a>：NoPhysicist，<a
+                        href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Uluwatu_surf_break_landscape_photo_bali_travel_photos_wokshots.jpg"
+                        target="_blank">烏魯瓦圖海岸</a>：Wokshots，<a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                        target="_blank">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:South_Kuta,_Badung_Regency,_Bali,_Indonesia_-_panoramio_(5).jpg"
+                        target="_blank">南庫塔海岸</a>：irenja，<a href="https://creativecommons.org/licenses/by/3.0/"
+                        target="_blank">CC BY 3.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Kecak_Fire_Dance,_Uluwatu.jpg" target="_blank">烏魯瓦圖
+                        Kecak 火舞</a>：Krisdenna，<a href="https://creativecommons.org/licenses/by-sa/4.0/"
+                        target="_blank">CC BY-SA 4.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Hotel_Inna_Grand_Bali_Beach_-_panoramio.jpg"
+                        target="_blank">沙努爾度假飯店代表照</a>：musnahterinjak，<a
+                        href="https://creativecommons.org/licenses/by-sa/3.0/" target="_blank">CC BY-SA 3.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Morning_Sunrise_at_Sanur.jpg"
+                        target="_blank">沙努爾日出</a>：Zexsen Xie，<a href="https://creativecommons.org/licenses/by/2.0/"
+                        target="_blank">CC BY 2.0</a></li>
+                <li><a href="https://commons.wikimedia.org/wiki/File:Sanur,_Indonesia_(Unsplash).jpg"
+                        target="_blank">沙努爾海岸</a>：Sven Scheuermeier，<a
+                        href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank">CC0</a></li>
+            </ol>
+        </details>
+
         <!-- Footer -->
         <footer>
             <p>🌴 祝 2026 峇里島之旅 旅途愉快・陽光滿滿 🌴</p>
@@ -1824,11 +3061,12 @@
     </div>
 
     <!-- Packing & Notes Modal (Full Page View) -->
-    <div class="modal-overlay" id="notesModal" onclick="handleModalBackdropClick(event)">
+    <dialog class="modal-overlay" id="notesModal" aria-hidden="true" aria-labelledby="notesModalTitle"
+        onclick="handleModalBackdropClick(event)">
         <div class="modal-card">
             <div class="modal-header">
                 <div class="modal-title-group">
-                    <h3><span>📋</span> 峇里島行前備忘與行李清單</h3>
+                    <h3 id="notesModalTitle"><span>📋</span> 峇里島行前備忘與行李清單</h3>
                     <p>出國必備品確認與全家 6 天穿搭衣物數量建議</p>
                 </div>
                 <button class="modal-close-btn" onclick="toggleNotesModal(false)" title="返回行程">
@@ -1840,7 +3078,7 @@
                 <!-- Weather Widget inside Notes View (Above Tabs) -->
                 <section class="weather-box" style="margin: 0 0 20px;">
                     <div class="weather-title">
-                        <span>🌤️</span> 當地氣候狀況
+                        <span>🌤️</span> 8 月底氣候參考
                     </div>
                     <div class="weather-grid">
                         <div class="weather-item">
@@ -1858,17 +3096,19 @@
                     </div>
                 </section>
 
-                <div class="modal-tabs">
-                    <button class="modal-tab-btn active" data-tab="checklist" onclick="switchModalTab('checklist')">
+                <div class="modal-tabs" role="tablist" aria-label="行前資料分類">
+                    <button class="modal-tab-btn active" id="modalTabChecklist" data-tab="checklist" role="tab"
+                        aria-selected="true" aria-controls="paneChecklist" onclick="switchModalTab('checklist')">
                         <span>✅</span> 必備清單
                     </button>
-                    <button class="modal-tab-btn" data-tab="clothing" onclick="switchModalTab('clothing')">
+                    <button class="modal-tab-btn" id="modalTabClothing" data-tab="clothing" role="tab"
+                        aria-selected="false" aria-controls="paneClothing" onclick="switchModalTab('clothing')">
                         <span>👗</span> 衣物數量
                     </button>
                 </div>
 
                 <!-- TAB 1: Checklist -->
-                <div class="modal-tab-pane" id="paneChecklist">
+                <div class="modal-tab-pane" id="paneChecklist" role="tabpanel" aria-labelledby="modalTabChecklist">
                     <div class="checklist-toolbar">
                         <span class="checklist-progress-text" id="checklistProgress">已勾選 0 / 34 項 (0%)</span>
                         <button class="checklist-reset-btn" onclick="resetPackingChecklist()">↺ 清空重置</button>
@@ -2054,7 +3294,8 @@
                 </div>
 
                 <!-- TAB 2: Clothing Quantities -->
-                <div class="modal-tab-pane" id="paneClothing" style="display: none;">
+                <div class="modal-tab-pane" id="paneClothing" role="tabpanel" aria-labelledby="modalTabClothing"
+                    style="display: none;" hidden>
                     <div class="clothing-grid">
                         <!-- Female Card -->
                         <div class="clothing-card">
@@ -2117,7 +3358,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </dialog>
 
     <!-- Interactive JavaScript -->
     <script>
@@ -2126,26 +3367,23 @@
             male: '男生',
             toddler: '小寶'
         };
+        const PERSONA_STORAGE_KEY = 'bali_outfit_persona_2026';
 
         function switchPersona(personaKey) {
-            // 1. 更新按鈕 Active 狀態 (使用精確匹配，避免 female 包含 male 字串之問題)
+            if (!personaNames[personaKey]) return;
+
             const buttons = document.querySelectorAll('.persona-btn');
             buttons.forEach(btn => {
-                const key = btn.dataset.persona || (btn.getAttribute('onclick') && btn.getAttribute('onclick').match(/'([^']+)'/)?.[1]);
-                if (key === personaKey) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+                const isActive = btn.dataset.persona === personaKey;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-pressed', String(isActive));
             });
 
-            // 2. 更新標題文字
             const textSpans = document.querySelectorAll('.current-persona-text');
             textSpans.forEach(span => {
                 span.textContent = personaNames[personaKey];
             });
 
-            // 3. 更新每日穿搭內容 (加上漸層切換效果)
             const outfitBoxes = document.querySelectorAll('.outfit-content');
             outfitBoxes.forEach(box => {
                 box.style.opacity = '0';
@@ -2157,6 +3395,10 @@
                     box.style.opacity = '1';
                 }, 120);
             });
+
+            try {
+                localStorage.setItem(PERSONA_STORAGE_KEY, personaKey);
+            } catch (err) { }
         }
 
         // Tab 按住左右滑動 (Drag to scroll)
@@ -2192,57 +3434,211 @@
             });
         }
 
-        // Day Tab 點擊與滾動高亮 (Active 狀態與 ScrollSpy)
+        const tripDates = [
+            '2026-08-27',
+            '2026-08-28',
+            '2026-08-29',
+            '2026-08-30',
+            '2026-08-31',
+            '2026-09-01'
+        ];
+        const tripDateLabels = ['8/27', '8/28', '8/29', '8/30', '8/31', '9/1'];
+
+        function getTripDateKey(date = new Date()) {
+            const parts = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'Asia/Taipei',
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }).formatToParts(date);
+            const values = Object.fromEntries(parts.map(part => [part.type, part.value]));
+            return `${values.year}-${values.month}-${values.day}`;
+        }
+
+        function getDayIdForDate(date = new Date()) {
+            const dateKey = getTripDateKey(date);
+            const exactIndex = tripDates.indexOf(dateKey);
+            if (exactIndex >= 0) return `day${exactIndex + 1}`;
+            return dateKey < tripDates[0] ? 'day1' : 'day6';
+        }
+
+        function getPanelIdFromHash(hashValue = window.location.hash.slice(1)) {
+            if (/^(day[1-6]|reservations)$/.test(hashValue)) return hashValue;
+            const reservationTarget = document.getElementById(hashValue);
+            return reservationTarget?.classList.contains('reservation-card') ? 'reservations' : null;
+        }
+
+        function getInitialDayId(date = new Date()) {
+            return getPanelIdFromHash() || getDayIdForDate(date);
+        }
+
+        function selectDay(dayId, { updateUrl = false, focusTab = false, scroll = false } = {}) {
+            const activeSection = document.getElementById(dayId);
+            const activeTab = document.querySelector(`.day-chip[href="#${dayId}"]`);
+            if (!activeSection || !activeTab) return;
+
+            document.querySelectorAll('.trip-panel').forEach(section => {
+                section.hidden = section !== activeSection;
+            });
+            document.body.classList.toggle('reservation-view', dayId === 'reservations');
+
+            document.querySelectorAll('.day-chip').forEach(tab => {
+                const isActive = tab === activeTab;
+                tab.classList.toggle('active', isActive);
+                tab.setAttribute('aria-selected', String(isActive));
+                tab.tabIndex = isActive ? 0 : -1;
+            });
+
+            if (updateUrl && window.location.hash !== `#${dayId}`) {
+                history.pushState(null, '', `#${dayId}`);
+            }
+
+            activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            if (focusTab) activeTab.focus();
+            if (scroll) activeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function focusReservationFromHash() {
+            const hashValue = window.location.hash.slice(1);
+            const target = document.getElementById(hashValue);
+            if (!target?.classList.contains('reservation-card')) return;
+
+            setTimeout(() => {
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                target.focus({ preventScroll: true });
+            }, 0);
+        }
+
+        function createDayPagination() {
+            const daySections = Array.from(document.querySelectorAll('.day-section'));
+            daySections.forEach((section, index) => {
+                const pagination = document.createElement('nav');
+                pagination.className = 'day-pagination';
+                pagination.setAttribute('aria-label', '日期前後切換');
+
+                const previousButton = document.createElement('button');
+                previousButton.type = 'button';
+                previousButton.disabled = index === 0;
+                previousButton.textContent = index > 0 ? `← 上一天 ${tripDateLabels[index - 1]}` : '已是第一天';
+
+                const nextButton = document.createElement('button');
+                nextButton.type = 'button';
+                nextButton.disabled = index === daySections.length - 1;
+                nextButton.textContent = index < daySections.length - 1 ? `下一天 ${tripDateLabels[index + 1]} →` : '已是最後一天';
+
+                previousButton.addEventListener('click', () => {
+                    selectDay(`day${index}`, { updateUrl: true, scroll: true });
+                });
+                nextButton.addEventListener('click', () => {
+                    selectDay(`day${index + 2}`, { updateUrl: true, scroll: true });
+                });
+
+                pagination.append(previousButton, nextButton);
+                section.appendChild(pagination);
+            });
+        }
+
+        function syncDayFromUrl() {
+            const hashDayId = window.location.hash.slice(1);
+            const panelId = getPanelIdFromHash(hashDayId) || getDayIdForDate();
+            if (!getPanelIdFromHash(hashDayId)) {
+                history.replaceState(null, '', `#${panelId}`);
+            }
+            selectDay(panelId);
+            focusReservationFromHash();
+        }
+
+        async function copyReservationCode(code, button) {
+            let copied = false;
+            try {
+                await navigator.clipboard.writeText(code);
+                copied = true;
+            } catch (err) {
+                const input = document.createElement('textarea');
+                input.value = code;
+                input.setAttribute('readonly', '');
+                input.style.position = 'fixed';
+                input.style.opacity = '0';
+                document.body.appendChild(input);
+                input.select();
+                copied = document.execCommand('copy');
+                input.remove();
+            }
+
+            const originalLabel = button.textContent;
+            button.textContent = copied ? '✓ 已複製' : '複製失敗';
+            setTimeout(() => {
+                button.textContent = originalLabel;
+            }, 1600);
+        }
+
+        function initReservationActions() {
+            document.querySelectorAll('[data-copy-code]').forEach(button => {
+                button.addEventListener('click', () => copyReservationCode(button.dataset.copyCode, button));
+            });
+        }
+
         function initDayNav() {
-            const dayChips = document.querySelectorAll('.day-chip');
-            const daySections = document.querySelectorAll('.day-section');
+            const dayChips = Array.from(document.querySelectorAll('.day-chip'));
             if (!dayChips.length) return;
 
-            let isManualClick = false;
-            dayChips.forEach(chip => {
-                chip.addEventListener('click', function () {
-                    isManualClick = true;
-                    dayChips.forEach(c => c.classList.remove('active'));
-                    this.classList.add('active');
-                    setTimeout(() => { isManualClick = false; }, 800);
+            createDayPagination();
+
+            dayChips.forEach((chip, index) => {
+                chip.addEventListener('click', event => {
+                    event.preventDefault();
+                    selectDay(chip.getAttribute('aria-controls'), { updateUrl: true, scroll: true });
+                });
+
+                chip.addEventListener('keydown', event => {
+                    let nextIndex = index;
+                    if (event.key === 'ArrowRight') nextIndex = (index + 1) % dayChips.length;
+                    else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + dayChips.length) % dayChips.length;
+                    else if (event.key === 'Home') nextIndex = 0;
+                    else if (event.key === 'End') nextIndex = dayChips.length - 1;
+                    else return;
+
+                    event.preventDefault();
+                    selectDay(dayChips[nextIndex].getAttribute('aria-controls'), {
+                        updateUrl: true,
+                        focusTab: true,
+                        scroll: true
+                    });
                 });
             });
 
-            window.addEventListener('scroll', () => {
-                if (isManualClick) return;
-                let currentDayId = '';
-                const scrollPos = window.scrollY + 180;
+            window.addEventListener('popstate', syncDayFromUrl);
+            window.addEventListener('hashchange', syncDayFromUrl);
 
-                daySections.forEach(section => {
-                    if (section.offsetTop <= scrollPos) {
-                        currentDayId = section.getAttribute('id');
-                    }
-                });
-
-                if (currentDayId) {
-                    dayChips.forEach(chip => {
-                        if (chip.getAttribute('href') === `#${currentDayId}`) {
-                            chip.classList.add('active');
-                        } else {
-                            chip.classList.remove('active');
-                        }
-                    });
-                }
-            }, { passive: true });
+            const initialDayId = getInitialDayId();
+            if (!getPanelIdFromHash()) {
+                history.replaceState(null, '', `#${initialDayId}`);
+            }
+            selectDay(initialDayId);
+            focusReservationFromHash();
         }
 
         // 備註清單 Modal 與 LocalStorage 記憶功能
         const STORAGE_KEY = 'bali_packing_list_2026';
+        let notesModalTrigger = null;
 
         function toggleNotesModal(isOpen) {
             const modal = document.getElementById('notesModal');
             if (!modal) return;
             if (isOpen) {
+                notesModalTrigger = document.activeElement;
                 modal.classList.add('active');
+                modal.setAttribute('aria-hidden', 'false');
                 document.body.style.overflow = 'hidden';
+                if (!modal.open) modal.showModal();
+                modal.querySelector('.modal-close-btn')?.focus({ preventScroll: true });
             } else {
+                if (!modal.classList.contains('active')) return;
                 modal.classList.remove('active');
+                modal.setAttribute('aria-hidden', 'true');
+                if (modal.open) modal.close();
                 document.body.style.overflow = '';
+                notesModalTrigger?.focus();
             }
         }
 
@@ -2255,11 +3651,9 @@
         function switchModalTab(tabKey) {
             const tabBtns = document.querySelectorAll('.modal-tab-btn');
             tabBtns.forEach(btn => {
-                if (btn.dataset.tab === tabKey) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
+                const isActive = btn.dataset.tab === tabKey;
+                btn.classList.toggle('active', isActive);
+                btn.setAttribute('aria-selected', String(isActive));
             });
 
             const paneChecklist = document.getElementById('paneChecklist');
@@ -2267,9 +3661,13 @@
             if (tabKey === 'checklist') {
                 paneChecklist.style.display = 'block';
                 paneClothing.style.display = 'none';
+                paneChecklist.hidden = false;
+                paneClothing.hidden = true;
             } else {
                 paneChecklist.style.display = 'none';
                 paneClothing.style.display = 'block';
+                paneChecklist.hidden = true;
+                paneClothing.hidden = false;
             }
         }
 
@@ -2349,19 +3747,46 @@
             }
         }
 
-        // ESC 鍵關閉 Modal
         document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('notesModal');
+            if (!modal?.classList.contains('active')) return;
+
             if (e.key === 'Escape') {
                 toggleNotesModal(false);
+                return;
+            }
+
+            if (e.key !== 'Tab') return;
+            const focusable = Array.from(modal.querySelectorAll(
+                'button:not([disabled]), input:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
+            )).filter(element => element.offsetParent !== null);
+            if (!focusable.length) return;
+
+            const first = focusable[0];
+            const last = focusable[focusable.length - 1];
+            if (e.shiftKey && document.activeElement === first) {
+                e.preventDefault();
+                last.focus();
+            } else if (!e.shiftKey && document.activeElement === last) {
+                e.preventDefault();
+                first.focus();
             }
         });
 
-        // 初始載入
         document.addEventListener('DOMContentLoaded', () => {
-            switchPersona('female');
+            let savedPersona = 'female';
+            try {
+                savedPersona = localStorage.getItem(PERSONA_STORAGE_KEY) || savedPersona;
+            } catch (err) { }
+            switchPersona(savedPersona);
+
+            document.querySelectorAll('a[target="_blank"]').forEach(link => {
+                link.setAttribute('rel', 'noopener noreferrer');
+            });
             const dayNav = document.querySelector('.day-nav');
             enableDragScroll(dayNav);
             initDayNav();
+            initReservationActions();
             loadChecklistState();
         });
     </script>
