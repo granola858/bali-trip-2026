@@ -1,0 +1,2370 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>峇里島六天五夜親子度假行程 | Bali Trip 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Noto+Sans+TC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-main: #0b1116;
+            --bg-card: #131d26;
+            --bg-card-hover: #192734;
+            --bg-subtle: #1c2c3b;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-accent: rgba(45, 212, 191, 0.25);
+
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+
+            --teal-primary: #2dd4bf;
+            --teal-glow: rgba(45, 212, 191, 0.15);
+            --gold-accent: #f59e0b;
+            --gold-glow: rgba(245, 158, 11, 0.15);
+            --sky-accent: #38bdf8;
+            --rose-accent: #fb7185;
+
+            --font-sans: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --shadow-soft: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding-bottom: 80px;
+            background-image:
+                radial-gradient(circle at 10% 10%, rgba(45, 212, 191, 0.04) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(245, 158, 11, 0.03) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 18px 0 14px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-size: clamp(1.35rem, 3vw, 1.65rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+            color: #ffffff;
+        }
+
+        .date-subtitle {
+            color: var(--text-muted);
+            font-size: 0.84rem;
+            margin-bottom: 0;
+        }
+
+        .header-btn-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .notes-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(45, 212, 191, 0.1));
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            border-radius: 999px;
+            color: var(--gold-accent);
+            font-family: var(--font-sans);
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.12);
+        }
+
+        .notes-btn:hover {
+            background: var(--gold-accent);
+            color: #0b1116;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(245, 158, 11, 0.35);
+        }
+
+        .notes-btn .badge-count {
+            background: rgba(245, 158, 11, 0.25);
+            color: var(--gold-accent);
+            font-size: 0.68rem;
+            padding: 1px 6px;
+            border-radius: 999px;
+            font-weight: 700;
+        }
+
+        .notes-btn:hover .badge-count {
+            background: #0b1116;
+            color: var(--gold-accent);
+        }
+
+        /* Weather Section (Compact) */
+        .weather-box {
+            margin: 20px 0 24px;
+            background: linear-gradient(145deg, rgba(19, 31, 42, 0.8), rgba(16, 25, 34, 0.8));
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .weather-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .weather-grid {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .weather-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: var(--radius-sm);
+            padding: 6px 12px;
+        }
+
+        .weather-item .desc {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .weather-item .val {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--sky-accent);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 16px;
+        }
+
+        /* Sticky Navigation (Primary Date + Secondary Persona) */
+        .sticky-control-panel {
+            position: sticky;
+            top: 12px;
+            z-index: 100;
+            background: rgba(11, 17, 22, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 10px 14px;
+            margin: 14px 0 24px;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+        }
+
+        /* 1. Primary Date Bar */
+        .day-nav {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+            cursor: grab;
+            user-select: none;
+            padding-bottom: 2px;
+        }
+
+        .day-nav::-webkit-scrollbar {
+            display: none;
+        }
+
+        .day-nav.grabbing {
+            cursor: grabbing;
+        }
+
+        .day-chip {
+            flex: 1;
+            min-width: 72px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 999px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            flex-shrink: 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        .day-chip:hover {
+            color: var(--text-main);
+            background: rgba(45, 212, 191, 0.12);
+            border-color: var(--teal-primary);
+        }
+
+        .day-chip.active {
+            background: var(--teal-primary);
+            color: #0b1116;
+            border-color: var(--teal-primary);
+            box-shadow: 0 4px 14px rgba(45, 212, 191, 0.4);
+            font-weight: 800;
+        }
+
+        /* 2. Secondary Persona Sub-Row */
+        .persona-sub-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px dashed rgba(255, 255, 255, 0.08);
+        }
+
+        .persona-sub-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-dim);
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .persona-selector {
+            display: flex;
+            gap: 4px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 3px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .persona-btn {
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-family: var(--font-sans);
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 999px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            white-space: nowrap;
+        }
+
+        .persona-btn:hover {
+            color: var(--text-main);
+        }
+
+        .persona-btn.active {
+            background: rgba(45, 212, 191, 0.2);
+            color: var(--teal-primary);
+            border: 1px solid rgba(45, 212, 191, 0.5);
+            box-shadow: none;
+        }
+
+        /* Day Card Container */
+        .day-section {
+            margin-bottom: 40px;
+            scroll-margin-top: 140px;
+        }
+
+        .day-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+        }
+
+        .day-title-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .day-title-top {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+        }
+
+        .day-num {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--teal-primary);
+        }
+
+        .day-date {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 600;
+        }
+
+        .day-sub-desc {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            font-weight: 500;
+        }
+
+        .charter-badge {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            background: var(--gold-glow);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            color: var(--gold-accent);
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+        }
+
+        /* Daily Outfit Card */
+        .outfit-card {
+            background: linear-gradient(135deg, rgba(45, 212, 191, 0.06), rgba(245, 158, 11, 0.03));
+            border: 1px solid rgba(45, 212, 191, 0.2);
+            border-radius: var(--radius-lg);
+            padding: 14px 18px;
+            margin-bottom: 16px;
+        }
+
+        .outfit-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .outfit-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--teal-primary);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .outfit-content {
+            font-size: 0.88rem;
+            color: #cbd5e1;
+            line-height: 1.5;
+        }
+
+        .outfit-tip {
+            font-size: 0.78rem;
+            color: var(--gold-accent);
+            margin-top: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 4px;
+        }
+
+        /* Unified Day Timeline Card (All day itinerary in 1 single card) */
+        .timeline {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 2px 18px;
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .timeline-card {
+            background: transparent;
+            border: none;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+            border-radius: 0;
+            padding: 9px 0;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .timeline-card:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-card:hover {
+            background: rgba(255, 255, 255, 0.015);
+            transform: none;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .time-slot {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--sky-accent);
+            background: rgba(56, 189, 248, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+            display: inline-block;
+        }
+
+        .meta-tags {
+            display: flex;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.68rem;
+            padding: 1px 6px;
+            border-radius: 4px;
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+        }
+
+        .tag.highlight {
+            background: var(--gold-glow);
+            color: var(--gold-accent);
+        }
+
+        .place-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin: 1px 0 0;
+        }
+
+        .place-name {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+            line-height: 1.35;
+        }
+
+        .maps-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(45, 212, 191, 0.08);
+            border: 1px solid rgba(45, 212, 191, 0.35);
+            color: var(--teal-primary);
+            padding: 1px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+            text-decoration: none;
+        }
+
+        .maps-btn:hover {
+            background: var(--teal-primary);
+            color: #0b1116;
+            border-color: var(--teal-primary);
+        }
+
+        .place-desc {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        /* Travel Tips */
+        .tips-box {
+            margin-top: 50px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 24px;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .tip-item {
+            background: var(--bg-subtle);
+            border-radius: var(--radius-sm);
+            padding: 14px;
+            font-size: 0.85rem;
+        }
+
+        .tip-item h4 {
+            color: var(--gold-accent);
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tip-item p {
+            color: var(--text-muted);
+            line-height: 1.45;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-dim);
+            font-size: 0.8rem;
+        }
+
+        /* Modal & Checklist Styles (Full Page View) */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--bg-body);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s ease;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            background: transparent;
+            width: 100%;
+            max-width: 860px;
+            margin: 0 auto;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            border: none;
+            box-shadow: none;
+            border-radius: 0;
+            transform: translateY(16px);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(11, 17, 22, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            gap: 16px;
+        }
+
+        .modal-title-group h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0;
+        }
+
+        .modal-title-group p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin: 3px 0 0;
+        }
+
+        .modal-close-btn {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            font-size: 0.82rem;
+            font-weight: 600;
+            padding: 7px 16px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .modal-close-btn:hover {
+            background: var(--teal-primary);
+            color: #0b1116;
+            border-color: var(--teal-primary);
+        }
+
+        .modal-tabs {
+            display: flex;
+            padding: 4px 0 0;
+            gap: 8px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 18px;
+        }
+
+        .modal-tab-btn {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            color: var(--text-muted);
+            font-family: var(--font-sans);
+            font-size: 0.88rem;
+            font-weight: 600;
+            padding: 10px 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .modal-tab-btn:hover {
+            color: var(--text-main);
+        }
+
+        .modal-tab-btn.active {
+            color: var(--teal-primary);
+            border-bottom-color: var(--teal-primary);
+        }
+
+        .modal-body {
+            padding: 20px;
+            flex: 1;
+        }
+
+        /* Checklist Styles */
+        .checklist-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .checklist-progress-text {
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--teal-primary);
+        }
+
+        .checklist-reset-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-dim);
+            font-size: 0.72rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .checklist-reset-btn:hover {
+            color: var(--rose-accent);
+            border-color: var(--rose-accent);
+        }
+
+        .checklist-category {
+            margin-bottom: 20px;
+        }
+
+        .checklist-cat-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--gold-accent);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .checklist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
+        }
+
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .checklist-item:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(45, 212, 191, 0.3);
+        }
+
+        .checklist-item input[type="checkbox"] {
+            margin-top: 3px;
+            accent-color: var(--teal-primary);
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+            flex-shrink: 0;
+        }
+
+        .checklist-item span {
+            font-size: 0.82rem;
+            color: var(--text-main);
+            line-height: 1.4;
+        }
+
+        .checklist-item.checked span {
+            text-decoration: line-through;
+            color: var(--text-dim);
+        }
+
+        /* Clothing Quantity Cards */
+        .clothing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 14px;
+        }
+
+        .clothing-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .clothing-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .clothing-card-title {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin: 0;
+        }
+
+        .clothing-card-tag {
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            border-radius: 999px;
+            background: var(--teal-glow);
+            color: var(--teal-primary);
+            font-weight: 600;
+        }
+
+        .clothing-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 0;
+            margin: 0;
+        }
+
+        .clothing-list li {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 8px;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.04);
+            padding-bottom: 4px;
+        }
+
+        .clothing-list li strong {
+            color: var(--sky-accent);
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .modal-card {
+                max-height: 92vh;
+            }
+
+            .modal-header {
+                padding: 14px 16px;
+            }
+
+            .modal-tabs {
+                padding: 6px 16px 0;
+            }
+
+            .modal-body {
+                padding: 14px 16px;
+            }
+
+            .checklist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .clothing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .weather-box {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px 14px;
+                gap: 10px;
+            }
+
+            .weather-grid {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 6px;
+            }
+
+            .weather-item {
+                flex-direction: column;
+                gap: 2px;
+                padding: 6px 4px;
+                text-align: center;
+                justify-content: center;
+            }
+
+            .weather-item .desc {
+                font-size: 0.72rem;
+            }
+
+            .weather-item .val {
+                font-size: 0.85rem;
+            }
+
+            .maps-btn {
+                padding: 1px 7px;
+                font-size: 0.68rem;
+            }
+
+            .persona-btn {
+                font-size: 0.75rem;
+                padding: 4px 8px;
+            }
+
+            .day-chip {
+                min-width: 66px;
+                padding: 7px 12px;
+                font-size: 0.86rem;
+            }
+
+            .timeline {
+                padding: 4px 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>峇里島六天五夜島嶼行</h1>
+            <p class="date-subtitle">2026/08/27 — 2026/09/01 ・度假之旅</p>
+            <div class="header-btn-wrap">
+                <button class="notes-btn" onclick="toggleNotesModal(true)">
+                    <span>📋</span> 行李備註清單 <span class="badge-count" id="checklistCounter">0/34</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Sticky Day Navigation (Primary) & Persona Sub-Filter (Secondary) -->
+        <div class="sticky-control-panel">
+            <!-- 1. 主要選項：日期導航 -->
+            <div class="day-nav">
+                <a class="day-chip active" href="#day1">8/27</a>
+                <a class="day-chip" href="#day2">8/28</a>
+                <a class="day-chip" href="#day3">8/29</a>
+                <a class="day-chip" href="#day4">8/30</a>
+                <a class="day-chip" href="#day5">8/31</a>
+                <a class="day-chip" href="#day6">9/1</a>
+            </div>
+
+            <!-- 2. 次要選項：穿搭對象切換 -->
+            <div class="persona-sub-row">
+                <span class="persona-sub-label">👗 穿搭對象</span>
+                <div class="persona-selector">
+                    <button class="persona-btn active" data-persona="female" onclick="switchPersona('female')">
+                        <span>👩</span> 女生
+                    </button>
+                    <button class="persona-btn" data-persona="male" onclick="switchPersona('male')">
+                        <span>👨</span> 男生
+                    </button>
+                    <button class="persona-btn" data-persona="toddler" onclick="switchPersona('toddler')">
+                        <span>👶</span> 小寶
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MAIN TIMELINE SECTION -->
+        <main>
+
+            <!-- DAY 1 -->
+            <section id="day1" class="day-section">
+                <div class="day-header">
+                    <div class="day-title-wrap">
+                        <div class="day-title-top">
+                            <span class="day-num">Day 1</span>
+                            <span class="day-date">8月27日（四）</span>
+                        </div>
+                        <div class="day-sub-desc">抵達與水明漾</div>
+                    </div>
+                    <span class="charter-badge">入境日</span>
+                </div>
+
+                <!-- Dynamic Outfit Box -->
+                <div class="outfit-card">
+                    <div class="outfit-header">
+                        <span class="outfit-title">
+                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                        </span>
+                    </div>
+                    <div class="outfit-content"
+                        data-female="寬鬆透氣落地棉麻長褲 + 簡約短 T / 涼感背心 + 外搭寬版防曬亞麻襯衫 + 好穿脫平底拖鞋。舒適應對機艙冷氣與落地濕熱，晚上吃烤肋排自在無束縛。"
+                        data-male="透氣寬鬆工裝短袖襯衫或棉質短 T + 休閒機能短褲 / 輕便彈性長褲 + 簡約休閒布鞋。俐落通風，便於拖拉行李與機場移動。"
+                        data-toddler="親膚純棉短袖套裝 + 薄長褲（保護膝蓋防冷氣）+ 魔鬼氈好穿脫休閒鞋 + 隨身帶一件薄連帽外套應付飛機與車內溫差。">
+                    </div>
+                    <div class="outfit-tip">💡 貼心提醒：飛機冷氣與印尼戶外溫差大，隨身包建議備好小外套。</div>
+                </div>
+
+                <!-- Timeline Items -->
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">06:45</span>
+                            <div class="meta-tags"><span class="tag highlight">機場接送</span><span class="tag">第一站</span>
+                            </div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">機場接送：阿猿家</div>
+                        </div>
+                        <div class="place-desc">專車抵達阿猿家接送上車、放置大件行李，準時出發。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">06:50</span>
+                            <div class="meta-tags"><span class="tag highlight">機場接送</span><span class="tag">第二站</span>
+                            </div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">機場接送：飛機家</div>
+                        </div>
+                        <div class="place-desc">接送飛機家上車，全員到齊集合完畢，啟程前往桃園國際機場 (TPE)。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">10:00 - 15:50</span>
+                            <div class="meta-tags"><span class="tag">長榮航空 BR255</span><span class="tag highlight">直飛
+                                    5.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">TPE 桃園機場起飛 → DPS 峇里島機場</div>
+                        </div>
+                        <div class="place-desc">辦理行李託運與出境安檢，搭乘長榮 BR255 班機飛往熱帶島嶼峇里島。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">15:50 - 17:30</span>
+                            <div class="meta-tags"><span class="tag">機場入境</span><span class="tag highlight">停留
+                                    1.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">抵達峇里島 DPS (伍拉·賴國際機場)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Ngurah+Rai+International+Airport+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">辦理落地簽（VOA）、電子報關與海關通關手續，出關與司機會合。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">18:00 - 19:00</span>
+                            <div class="meta-tags"><span class="tag">飯店入住</span><span class="tag">車程 30-45m</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">入住 VOCO Bali Seminyak</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=VOCO+Bali+Seminyak"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">辦理入住手續、放置行李與稍作梳洗休息。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">19:00 - 20:30</span>
+                            <div class="meta-tags"><span class="tag highlight">必吃晚餐</span><span class="tag">車程
+                                    5-10m</span><span class="tag">停留 1.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">Naughty Nuri's Seminyak 晚餐</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Naughty+Nuri%27s+Warung+Seminyak"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">峇里島經典炭烤醬汁豬肋排、沙嗲烤肉與熱帶飲品。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">20:30 - 21:00</span>
+                            <div class="meta-tags"><span class="tag">特色咖啡</span><span class="tag">車程 5-10m</span><span
+                                    class="tag">停留 0.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">32do Coffee Seminyak</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=32do+Coffee+Seminyak"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">極簡美學韓系打卡咖啡店，品嚐手沖與特色甜點。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">21:00 - 22:00</span>
+                            <div class="meta-tags"><span class="tag">市區漫遊</span><span class="tag">步行</span><span
+                                    class="tag">停留 1h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">水明漾大街散步 (Seminyak Main Street)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Seminyak+Main+Street+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">漫步水明漾熱鬧街區，逛選品店、服飾店，感受第一晚的海島熱鬧氛圍。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">22:00 ~</span>
+                            <div class="meta-tags"><span class="tag">休息</span><span class="tag">車程 5-10m</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">返回 VOCO Bali Seminyak 休息</div>
+                        </div>
+                        <div class="place-desc">返回飯店養精蓄銳，準備明日豐富的烏布與野生動物園行程。</div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- DAY 2 -->
+            <section id="day2" class="day-section">
+                <div class="day-header">
+                    <div class="day-title-wrap">
+                        <div class="day-title-top">
+                            <span class="day-num">Day 2</span>
+                            <span class="day-date">8月28日（五）</span>
+                        </div>
+                        <div class="day-sub-desc">瀑布與動物園</div>
+                    </div>
+                    <span class="charter-badge">🚗 包車 10 hrs</span>
+                </div>
+
+                <div class="outfit-card">
+                    <div class="outfit-header">
+                        <span class="outfit-title">
+                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                        </span>
+                    </div>
+                    <div class="outfit-content"
+                        data-female="快乾機能短褲或防潑水寬褲 + 內搭比基尼/美背泳裝 + 透氣短 T 外罩 + 止滑抓地溯溪涼鞋（或運動涼鞋）。瀑布涉水需踩石頭拍照，聖泉寺現場會圍上沙龍（Sarong）。隨身多備一套乾淨衣服。"
+                        data-male="快乾速乾排汗短 T + 海灘衝浪短褲 / 機能工裝短褲 + 止滑戶外涼鞋（涉水走石必備）。動物園戶外活動通風散熱，追小孩方便敏捷。"
+                        data-toddler="抗 UV 長袖連身防曬水母衣（或速乾 T+短褲）+ 護趾止滑水陸兩用涼鞋 + 寬簷防曬帽。瀑布旁石頭滑需牽緊，多備 1-2 套乾淨衣物與防蚊貼。">
+                    </div>
+                    <div class="outfit-tip">💡 必備裝備：防水手機袋、防蚊液、小毛巾、換洗衣物。</div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">09:00</span>
+                            <div class="meta-tags"><span class="tag">出發</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">VOCO Seminyak 吃完早餐出發</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">10:15 - 11:15</span>
+                            <div class="meta-tags"><span class="tag highlight">聖泉古寺</span><span class="tag">車程 1h
+                                    15m</span><span class="tag">停留 1h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">聖泉寺 (Pura Tirta Empul)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Pura+Tirta+Empul+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">千年天然地下泉水寺廟，體驗峇里島傳統淨身祈福儀式與壯麗石雕建築。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">11:45 - 12:45</span>
+                            <div class="meta-tags"><span class="tag highlight">網美秘境</span><span class="tag">車程
+                                    30m</span><span class="tag">停留 1h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">坎托藍波瀑布 (Kanto Lampo Waterfall)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Kanto+Lampo+Waterfall+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">層疊階梯狀天然瀑布，涉水攀爬於岩石上拍攝震撼網美水幕大片。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">13:00 - 14:30</span>
+                            <div class="meta-tags"><span class="tag highlight">特色午餐</span><span class="tag">車程
+                                    15m</span><span class="tag">停留 1.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">Bebek Tepi Sawah 髒鴨餐午餐</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Bebek+Tepi+Sawah+Restaurant+Ubud"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">座落於烏布稻田旁的經典景觀餐廳，品嚐外皮酥脆香嫩的招牌香料炸髒鴨。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">15:00 - 18:30</span>
+                            <div class="meta-tags"><span class="tag highlight">親子重點</span><span class="tag">車程
+                                    30m</span><span class="tag">停留 3.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">峇里島野生動物園 (The Amazing Taman Safari Bali)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Bali+Safari+and+Marine+Park"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">搭乘遊園專車近距離觀賞獅子、大象、斑馬，還有精采動物表演與戲水區，小孩最愛！</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">19:30 - 21:00</span>
+                            <div class="meta-tags"><span class="tag">美味晚餐</span><span class="tag">車程 1h</span><span
+                                    class="tag">停留 1.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">MeVui Vietnam Kitchen 晚餐</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=MeVui+Vietnam+Kitchen+Seminyak"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">水明漾道地越南河粉（Pho）、越式春捲與烤肉飯，清爽開胃暖胃。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">21:30 ~</span>
+                            <div class="meta-tags"><span class="tag">休息</span><span class="tag">車程 15-20m</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">返回 VOCO Bali Seminyak 休息</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- DAY 3 -->
+            <section id="day3" class="day-section">
+                <div class="day-header">
+                    <div class="day-title-wrap">
+                        <div class="day-title-top">
+                            <span class="day-num">Day 3</span>
+                            <span class="day-date">8月29日（六）</span>
+                        </div>
+                        <div class="day-sub-desc">梯田與烏布森林</div>
+                    </div>
+                    <span class="charter-badge">🚗 包車 12 hrs</span>
+                </div>
+
+                <div class="outfit-card">
+                    <div class="outfit-header">
+                        <span class="outfit-title">
+                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                        </span>
+                    </div>
+                    <div class="outfit-content"
+                        data-female="渡假風仙氣棉麻長洋裝（黑/米白/大地色）或率性排汗寬褲套裝 + 好走的平底鞋/球鞋 + 墨鏡與草帽。適合梯田美照與法式地中海晚餐。進入聖猴森林前請將帽子、墨鏡與晃動耳環收進包包以防猴子抓取。"
+                        data-male="亞麻短袖休閒襯衫 + 透氣休閒長褲或棉麻短褲 + 好走運動鞋。梯田健行透氣，出入法式餐廳 Kebun Bistro 大方俐落。"
+                        data-toddler="親膚純棉短袖 + 彈性休閒短褲 + 護趾防滑涼鞋 + 遮陽小帽。（嚴禁讓小孩手拿零食或閃亮水壺，避免聖猴森林猴群搶食）。">
+                    </div>
+                    <div class="outfit-tip">⚠️ 聖猴森林提醒：收妥所有懸掛配件與食物，請勿直視猴子眼睛。</div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">09:00</span>
+                            <div class="meta-tags"><span class="tag">出發</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">VOCO Seminyak 出發</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">10:15 - 11:00</span>
+                            <div class="meta-tags"><span class="tag">莊園體驗</span><span class="tag">車程 1h 15m</span><span
+                                    class="tag">停留 45m</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">Satria Luwak Coffee (麝香貓咖啡莊園)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Satria+Coffee+Plantation+Ubud"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">漫步熱帶香料與咖啡種植園，品鑑多款峇里島特色茶飲與正統麝香貓咖啡。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">11:10 - 12:15</span>
+                            <div class="meta-tags"><span class="tag highlight">世界級美景</span><span class="tag">車程
+                                    10m</span><span class="tag">停留 1h 15m</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">德格拉朗梯田 (Tegallalang Rice Terrace)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Tegallalang+Rice+Terrace+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">層層疊疊的翠綠梯田與椰林風光，俯瞰壯麗山谷，拍照打卡絕美熱點。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">12:30 - 14:00</span>
+                            <div class="meta-tags"><span class="tag highlight">景觀午餐(需預約)</span><span class="tag">車程
+                                    15m</span><span class="tag">停留 1.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">Kauma Café 午餐</div>
+                            <a class="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Kauma+Cafe+Ubud"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">坐擁烏布蓊鬱山林景觀，享受精緻創意料理與放鬆的氛圍。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">14:10 - 15:30</span>
+                            <div class="meta-tags"><span class="tag">人文市集</span><span class="tag">車程 10m</span><span
+                                    class="tag">停留 1.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">烏布皇宮 + 烏布藝術市集 (Ubud Palace & Art Market)</div>
+                            <a class="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Ubud+Palace+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">欣賞傳統皇宮雕刻建築，走訪市集採買編織包、木雕、香氛與手作伴手禮。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">15:40 - 17:00</span>
+                            <div class="meta-tags"><span class="tag highlight">熱帶森林</span><span class="tag">車程
+                                    10m</span><span class="tag">停留 1.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">聖猴森林公園 (Mandala Suci Wenara Wana)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Sacred+Monkey+Forest+Sanctuary+Ubud"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">綠意盎然的古老巨木森林，沿著木棧道漫步，觀察猴群日常生活與神秘古廟。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">17:30 - 19:00</span>
+                            <div class="meta-tags"><span class="tag highlight">氣氛晚餐</span><span class="tag">車程
+                                    10m</span><span class="tag">停留 1.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">Kebun Bistro 晚餐</div>
+                            <a class="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Kebun+Bistro+Ubud"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">烏布超人氣浪漫法式地中海餐酒館，品嚐手工披薩、義大利麵與牛排料理。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">20:00 ~</span>
+                            <div class="meta-tags"><span class="tag">返回水明漾</span><span class="tag">車程 1h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">返回 VOCO Bali Seminyak 休息</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- DAY 4 -->
+            <section id="day4" class="day-section">
+                <div class="day-header">
+                    <div class="day-title-wrap">
+                        <div class="day-title-top">
+                            <span class="day-num">Day 4</span>
+                            <span class="day-date">8月30日（日）</span>
+                        </div>
+                        <div class="day-sub-desc">海神廟與長谷市集</div>
+                    </div>
+                    <span class="charter-badge">🚗 包車 10 hrs</span>
+                </div>
+
+                <div class="outfit-card">
+                    <div class="outfit-header">
+                        <span class="outfit-title">
+                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                        </span>
+                    </div>
+                    <div class="outfit-content"
+                        data-female="俐落率性無袖背心 + 涼感高腰亞麻寬褲 / 開衩及踝長裙 + 墨鏡 + 隨身帶薄針織罩衫（Beachwalk 商場冷氣較強可穿）。長谷週日市集充滿時髦歐美風，極簡度假風最吸睛。"
+                        data-male="簡約純色厚磅短 T + 抽繩純棉/亞麻休閒短褲 + 墨鏡 + 輕便小白鞋/皮質涼鞋。休閒兼顧逛街與咖啡店的時髦氛圍。"
+                        data-toddler="吸汗柔軟純棉短 T + 鬆緊帶透氣短褲 + 止滑好走包頭鞋；下午在 Beachwalk Shopping Center 冷氣充足，請隨身攜帶薄長袖或小毯子。">
+                    </div>
+                    <div class="outfit-tip">💡 市集提醒：La Brisa 週日市集只在週日舉辦，手作小店與美食齊聚！</div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">09:00</span>
+                            <div class="meta-tags"><span class="tag">出發</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">VOCO Seminyak 出發</div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">10:00 - 11:00</span>
+                            <div class="meta-tags"><span class="tag highlight">峇里地標</span><span class="tag">車程
+                                    1h</span><span class="tag">停留 1h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">海神廟 (Tanah Lot)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Tanah+Lot+Temple+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">矗立於印度洋巨石之上的古老神廟，漲潮時如同漂浮於海面上的仙境奇景。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">11:30 - 14:00</span>
+                            <div class="meta-tags"><span class="tag highlight">週日限定市集</span><span class="tag">車程
+                                    30m</span><span class="tag">停留 2.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">La Brisa Sunday Market (長谷)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=La+Brisa+Bali+Canggu"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">長谷海灘俱樂部旁每週日限定市集，聚集有機烘焙、天然手作、編織服飾與異國美食。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">14:15 - 15:00</span>
+                            <div class="meta-tags"><span class="tag">北歐名店</span><span class="tag">車程 5m</span><span
+                                    class="tag">停留 45m</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">Fuglen Coffee Bali</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Fuglen+Coffee+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">源自挪威奧斯陸、揚名日本東京的頂級淺焙精品咖啡，峇里島風格旗艦店。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">15:30 - 18:00</span>
+                            <div class="meta-tags"><span class="tag highlight">海濱商場</span><span class="tag">車程
+                                    30m</span><span class="tag">停留 2.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">Beachwalk Shopping Center (庫塔)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Beachwalk+Shopping+Center+Kuta"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">大型露天綠化購物中心，吹冷氣散步、採買各國品牌、母嬰用品與享用甜點。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">18:30 - 20:00</span>
+                            <div class="meta-tags"><span class="tag highlight">人氣晚餐</span><span class="tag">車程
+                                    30m</span><span class="tag">停留 1.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">Hog Wild with Chef Bruno 晚餐</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Hog+Wild+with+Chef+Bruno+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">水明漾招牌炭火烤豬肋排、酥脆洋蔥圈與熱情調酒氛圍。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">20:30 ~</span>
+                            <div class="meta-tags"><span class="tag">回飯店打包</span><span class="tag">車程 30m</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">返回 VOCO Bali Seminyak 休息</div>
+                        </div>
+                        <div class="place-desc">整理行李，準備明日退房轉移至沙努爾五星洲際度假酒店。</div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- DAY 5 -->
+            <section id="day5" class="day-section">
+                <div class="day-header">
+                    <div class="day-title-wrap">
+                        <div class="day-title-top">
+                            <span class="day-num">Day 5</span>
+                            <span class="day-date">8月31日（一）</span>
+                        </div>
+                        <div class="day-sub-desc">懸崖沙灘與火舞</div>
+                    </div>
+                    <span class="charter-badge">🚗 包車 10 hrs</span>
+                </div>
+
+                <div class="outfit-card">
+                    <div class="outfit-header">
+                        <span class="outfit-title">
+                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                        </span>
+                    </div>
+                    <div class="outfit-content"
+                        data-female="亮眼美背渡假洋裝或兩截式短裙（內著比基尼方便沙灘踩水）+ 墨鏡 + 遮陽大草帽 + 輕便好走平底涼鞋。傍晚前往烏布瓦圖懸崖看火舞海風較大，可準備防風薄披肩或薄外套。"
+                        data-male="透氣無袖背心 / 涼感短 T + 快乾衝浪短褲（方便陪小孩踩浪玩沙）+ 輕便涼鞋或夾腳拖 + 薄防曬襯衫（傍晚懸崖防海風）。"
+                        data-toddler="防曬長袖連身泳裝 / 水母衣 + 玩沙小短褲 + 護趾防滑涼鞋 + 大遮陽帽。帶上一套玩沙玩具與乾淨替換衣服；傍晚看火舞時穿上長褲防蚊與防海風外套。">
+                    </div>
+                    <div class="outfit-tip">⚠️ 烏布瓦圖斷崖提醒：寺廟內野生猴子極多且機靈，進入前請務必將眼鏡、帽子收妥！火舞建議 18:15 前入座。</div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">09:00 - 10:30</span>
+                            <div class="meta-tags"><span class="tag">退房換飯店</span><span class="tag">車程 1h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">VOCO 退房 → 洲際沙努爾度假酒店寄放行李</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=InterContinental+Bali+Sanur+Resort"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">自水明漾退房，前往沙努爾洲際度假酒店（InterContinental Sanur）寄放行李。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">11:30 - 13:00</span>
+                            <div class="meta-tags"><span class="tag highlight">預訂午餐</span><span class="tag">車程
+                                    1h</span><span class="tag">停留 1.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">Le Bleu by K Club 午餐 (努沙杜瓦)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Le+Bleu+by+K+Club+Nusa+Dua"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">豪華度假村法式奢華午餐，坐擁泳池與花園景致，享受精緻地中海料理。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">13:20 - 14:20</span>
+                            <div class="meta-tags"><span class="tag highlight">爆紅打卡點</span><span class="tag">車程
+                                    20m</span><span class="tag">停留 1h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">白色懸崖公路 (Pantai Tanah Barak / White Cliff)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Pantai+Tanah+Barak+White+Cliff+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">劈開巨大白色石灰岩懸崖而建的沿海公路，延伸直通湛藍印度洋，拍照極具視覺張力！</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">14:40 - 15:40</span>
+                            <div class="meta-tags"><span class="tag highlight">親子玩沙</span><span class="tag">車程
+                                    20m</span><span class="tag">停留 1h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">美拉斯蒂海灘 (Melasti Beach Ungasan)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Melasti+Beach+Ungasan"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">細白沙灘、清澈漸層海水與平緩淺灘，非常適合帶幼童踩水、玩沙與拍照。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">16:10 - 17:00</span>
+                            <div class="meta-tags"><span class="tag">懸崖海景</span><span class="tag">車程 30m</span><span
+                                    class="tag">停留 50m</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">% Arabica Uluwatu</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=%25+Arabica+Bali+Uluwatu"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">矗立在烏魯瓦圖懸崖邊的白色系網美咖啡店，遠眺衝浪客與一望無際的海平線。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">17:10 - 18:20</span>
+                            <div class="meta-tags"><span class="tag">夕陽簡餐</span><span class="tag">車程 10m</span><span
+                                    class="tag">停留 1h 10m</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">Mana Uluwatu 看海與簡餐</div>
+                            <a class="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Mana+Uluwatu+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">懸崖視野極佳的環保度假村餐廳，在夕陽餘暉下享用輕食飲品。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">18:30 - 20:00</span>
+                            <div class="meta-tags"><span class="tag highlight">世界級火舞</span><span class="tag">車程
+                                    15m</span><span class="tag">停留 1.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">烏魯瓦圖火舞表演 (Tari Kecak & Api Uluwatu)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Uluwatu+Temple+Kecak+Dance"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">在斷崖峭壁上的露天劇場，伴隨落日夕陽與幾十名男舞者的震撼吟唱，觀賞史詩火舞（建議18:15前入場就坐）。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">21:00 ~</span>
+                            <div class="meta-tags"><span class="tag">返回洲際</span><span class="tag">車程 1h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">返回 沙努爾洲際度假酒店 (InterContinental Sanur)</div>
+                        </div>
+                        <div class="place-desc">入住頂級海濱五星度假酒店，享受安靜舒眠之夜。</div>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- DAY 6 -->
+            <section id="day6" class="day-section">
+                <div class="day-header">
+                    <div class="day-title-wrap">
+                        <div class="day-title-top">
+                            <span class="day-num">Day 6</span>
+                            <span class="day-date">9月1日（二）</span>
+                        </div>
+                        <div class="day-sub-desc">沙努爾與返台</div>
+                    </div>
+                    <span class="charter-badge">返台日</span>
+                </div>
+
+                <div class="outfit-card">
+                    <div class="outfit-header">
+                        <span class="outfit-title">
+                            <span>👗</span> 穿搭提醒（<span class="current-persona-text">女生</span>）
+                        </span>
+                    </div>
+                    <div class="outfit-content"
+                        data-female="質感寬版休閒棉褲 + 簡約親膚短 T + 輕薄防曬針織小外套 + 舒適包鞋/運動鞋。早晨海灘散步輕鬆，下午搭機舒適保暖。"
+                        data-male="舒適純棉短 T + 彈性休閒長褲 + 運動球鞋 + 薄風衣外套。應對長榮航空機艙冷氣與長途飛行舒適自如。"
+                        data-toddler="親膚舒適純棉短袖 + 彈性長褲 + 好穿脫球鞋 + 隨身攜帶外套與安撫玩具（便於機上睡覺與保暖）。">
+                    </div>
+                    <div class="outfit-tip">✈️ 航班提醒：搭乘長榮航空 BR256（16:30 起飛），需於 14:30 前抵達機場辦理報到。</div>
+                </div>
+
+                <div class="timeline">
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">~ 09:00</span>
+                            <div class="meta-tags"><span class="tag">悠閒早晨</span><span class="tag">飯店內</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">沙努爾洲際 豐盛早餐 / 泳池戲水</div>
+                        </div>
+                        <div class="place-desc">享用五星度假村早餐，享受清幽的晨間泳池與海濱花園。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">09:00 - 10:00</span>
+                            <div class="meta-tags"><span class="tag">海濱散步</span><span class="tag">停留 1h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">沙努爾海灘 (Sanur Beach) 晨間漫步</div>
+                            <a class="maps-btn" href="https://www.google.com/maps/search/?api=1&query=Sanur+Beach+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">走在沙努爾著名的無車海濱步道，感受微風與平靜無浪的蔚藍海岸。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">10:30 - 13:00</span>
+                            <div class="meta-tags"><span class="tag highlight">最新旗艦商場</span><span class="tag">車程
+                                    10m</span><span class="tag">停留 2.5h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">ICON Bali Mall (沙努爾最新超大商場)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=ICON+Bali+Mall+Sanur"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">峇里島最新海濱巨型購物中心，採買特色伴手禮、品嚐午餐與體驗室內冷氣舒適環境。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">13:10 - 13:45</span>
+                            <div class="meta-tags"><span class="tag">辦理退房</span><span class="tag">停留 35m</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">返回 沙努爾洲際度假酒店 退房</div>
+                        </div>
+                        <div class="place-desc">完成退房手續，取回寄放行李，準備啟程前往機場。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">14:45</span>
+                            <div class="meta-tags"><span class="tag">前往機場</span><span class="tag">車程 1h</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">抵達 伍拉·賴國際機場 (DPS)</div>
+                            <a class="maps-btn"
+                                href="https://www.google.com/maps/search/?api=1&query=Ngurah+Rai+International+Airport+Bali"
+                                target="_blank">導航</a>
+                        </div>
+                        <div class="place-desc">長榮航空 BR256 櫃檯辦理登機手續、託運行李與出境安檢。</div>
+                    </div>
+
+                    <div class="timeline-card">
+                        <div class="card-top">
+                            <span class="time-slot">16:30</span>
+                            <div class="meta-tags"><span class="tag highlight">起飛返台</span></div>
+                        </div>
+                        <div class="place-title-row">
+                            <div class="place-name">BR256 起飛 → 臺灣桃園國際機場 (TPE)</div>
+                        </div>
+                        <div class="place-desc">滿載美好海島親子回憶，平安返回臺灣！</div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Essential Tips Section -->
+        <section class="tips-box">
+            <div class="section-title">
+                <span>🎒</span> 峇里島親子旅行實用錦囊
+            </div>
+            <div class="tips-grid">
+                <div class="tip-item">
+                    <h4>🔌 電壓與轉接頭</h4>
+                    <p>印尼為 220V / 50Hz，插頭形式為<strong>雙圓孔（C / F 型）</strong>，建議攜帶萬國轉接頭與多孔延長線。</p>
+                </div>
+                <div class="tip-item">
+                    <h4>💧 飲用水安全</h4>
+                    <p>切勿直接飲用生水。幼兒泡奶或飲水請務必使用<strong>瓶裝礦泉水煮沸</strong>，刷牙也建議使用瓶裝水。</p>
+                </div>
+                <div class="tip-item">
+                    <h4>👶 3歲幼童推車與背巾</h4>
+                    <p>瀑布、梯田、海神廟岩石區階梯多，<strong>建議攜帶輕便背巾或腰凳</strong>；商場與飯店則適合推車。</p>
+                </div>
+                <div class="tip-item">
+                    <h4>🐒 聖猴森林＆斷崖防猴</h4>
+                    <p>猴子對塑膠袋聲、閃亮耳環、墨鏡極度敏感，進入前<strong>所有隨身小物件務必收進拉鍊背包內</strong>。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>🌴 祝 2026 峇里島之旅 旅途愉快・陽光滿滿 🌴</p>
+        </footer>
+
+    </div>
+
+    <!-- Packing & Notes Modal (Full Page View) -->
+    <div class="modal-overlay" id="notesModal" onclick="handleModalBackdropClick(event)">
+        <div class="modal-card">
+            <div class="modal-header">
+                <div class="modal-title-group">
+                    <h3><span>📋</span> 峇里島行前備忘與行李清單</h3>
+                    <p>出國必備品確認與全家 6 天穿搭衣物數量建議</p>
+                </div>
+                <button class="modal-close-btn" onclick="toggleNotesModal(false)" title="返回行程">
+                    <span>✕</span> 返回行程
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <!-- Weather Widget inside Notes View (Above Tabs) -->
+                <section class="weather-box" style="margin: 0 0 20px;">
+                    <div class="weather-title">
+                        <span>🌤️</span> 當地氣候狀況
+                    </div>
+                    <div class="weather-grid">
+                        <div class="weather-item">
+                            <span class="desc">氣溫</span>
+                            <span class="val">24°C - 31°C</span>
+                        </div>
+                        <div class="weather-item">
+                            <span class="desc">紫外線</span>
+                            <span class="val" style="color: var(--rose-accent);">UV 11+</span>
+                        </div>
+                        <div class="weather-item">
+                            <span class="desc">降雨機率</span>
+                            <span class="val" style="color: var(--teal-primary);">&lt; 15%</span>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="modal-tabs">
+                    <button class="modal-tab-btn active" data-tab="checklist" onclick="switchModalTab('checklist')">
+                        <span>✅</span> 出國必備清單
+                    </button>
+                    <button class="modal-tab-btn" data-tab="clothing" onclick="switchModalTab('clothing')">
+                        <span>👗</span> 6天衣物數量 (女/男/小寶)
+                    </button>
+                </div>
+
+                <!-- TAB 1: Checklist -->
+                <div class="modal-tab-pane" id="paneChecklist">
+                    <div class="checklist-toolbar">
+                        <span class="checklist-progress-text" id="checklistProgress">已勾選 0 / 34 項 (0%)</span>
+                        <button class="checklist-reset-btn" onclick="resetPackingChecklist()">↺ 清空重置</button>
+                    </div>
+
+                    <!-- Category: Documents -->
+                    <div class="checklist-category">
+                        <div class="checklist-cat-title"><span>🛂</span> 證件與入境手續</div>
+                        <div class="checklist-grid">
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_passport" onchange="saveChecklistState()">
+                                <span>護照正本（有效期限需滿 6 個月以上）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_evoa" onchange="saveChecklistState()">
+                                <span>印尼電子落地簽 (e-VOA) / 美金或印尼盾現場辦理</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_ecd" onchange="saveChecklistState()">
+                                <span>印尼電子海關申報 (e-CD，出發前3天內填寫截圖)</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_levy" onchange="saveChecklistState()">
+                                <span>峇里島觀光稅繳納 (Tourist Levy 每人 15 萬印尼盾)</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_tickets" onchange="saveChecklistState()">
+                                <span>長榮航空電子機票行程確認單（影本/截圖）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_hotels" onchange="saveChecklistState()">
+                                <span>飯店入住憑證（VOCO Seminyak & 洲際 Sanur）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_passport_copy" onchange="saveChecklistState()">
+                                <span>護照影本 2 份 + 2 吋大頭照 2 張（備用）</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Category: Finance -->
+                    <div class="checklist-category">
+                        <div class="checklist-cat-title"><span>💳</span> 金錢與支付</div>
+                        <div class="checklist-grid">
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_cards" onchange="saveChecklistState()">
+                                <span>海外回饋信用卡（已開通海外交易與 PIN 碼）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_cash" onchange="saveChecklistState()">
+                                <span>印尼盾 (IDR) 現金 / 美金新版百元鈔（當地換匯）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_money_belt" onchange="saveChecklistState()">
+                                <span>隨身防盜隱形腰包 / 零錢隨身包</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Category: Electronics -->
+                    <div class="checklist-category">
+                        <div class="checklist-cat-title"><span>🔌</span> 電子與通訊</div>
+                        <div class="checklist-grid">
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_adapter" onchange="saveChecklistState()">
+                                <span>印尼雙圓孔轉接頭（C / F 型，建議攜帶 2-3 個）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_ext_cord" onchange="saveChecklistState()">
+                                <span>多孔延長線 / 多口快充頭</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_powerbank" onchange="saveChecklistState()">
+                                <span>行動電源（需隨身攜帶上飛機，禁止託運）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_sim" onchange="saveChecklistState()">
+                                <span>印尼上網 SIM 卡 / eSIM（已設定完成）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_waterproof_bag" onchange="saveChecklistState()">
+                                <span>防水手機袋（瀑布涉水、海灘玩水必備）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_cables" onchange="saveChecklistState()">
+                                <span>手機充電線 / 相機 / 空拍機設備</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Category: Medicine -->
+                    <div class="checklist-category">
+                        <div class="checklist-cat-title"><span>💊</span> 常備醫藥與個人衛生</div>
+                        <div class="checklist-grid">
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_stomach_med" onchange="saveChecklistState()">
+                                <span>腸胃藥 / 止瀉藥 / 益生菌（預防 Bali Belly 必備）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_mosquito_repellent" onchange="saveChecklistState()">
+                                <span>防蚊液 / 防蚊滾珠（建議含 DEET 或派卡瑞丁）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_cold_med" onchange="saveChecklistState()">
+                                <span>普拿疼 / 退燒止痛藥 / 綜合感冒藥</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_sunscreen" onchange="saveChecklistState()">
+                                <span>高係數防曬乳（SPF50+ PA++++，海洋友善款）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_aloe" onchange="saveChecklistState()">
+                                <span>曬後修護蘆薈膠</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_motion_sickness" onchange="saveChecklistState()">
+                                <span>暈車藥（烏布山路、梯田多彎車程必備）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_wipes" onchange="saveChecklistState()">
+                                <span>隨身抗菌濕紙巾 / 乾洗手噴霧</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Category: Toddler Gear -->
+                    <div class="checklist-category">
+                        <div class="checklist-cat-title"><span>👶</span> 小寶出國專用 (3歲)</div>
+                        <div class="checklist-grid">
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_toddler_med" onchange="saveChecklistState()">
+                                <span>兒科常備藥水（退燒藥水、止瀉、過敏、退熱貼）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_stroller" onchange="saveChecklistState()">
+                                <span>輕便折疊推車 + 護腰背巾（梯田/瀑布多階梯）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_toddler_swim" onchange="saveChecklistState()">
+                                <span>兒童抗 UV 長袖連身水母衣 + 遮陽泳帽</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_toddler_sand_toys" onchange="saveChecklistState()">
+                                <span>兒童玩沙工具組</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_toddler_bug_patch" onchange="saveChecklistState()">
+                                <span>兒童防蚊貼片 / 驅蚊手環</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_toddler_snacks" onchange="saveChecklistState()">
+                                <span>水壺 / 機上安撫小玩具 / 常吃小餅乾</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Category: Essentials -->
+                    <div class="checklist-category">
+                        <div class="checklist-cat-title"><span>🎒</span> 隨身日常用品</div>
+                        <div class="checklist-grid">
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_sunglasses" onchange="saveChecklistState()">
+                                <span>抗 UV 墨鏡（男女各 1-2 副）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_hats" onchange="saveChecklistState()">
+                                <span>寬簷遮陽草帽 / 遮陽帽</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_umbrella" onchange="saveChecklistState()">
+                                <span>輕便折疊晴雨傘</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_neck_pillow" onchange="saveChecklistState()">
+                                <span>充氣旅行頸枕（長榮 5.5 小時飛行舒適必備）</span>
+                            </label>
+                            <label class="checklist-item">
+                                <input type="checkbox" id="chk_luggage_scale" onchange="saveChecklistState()">
+                                <span>行李秤（採買伴手禮回程防超重）</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: Clothing Quantities -->
+                <div class="modal-tab-pane" id="paneClothing" style="display: none;">
+                    <div class="clothing-grid">
+                        <!-- Female Card -->
+                        <div class="clothing-card">
+                            <div class="clothing-card-header">
+                                <div class="clothing-card-title"><span>👩</span> 女生衣物清單</div>
+                                <span class="clothing-card-tag">6 天 5 夜</span>
+                            </div>
+                            <ul class="clothing-list">
+                                <li><span>上衣 / 短 T / 涼感背心</span><strong>5 - 6 件</strong></li>
+                                <li><span>度假風仙氣長洋裝</span><strong>2 - 3 件</strong></li>
+                                <li><span>亞麻寬褲 / 休閒短褲</span><strong>3 - 4 件</strong></li>
+                                <li><span>泳裝 / 比基尼 / 美背泳衣</span><strong>2 套</strong></li>
+                                <li><span>薄防曬亞麻襯衫 / 罩衫</span><strong>2 件</strong></li>
+                                <li><span>貼身內衣褲 (備用多帶)</span><strong>7 - 8 套</strong></li>
+                                <li><span>好走小白鞋 / 休閒鞋</span><strong>1 雙</strong></li>
+                                <li><span>防水防滑涼拖鞋</span><strong>1 雙</strong></li>
+                                <li><span>遮陽草帽 / 墨鏡 / 編織包</span><strong>各 1-2 組</strong></li>
+                            </ul>
+                        </div>
+
+                        <!-- Male Card -->
+                        <div class="clothing-card">
+                            <div class="clothing-card-header">
+                                <div class="clothing-card-title"><span>👨</span> 男生衣物清單</div>
+                                <span class="clothing-card-tag">6 天 5 夜</span>
+                            </div>
+                            <ul class="clothing-list">
+                                <li><span>休閒短 T / 排汗機能衫</span><strong>6 - 7 件</strong></li>
+                                <li><span>短袖工裝 / 亞麻襯衫</span><strong>2 件</strong></li>
+                                <li><span>機能短褲 / 衝浪海灘褲</span><strong>3 - 4 件</strong></li>
+                                <li><span>休閒長褲 / 彈性長褲</span><strong>1 - 2 件</strong></li>
+                                <li><span>泳褲 / 衝浪短褲</span><strong>2 件</strong></li>
+                                <li><span>貼身內褲 / 隱形襪</span><strong>7 - 8 套</strong></li>
+                                <li><span>薄防曬襯衫 / 輕薄風衣</span><strong>1 - 2 件</strong></li>
+                                <li><span>透氣好走球鞋</span><strong>1 雙</strong></li>
+                                <li><span>戶外抓地運動涼鞋 / 拖鞋</span><strong>1 雙</strong></li>
+                                <li><span>棒球帽 / 墨鏡</span><strong>各 1 頂/副</strong></li>
+                            </ul>
+                        </div>
+
+                        <!-- Toddler Card -->
+                        <div class="clothing-card">
+                            <div class="clothing-card-header">
+                                <div class="clothing-card-title"><span>👶</span> 小寶衣物清單</div>
+                                <span class="clothing-card-tag">多備替換</span>
+                            </div>
+                            <ul class="clothing-list">
+                                <li><span>親膚純棉短袖 / 短 T</span><strong>8 - 10 件</strong></li>
+                                <li><span>彈性純棉休閒短褲</span><strong>6 - 8 件</strong></li>
+                                <li><span>薄長褲 / 防蚊長褲</span><strong>3 - 4 件</strong></li>
+                                <li><span>抗 UV 長袖連身水母衣</span><strong>2 套</strong></li>
+                                <li><span>薄連帽外套 / 防曬罩衫</span><strong>2 件</strong></li>
+                                <li><span>兒童內褲 / 學習褲 / 尿布</span><strong>日常 1.5 倍</strong></li>
+                                <li><span>護趾防滑水陸兩用涼鞋</span><strong>1 雙</strong></li>
+                                <li><span>好穿脫包頭休閒鞋</span><strong>1 雙</strong></li>
+                                <li><span>寬簷防曬遮陽帽</span><strong>1 - 2 頂</strong></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        const personaNames = {
+            female: '女生',
+            male: '男生',
+            toddler: '小寶'
+        };
+
+        function switchPersona(personaKey) {
+            // 1. 更新按鈕 Active 狀態 (使用精確匹配，避免 female 包含 male 字串之問題)
+            const buttons = document.querySelectorAll('.persona-btn');
+            buttons.forEach(btn => {
+                const key = btn.dataset.persona || (btn.getAttribute('onclick') && btn.getAttribute('onclick').match(/'([^']+)'/)?.[1]);
+                if (key === personaKey) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            // 2. 更新標題文字
+            const textSpans = document.querySelectorAll('.current-persona-text');
+            textSpans.forEach(span => {
+                span.textContent = personaNames[personaKey];
+            });
+
+            // 3. 更新每日穿搭內容 (加上漸層切換效果)
+            const outfitBoxes = document.querySelectorAll('.outfit-content');
+            outfitBoxes.forEach(box => {
+                box.style.opacity = '0';
+                setTimeout(() => {
+                    const newText = box.getAttribute(`data-${personaKey}`);
+                    if (newText) {
+                        box.textContent = newText;
+                    }
+                    box.style.opacity = '1';
+                }, 120);
+            });
+        }
+
+        // Tab 按住左右滑動 (Drag to scroll)
+        function enableDragScroll(slider) {
+            if (!slider) return;
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.classList.add('grabbing');
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
+            });
+
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.classList.remove('grabbing');
+            });
+
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.classList.remove('grabbing');
+            });
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                slider.scrollLeft = scrollLeft - walk;
+            });
+        }
+
+        // Day Tab 點擊與滾動高亮 (Active 狀態與 ScrollSpy)
+        function initDayNav() {
+            const dayChips = document.querySelectorAll('.day-chip');
+            const daySections = document.querySelectorAll('.day-section');
+            if (!dayChips.length) return;
+
+            let isManualClick = false;
+            dayChips.forEach(chip => {
+                chip.addEventListener('click', function () {
+                    isManualClick = true;
+                    dayChips.forEach(c => c.classList.remove('active'));
+                    this.classList.add('active');
+                    setTimeout(() => { isManualClick = false; }, 800);
+                });
+            });
+
+            window.addEventListener('scroll', () => {
+                if (isManualClick) return;
+                let currentDayId = '';
+                const scrollPos = window.scrollY + 180;
+
+                daySections.forEach(section => {
+                    if (section.offsetTop <= scrollPos) {
+                        currentDayId = section.getAttribute('id');
+                    }
+                });
+
+                if (currentDayId) {
+                    dayChips.forEach(chip => {
+                        if (chip.getAttribute('href') === `#${currentDayId}`) {
+                            chip.classList.add('active');
+                        } else {
+                            chip.classList.remove('active');
+                        }
+                    });
+                }
+            }, { passive: true });
+        }
+
+        // 備註清單 Modal 與 LocalStorage 記憶功能
+        const STORAGE_KEY = 'bali_packing_list_2026';
+
+        function toggleNotesModal(isOpen) {
+            const modal = document.getElementById('notesModal');
+            if (!modal) return;
+            if (isOpen) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        }
+
+        function handleModalBackdropClick(e) {
+            if (e.target.id === 'notesModal') {
+                toggleNotesModal(false);
+            }
+        }
+
+        function switchModalTab(tabKey) {
+            const tabBtns = document.querySelectorAll('.modal-tab-btn');
+            tabBtns.forEach(btn => {
+                if (btn.dataset.tab === tabKey) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            const paneChecklist = document.getElementById('paneChecklist');
+            const paneClothing = document.getElementById('paneClothing');
+            if (tabKey === 'checklist') {
+                paneChecklist.style.display = 'block';
+                paneClothing.style.display = 'none';
+            } else {
+                paneChecklist.style.display = 'none';
+                paneClothing.style.display = 'block';
+            }
+        }
+
+        function saveChecklistState() {
+            const checkboxes = document.querySelectorAll('#paneChecklist input[type="checkbox"]');
+            const states = {};
+            let checkedCount = 0;
+
+            checkboxes.forEach(cb => {
+                states[cb.id] = cb.checked;
+                const parentItem = cb.closest('.checklist-item');
+                if (parentItem) {
+                    if (cb.checked) {
+                        parentItem.classList.add('checked');
+                        checkedCount++;
+                    } else {
+                        parentItem.classList.remove('checked');
+                    }
+                }
+            });
+
+            try {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(states));
+            } catch (err) {
+                console.warn('LocalStorage save failed:', err);
+            }
+
+            updateChecklistCounters(checkedCount, checkboxes.length);
+        }
+
+        function loadChecklistState() {
+            const checkboxes = document.querySelectorAll('#paneChecklist input[type="checkbox"]');
+            let states = {};
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                if (saved) {
+                    states = JSON.parse(saved);
+                }
+            } catch (err) {
+                states = {};
+            }
+
+            let checkedCount = 0;
+            checkboxes.forEach(cb => {
+                if (states[cb.id] === true) {
+                    cb.checked = true;
+                    cb.closest('.checklist-item')?.classList.add('checked');
+                    checkedCount++;
+                } else {
+                    cb.checked = false;
+                    cb.closest('.checklist-item')?.classList.remove('checked');
+                }
+            });
+
+            updateChecklistCounters(checkedCount, checkboxes.length);
+        }
+
+        function updateChecklistCounters(checked, total) {
+            const counterBadge = document.getElementById('checklistCounter');
+            const progressText = document.getElementById('checklistProgress');
+            const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+
+            if (counterBadge) {
+                counterBadge.textContent = `${checked}/${total}`;
+            }
+            if (progressText) {
+                progressText.textContent = `已勾選 ${checked} / ${total} 項 (${pct}%)`;
+            }
+        }
+
+        function resetPackingChecklist() {
+            if (confirm('確定要清空所有已勾選的清單紀錄嗎？')) {
+                try {
+                    localStorage.removeItem(STORAGE_KEY);
+                } catch (err) { }
+                loadChecklistState();
+            }
+        }
+
+        // ESC 鍵關閉 Modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                toggleNotesModal(false);
+            }
+        });
+
+        // 初始載入
+        document.addEventListener('DOMContentLoaded', () => {
+            switchPersona('female');
+            const dayNav = document.querySelector('.day-nav');
+            enableDragScroll(dayNav);
+            initDayNav();
+            loadChecklistState();
+        });
+    </script>
+</body>
+
+</html>
