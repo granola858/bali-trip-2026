@@ -3837,7 +3837,11 @@
             card.querySelector('.meta-tags')?.prepend(badge);
         }
 
-        function updateTimelineProgress(date = new Date(), { autoScroll = false } = {}) {
+        let autoScrolledCard = null;
+        let lastProgressDayId = null;
+        let timelineAutoFollow = false;
+
+        function updateTimelineProgress(date = new Date(), { autoScroll = false, followDay = false } = {}) {
             const todayKey = getTripDateKey(date);
             const currentMinutes = getTripTimeMinutes(date);
             const currentDayIndex = tripDates.indexOf(todayKey);
@@ -3880,8 +3884,18 @@
             });
 
             const currentDayId = currentDayIndex >= 0 ? `day${currentDayIndex + 1}` : null;
+
+            // 跨日時，若使用者停留在原本的「今天」分頁，自動翻到新的一天
+            if (followDay && currentDayId && lastProgressDayId && currentDayId !== lastProgressDayId
+                && document.querySelector('.trip-panel:not([hidden])')?.id === lastProgressDayId) {
+                selectDay(currentDayId, { updateUrl: true });
+                autoScrolledCard = null;
+            }
+            if (currentDayId) lastProgressDayId = currentDayId;
+
             const activePanel = document.querySelector('.trip-panel:not([hidden])');
-            if (autoScroll && scrollTarget && activePanel?.id === currentDayId) {
+            if (autoScroll && scrollTarget && activePanel?.id === currentDayId && scrollTarget !== autoScrolledCard) {
+                autoScrolledCard = scrollTarget;
                 setTimeout(() => scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'center' }), 0);
             }
 
@@ -3894,8 +3908,17 @@
         }
 
         function initTimelineProgress(shouldAutoScroll) {
+            timelineAutoFollow = shouldAutoScroll;
             updateTimelineProgress(new Date(), { autoScroll: shouldAutoScroll });
-            window.setInterval(() => updateTimelineProgress(), 60 * 1000);
+
+            const refresh = () => updateTimelineProgress(new Date(), {
+                autoScroll: timelineAutoFollow,
+                followDay: true
+            });
+            window.setInterval(refresh, 60 * 1000);
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) refresh();
+            });
         }
 
         function getDayIdForDate(date = new Date()) {
@@ -3938,7 +3961,17 @@
 
             activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             if (focusTab) activeTab.focus();
-            if (scroll) activeSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            if (scroll) {
+                // 切回今天時直接定位到進行中（或下一站）的行程，其他日子維持捲到頂端
+                const liveCard = dayId === getDayIdForDate()
+                    ? activeSection.querySelector('.timeline-card.is-current, .timeline-card.is-next')
+                    : null;
+                if (liveCard) autoScrolledCard = liveCard;
+                (liveCard || activeSection).scrollIntoView({
+                    behavior: 'smooth',
+                    block: liveCard ? 'center' : 'start'
+                });
+            }
         }
 
         function focusReservationFromHash() {
