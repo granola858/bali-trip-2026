@@ -3919,6 +3919,9 @@
             document.addEventListener('visibilitychange', () => {
                 if (!document.hidden) refresh();
             });
+            window.addEventListener('pageshow', event => {
+                if (event.persisted) refresh();
+            });
         }
 
         function getDayIdForDate(date = new Date()) {
@@ -4250,7 +4253,13 @@
         });
 
         document.addEventListener('DOMContentLoaded', () => {
-            const shouldAutoLocateTimeline = !getPanelIdFromHash();
+            // 網址列的 #dayN 是上次載入自己寫進去的，指向今天時仍要重新定位；
+            // 只有刻意連到別天或某張訂房卡時才不打擾使用者。
+            const hashPanelId = getPanelIdFromHash();
+            const shouldAutoLocateTimeline = !hashPanelId || hashPanelId === getDayIdForDate();
+            if (shouldAutoLocateTimeline && 'scrollRestoration' in history) {
+                history.scrollRestoration = 'manual';
+            }
             let savedPersona = 'female';
             try {
                 savedPersona = localStorage.getItem(PERSONA_STORAGE_KEY) || savedPersona;
