@@ -4703,7 +4703,8 @@
         }
 
         function buildExpenseCsv() {
-            const header = ['日期', '項目', '金額', '幣別', '台幣', '分類', '付款人'];
+            // 欄位順序對齊「峇里島花費紀錄表單 (回覆)」試算表，方便兩邊資料合併。
+            const header = ['日期', '項目', '金額', '幣別', '付款人', '分類', '台幣'];
             const rows = [...expenseState.items]
                 .sort((a, b) => a.date.localeCompare(b.date) || a.createdAt.localeCompare(b.createdAt))
                 .map(item => [
@@ -4711,9 +4712,9 @@
                     item.name,
                     item.amount,
                     item.currency,
-                    Math.round(expenseToTwd(item)),
+                    item.payer,
                     item.category,
-                    item.payer
+                    Math.round(expenseToTwd(item))
                 ]);
             return [header, ...rows]
                 .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
