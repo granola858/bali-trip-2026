@@ -2075,6 +2075,277 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* ===== 花費記錄 ===== */
+        .expense-page {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .expense-summary {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin: 0;
+        }
+
+        .expense-summary>div {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 12px 14px;
+        }
+
+        .expense-summary dt {
+            font-size: 0.76rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .expense-summary dd {
+            margin: 0;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .expense-summary dd small {
+            display: block;
+            margin-top: 3px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            color: var(--text-dim);
+        }
+
+        .expense-form,
+        .expense-rates,
+        .expense-day {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+        }
+
+        .expense-form {
+            padding: 14px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 10px;
+        }
+
+        .expense-form label,
+        .expense-rates label {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+        }
+
+        .expense-form input,
+        .expense-form select,
+        .expense-rates input {
+            font-family: inherit;
+            font-size: 0.95rem;
+            padding: 9px 11px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-main);
+            min-width: 0;
+        }
+
+        .expense-form input:focus,
+        .expense-form select:focus,
+        .expense-rates input:focus {
+            outline: 2px solid var(--border-accent);
+            outline-offset: 1px;
+        }
+
+        .expense-form-actions {
+            grid-column: 1 / -1;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .expense-hint {
+            font-size: 0.74rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        .expense-btn {
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 9px 14px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-subtle);
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .expense-btn.primary {
+            background: var(--teal-primary);
+            border-color: var(--teal-primary);
+            color: var(--bg-card);
+        }
+
+        .expense-btn.danger {
+            color: var(--rose-accent);
+        }
+
+        .expense-rates {
+            padding: 12px 14px;
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .expense-rates>span {
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            padding-bottom: 9px;
+        }
+
+        .expense-rates label {
+            flex-direction: row;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .expense-rates input {
+            width: 8.5em;
+        }
+
+        .expense-toolbar {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .expense-categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .expense-category {
+            font-size: 0.78rem;
+            padding: 6px 11px;
+            border-radius: 999px;
+            border: 1px solid var(--border-accent);
+            background: var(--teal-glow);
+            color: var(--text-main);
+        }
+
+        .expense-category b {
+            font-weight: 700;
+        }
+
+        .expense-day {
+            padding: 12px 14px;
+        }
+
+        .expense-day+.expense-day {
+            margin-top: 10px;
+        }
+
+        .expense-day-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .expense-day-head strong {
+            color: var(--text-main);
+            font-size: 0.92rem;
+        }
+
+        .expense-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .expense-row:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .expense-row-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .expense-row-name {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-main);
+            overflow-wrap: anywhere;
+        }
+
+        .expense-row-meta {
+            font-size: 0.74rem;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .expense-row-amount {
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .expense-row-amount b {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .expense-row-amount small {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+        }
+
+        .expense-delete {
+            font-family: inherit;
+            font-size: 1rem;
+            line-height: 1;
+            padding: 6px 8px;
+            border-radius: var(--radius-sm);
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-dim);
+            cursor: pointer;
+        }
+
+        .expense-delete:hover {
+            color: var(--rose-accent);
+            border-color: var(--border-color);
+        }
+
+        .expense-empty {
+            padding: 26px 14px;
+            text-align: center;
+            font-size: 0.86rem;
+            color: var(--text-dim);
+            background: var(--bg-card);
+            border: 1px dashed var(--border-color);
+            border-radius: var(--radius-md);
+        }
+
     </style>
 </head>
 
@@ -2114,7 +2385,10 @@
                     tabindex="-1"><span class="tab-date">9/1</span><span class="tab-label">沙努爾返台</span></a>
                 <a class="day-chip reservation-chip" id="tab-reservations" href="#reservations" role="tab"
                     aria-controls="reservations" aria-selected="false" tabindex="-1"><span
-                        class="tab-date">訂位</span><span class="tab-label">4 家確認</span></a>
+                        class="tab-date">訂位</span><span class="tab-label">3 家確認</span></a>
+                <a class="day-chip expense-chip" id="tab-expenses" href="#expenses" role="tab" aria-controls="expenses"
+                    aria-selected="false" tabindex="-1"><span class="tab-date">花費</span><span
+                        class="tab-label">記帳</span></a>
             </div>
         </div>
 
@@ -3165,10 +3439,10 @@
 
                 <div class="reservation-summary">
                     <div>
-                        <strong>🍽️ 四家熱門餐廳已完成訂位</strong>
+                        <strong>🍽️ 三家熱門餐廳已完成訂位</strong>
                         <p>抵達現場時出示餐廳名稱與預約 ID；訂位碼可一鍵複製，個人聯絡資料未收錄於此頁。</p>
                     </div>
-                    <span class="reservation-count">4</span>
+                    <span class="reservation-count">3</span>
                 </div>
 
                 <div class="reservation-grid">
@@ -3274,6 +3548,74 @@
                         </div>
                     </article>
                 </div>
+            </section>
+
+            <!-- 花費記錄 -->
+            <section id="expenses" class="expense-page trip-panel" role="tabpanel" aria-labelledby="tab-expenses"
+                hidden>
+                <div class="day-header">
+                    <div class="day-title-wrap">
+                        <div class="day-title-top">
+                            <span class="day-num">花費記錄</span>
+                        </div>
+                        <div class="day-sub-desc">隨手記一筆，自動換算台幣並統計</div>
+                    </div>
+                    <span class="charter-badge" id="expenseTotalBadge">NT$0</span>
+                </div>
+
+                <dl class="expense-summary" id="expenseSummary"></dl>
+
+                <form class="expense-form" id="expenseForm" autocomplete="off">
+                    <label>日期
+                        <input type="date" name="date" required>
+                    </label>
+                    <label>項目
+                        <input type="text" name="name" maxlength="40" placeholder="例：Sidewalk 午餐" required>
+                    </label>
+                    <label>金額
+                        <input type="number" name="amount" min="0" step="any" inputmode="decimal" placeholder="0"
+                            required>
+                    </label>
+                    <label>幣別
+                        <select name="currency">
+                            <option value="IDR">IDR 印尼盾</option>
+                            <option value="TWD">TWD 台幣</option>
+                            <option value="USD">USD 美金</option>
+                        </select>
+                    </label>
+                    <label>分類
+                        <select name="category"></select>
+                    </label>
+                    <label>付款人
+                        <select name="payer"></select>
+                    </label>
+                    <div class="expense-form-actions">
+                        <button class="expense-btn primary" type="submit">＋ 新增一筆</button>
+                        <span class="expense-hint">資料只存在這支手機的瀏覽器裡，清除瀏覽器資料會消失，請定期複製 CSV 備份。</span>
+                    </div>
+                </form>
+
+                <div class="expense-rates">
+                    <span>匯率換算</span>
+                    <label>1 IDR =
+                        <input type="number" id="expenseRateIdr" min="0" step="0.0001" inputmode="decimal"> TWD
+                    </label>
+                    <label>1 USD =
+                        <input type="number" id="expenseRateUsd" min="0" step="0.01" inputmode="decimal"> TWD
+                    </label>
+                </div>
+
+                <div class="expense-categories" id="expenseCategories"></div>
+
+                <div class="expense-toolbar">
+                    <a class="expense-btn primary" href="https://forms.gle/6YFseJnhADMFEFjf6"
+                        target="_blank">☁️ 同步記到 Google 表單</a>
+                    <button class="expense-btn" type="button" id="expenseCopyCsv">⧉ 複製 CSV</button>
+                    <button class="expense-btn" type="button" id="expenseDownloadCsv">⤓ 下載 CSV</button>
+                    <button class="expense-btn danger" type="button" id="expenseClear">清除全部</button>
+                </div>
+
+                <div id="expenseList"></div>
             </section>
 
         </main>
@@ -3915,7 +4257,7 @@
         }
 
         function getPanelIdFromHash(hashValue = window.location.hash.slice(1)) {
-            if (/^(day[1-6]|reservations)$/.test(hashValue)) return hashValue;
+            if (/^(day[1-6]|reservations|expenses)$/.test(hashValue)) return hashValue;
             const reservationTarget = document.getElementById(hashValue);
             return reservationTarget?.classList.contains('reservation-card') ? 'reservations' : null;
         }
@@ -4010,7 +4352,7 @@
             focusReservationFromHash();
         }
 
-        async function copyReservationCode(code, button) {
+        async function copyTextToClipboard(code, button) {
             let copied = false;
             try {
                 await navigator.clipboard.writeText(code);
@@ -4036,7 +4378,7 @@
 
         function initReservationActions() {
             document.querySelectorAll('[data-copy-code]').forEach(button => {
-                button.addEventListener('click', () => copyReservationCode(button.dataset.copyCode, button));
+                button.addEventListener('click', () => copyTextToClipboard(button.dataset.copyCode, button));
             });
         }
 
@@ -4235,6 +4577,241 @@
             }
         });
 
+
+        const EXPENSE_STORAGE_KEY = 'bali_expenses_2026';
+        const EXPENSE_CATEGORIES = ['餐飲', '交通包車', '住宿', '門票活動', '購物伴手禮', 'SPA按摩', '其他'];
+        const EXPENSE_PAYERS = ['我', '老婆', '現金共用'];
+        // 匯率是預設值，不是即時牌價；頁面上可以自己改。
+        const DEFAULT_EXPENSE_RATES = { IDR: 0.002, TWD: 1, USD: 32 };
+        let expenseState = { version: 1, rates: { ...DEFAULT_EXPENSE_RATES }, items: [] };
+
+        function loadExpenses() {
+            try {
+                const saved = JSON.parse(localStorage.getItem(EXPENSE_STORAGE_KEY) || 'null');
+                if (saved && Array.isArray(saved.items)) {
+                    expenseState = {
+                        version: 1,
+                        rates: { ...DEFAULT_EXPENSE_RATES, ...(saved.rates || {}) },
+                        items: saved.items
+                    };
+                }
+            } catch (err) {
+                console.warn('Expense load failed:', err);
+            }
+        }
+
+        function saveExpenses() {
+            try {
+                localStorage.setItem(EXPENSE_STORAGE_KEY, JSON.stringify(expenseState));
+            } catch (err) {
+                console.warn('Expense save failed:', err);
+            }
+        }
+
+        function expenseToTwd(item) {
+            const rate = expenseState.rates[item.currency];
+            return item.amount * (Number.isFinite(rate) ? rate : 1);
+        }
+
+        function formatTwd(value) {
+            return `NT$${Math.round(value).toLocaleString('en-US')}`;
+        }
+
+        function formatAmount(value) {
+            return value.toLocaleString('en-US', { maximumFractionDigits: 2 });
+        }
+
+        function renderExpenseSummary(items) {
+            const total = items.reduce((sum, item) => sum + expenseToTwd(item), 0);
+            const todayKey = getTripDateKey();
+            const todayTotal = items
+                .filter(item => item.date === todayKey)
+                .reduce((sum, item) => sum + expenseToTwd(item), 0);
+            const idrTotal = items
+                .filter(item => item.currency === 'IDR')
+                .reduce((sum, item) => sum + item.amount, 0);
+
+            document.getElementById('expenseTotalBadge').textContent = formatTwd(total);
+            document.getElementById('expenseSummary').innerHTML = [
+                ['總花費', formatTwd(total), `${items.length} 筆`],
+                ['今日花費', formatTwd(todayTotal), todayKey],
+                ['印尼盾小計', `Rp ${formatAmount(idrTotal)}`, formatTwd(idrTotal * expenseState.rates.IDR)]
+            ].map(([label, value, note]) => `<div><dt>${label}</dt><dd>${value}<small>${note}</small></dd></div>`).join('');
+        }
+
+        function renderExpenseCategories(items) {
+            const totals = new Map();
+            items.forEach(item => {
+                totals.set(item.category, (totals.get(item.category) || 0) + expenseToTwd(item));
+            });
+            document.getElementById('expenseCategories').innerHTML = [...totals.entries()]
+                .sort((a, b) => b[1] - a[1])
+                .map(([category, value]) =>
+                    `<span class="expense-category">${escapeExpenseText(category)} <b>${formatTwd(value)}</b></span>`)
+                .join('');
+        }
+
+        function escapeExpenseText(value) {
+            const holder = document.createElement('span');
+            holder.textContent = value;
+            return holder.innerHTML;
+        }
+
+        function renderExpenseList(items) {
+            const list = document.getElementById('expenseList');
+            if (!items.length) {
+                list.innerHTML = '<div class="expense-empty">還沒有任何紀錄，用上面的表單記第一筆吧。</div>';
+                return;
+            }
+
+            const byDate = new Map();
+            items.forEach(item => {
+                if (!byDate.has(item.date)) byDate.set(item.date, []);
+                byDate.get(item.date).push(item);
+            });
+
+            list.innerHTML = [...byDate.entries()]
+                .sort((a, b) => b[0].localeCompare(a[0]))
+                .map(([date, dayItems]) => {
+                    const dayTotal = dayItems.reduce((sum, item) => sum + expenseToTwd(item), 0);
+                    const rows = dayItems.map(item => `
+                        <div class="expense-row">
+                            <div class="expense-row-main">
+                                <div class="expense-row-name">${escapeExpenseText(item.name)}</div>
+                                <div class="expense-row-meta">${escapeExpenseText(item.category)} · ${escapeExpenseText(item.payer)}</div>
+                            </div>
+                            <div class="expense-row-amount">
+                                <b>${formatTwd(expenseToTwd(item))}</b>
+                                <small>${item.currency} ${formatAmount(item.amount)}</small>
+                            </div>
+                            <button class="expense-delete" type="button" data-expense-id="${item.id}"
+                                aria-label="刪除 ${escapeExpenseText(item.name)}">✕</button>
+                        </div>`).join('');
+                    return `<div class="expense-day">
+                        <div class="expense-day-head"><strong>${date}</strong><span>${formatTwd(dayTotal)}</span></div>
+                        ${rows}
+                    </div>`;
+                }).join('');
+        }
+
+        function renderExpenses() {
+            const items = [...expenseState.items].sort((a, b) =>
+                a.date === b.date ? b.createdAt.localeCompare(a.createdAt) : b.date.localeCompare(a.date));
+            renderExpenseSummary(items);
+            renderExpenseCategories(items);
+            renderExpenseList(items);
+        }
+
+        function buildExpenseCsv() {
+            const header = ['日期', '項目', '金額', '幣別', '台幣', '分類', '付款人'];
+            const rows = [...expenseState.items]
+                .sort((a, b) => a.date.localeCompare(b.date) || a.createdAt.localeCompare(b.createdAt))
+                .map(item => [
+                    item.date,
+                    item.name,
+                    item.amount,
+                    item.currency,
+                    Math.round(expenseToTwd(item)),
+                    item.category,
+                    item.payer
+                ]);
+            return [header, ...rows]
+                .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+                .join('\n');
+        }
+
+        function downloadExpenseCsv() {
+            const blob = new Blob([`\ufeff${buildExpenseCsv()}`], { type: 'text/csv;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `bali-expenses-${getTripDateKey()}.csv`;
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 1000);
+        }
+
+        function fillExpenseOptions(select, values) {
+            select.innerHTML = values
+                .map(value => `<option value="${escapeExpenseText(value)}">${escapeExpenseText(value)}</option>`)
+                .join('');
+        }
+
+        function initExpenses() {
+            const form = document.getElementById('expenseForm');
+            if (!form) return;
+
+            loadExpenses();
+            fillExpenseOptions(form.elements.category, EXPENSE_CATEGORIES);
+            fillExpenseOptions(form.elements.payer, EXPENSE_PAYERS);
+            form.elements.date.value = getTripDateKey();
+
+            const rateIdr = document.getElementById('expenseRateIdr');
+            const rateUsd = document.getElementById('expenseRateUsd');
+            rateIdr.value = expenseState.rates.IDR;
+            rateUsd.value = expenseState.rates.USD;
+
+            [[rateIdr, 'IDR'], [rateUsd, 'USD']].forEach(([input, currency]) => {
+                input.addEventListener('change', () => {
+                    const value = Number(input.value);
+                    if (!Number.isFinite(value) || value <= 0) {
+                        input.value = expenseState.rates[currency];
+                        return;
+                    }
+                    expenseState.rates[currency] = value;
+                    saveExpenses();
+                    renderExpenses();
+                });
+            });
+
+            form.addEventListener('submit', event => {
+                event.preventDefault();
+                const amount = Number(form.elements.amount.value);
+                const name = form.elements.name.value.trim();
+                if (!name || !Number.isFinite(amount) || amount <= 0) return;
+
+                expenseState.items.push({
+                    id: `exp-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+                    date: form.elements.date.value || getTripDateKey(),
+                    name,
+                    amount,
+                    currency: form.elements.currency.value,
+                    category: form.elements.category.value,
+                    payer: form.elements.payer.value,
+                    createdAt: new Date().toISOString()
+                });
+                saveExpenses();
+                renderExpenses();
+
+                form.elements.name.value = '';
+                form.elements.amount.value = '';
+                form.elements.name.focus();
+            });
+
+            document.getElementById('expenseList').addEventListener('click', event => {
+                const button = event.target.closest('[data-expense-id]');
+                if (!button) return;
+                expenseState.items = expenseState.items.filter(item => item.id !== button.dataset.expenseId);
+                saveExpenses();
+                renderExpenses();
+            });
+
+            document.getElementById('expenseCopyCsv').addEventListener('click', event => {
+                copyTextToClipboard(buildExpenseCsv(), event.currentTarget);
+            });
+            document.getElementById('expenseDownloadCsv').addEventListener('click', downloadExpenseCsv);
+            document.getElementById('expenseClear').addEventListener('click', () => {
+                if (!expenseState.items.length) return;
+                if (!window.confirm(`確定刪除全部 ${expenseState.items.length} 筆花費紀錄？此動作無法復原。`)) return;
+                expenseState.items = [];
+                saveExpenses();
+                renderExpenses();
+            });
+
+            renderExpenses();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             // 網址列的 #dayN 是上次載入自己寫進去的，指向今天時仍要重新定位；
             // 只有刻意連到別天或某張訂房卡時才不打擾使用者。
@@ -4258,6 +4835,7 @@
             initTimelineProgress(shouldAutoLocateTimeline);
             initReservationActions();
             loadChecklistState();
+            initExpenses();
         });
     </script>
 </body>
