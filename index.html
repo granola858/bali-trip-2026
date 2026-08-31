@@ -2161,6 +2161,97 @@
             color: var(--text-main);
         }
 
+        .expense-split {
+            background: var(--bg-card);
+            border: 1px solid var(--border-accent);
+            border-radius: var(--radius-md);
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .expense-split-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .expense-split-head strong {
+            font-size: 0.98rem;
+            color: var(--text-main);
+        }
+
+        .expense-rate-note {
+            font-size: 0.72rem;
+            color: var(--text-dim);
+        }
+
+        .expense-people {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .expense-person {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 7px 13px;
+            border-radius: 999px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-main);
+            color: var(--text-dim);
+            cursor: pointer;
+        }
+
+        .expense-person[aria-pressed="true"] {
+            border-color: var(--teal-primary);
+            background: var(--teal-glow);
+            color: var(--text-main);
+        }
+
+        .expense-balance {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .expense-balance-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            font-size: 0.86rem;
+            color: var(--text-muted);
+        }
+
+        .expense-balance-row b {
+            color: var(--text-main);
+        }
+
+        .expense-transfer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 12px;
+            border-radius: var(--radius-sm);
+            background: var(--bg-subtle);
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .expense-transfer+.expense-transfer {
+            margin-top: 8px;
+        }
+
+        .expense-settled {
+            font-size: 0.86rem;
+            color: var(--text-muted);
+        }
+
         .expense-day {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -3489,6 +3580,16 @@
 
                 <dl class="expense-totals" id="expenseTotals"></dl>
 
+                <div class="expense-split" id="expenseSplit" hidden>
+                    <div class="expense-split-head">
+                        <strong>💸 分帳結算</strong>
+                        <span class="expense-rate-note" id="expenseRateNote"></span>
+                    </div>
+                    <div class="expense-people" id="expensePeople"></div>
+                    <div class="expense-balance" id="expenseBalance"></div>
+                    <div id="expenseTransfers"></div>
+                </div>
+
                 <div id="expenseList"></div>
 
                 <p class="expense-note">明細直接讀自表單的回覆試算表，讀到後會存在這支手機裡，沒網路時仍看得到上次的內容。</p>
@@ -4458,6 +4559,16 @@
         const EXPENSE_SHEET_ID = '1ZZMMJcD_cqY_0GvHtPCl2p7NMSCXutJWC9evIgg2t30';
         const EXPENSE_SHEET_URL = `https://docs.google.com/spreadsheets/d/${EXPENSE_SHEET_ID}/gviz/tq?tqx=out:csv`;
         const EXPENSE_CACHE_KEY = 'bali_expense_sheet_2026';
+        const EXPENSE_RATES_KEY = 'bali_expense_rates_2026';
+        const EXPENSE_SPLIT_KEY = 'bali_expense_split_2026';
+        // 跟「匯率換算」那頁用同一支免費 API（ExchangeRate-API 的開放端點，不需金鑰）。
+        const EXPENSE_RATES_URL = 'https://open.er-api.com/v6/latest/USD';
+        const EXPENSE_RATES_TTL = 6 * 60 * 60 * 1000;
+        // 共用基金之類的付款人預設不參與分攤。
+        const EXPENSE_POOL_PAYERS = /共用|公費|共同|基金/;
+        let expenseItems = [];
+        let expenseRates = null;
+        let expenseExcluded = new Set();
         const EXPENSE_CURRENCIES = {
             '印尼盾': { code: 'IDR', prefix: 'Rp ' },
             '台幣': { code: 'TWD', prefix: 'NT$' },
@@ -4556,6 +4667,11 @@
         function renderExpenses(items) {
             const totals = document.getElementById('expenseTotals');
             const list = document.getElementById('expenseList');
+            expenseItems = items;
+            listExpensePeople(items).forEach(name => {
+                if (EXPENSE_POOL_PAYERS.test(name) && !readJson(EXPENSE_SPLIT_KEY)) expenseExcluded.add(name);
+            });
+            renderExpenseSplit(items);
 
             if (!items.length) {
                 totals.innerHTML = '';
@@ -4563,8 +4679,10 @@
                 return;
             }
 
+            const twdTotal = items.reduce((sum, item) => sum + (toTwd(item) || 0), 0);
             totals.innerHTML = [
                 ['筆數', `${items.length} 筆`],
+                ...(expenseRates?.rates ? [['總計 · 台幣', formatTwd(twdTotal)]] : []),
                 ...sumExpensesByCurrency(items).map(total => [`合計 · ${total.currency}`, total.text])
             ].map(([label, value]) =>
                 `<div><dt>${escapeExpenseText(label)}</dt><dd>${escapeExpenseText(value)}</dd></div>`).join('');
@@ -4594,20 +4712,181 @@
                 }).join('');
         }
 
-        function setExpenseStatus(message) {
-            document.getElementById('expenseStatus').textContent = message;
-        }
 
-        function readExpenseCache() {
+        function readJson(key) {
             try {
-                return JSON.parse(localStorage.getItem(EXPENSE_CACHE_KEY) || 'null');
+                return JSON.parse(localStorage.getItem(key) || 'null');
             } catch (err) {
                 return null;
             }
         }
 
+        function writeJson(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+            } catch (err) { }
+        }
+
+        function toTwd(item) {
+            if (!expenseRates?.rates) return null;
+            const code = EXPENSE_CURRENCIES[item.currency]?.code || item.currency;
+            const source = code === 'TWD' ? 1 : expenseRates.rates[code];
+            const target = expenseRates.rates.TWD;
+            if (!Number.isFinite(source) || source <= 0 || !Number.isFinite(target)) return null;
+            return code === 'TWD' ? item.amount : (item.amount / source) * target;
+        }
+
+        function formatTwd(value) {
+            return `NT$${Math.round(value).toLocaleString('en-US')}`;
+        }
+
+        async function loadExpenseRates() {
+            const cached = readJson(EXPENSE_RATES_KEY);
+            if (cached?.rates && Date.now() - cached.fetchedAt < EXPENSE_RATES_TTL) {
+                expenseRates = cached;
+                return;
+            }
+            try {
+                const response = await fetch(EXPENSE_RATES_URL);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                if (!data?.rates?.TWD) throw new Error('匯率格式異常');
+                expenseRates = {
+                    rates: data.rates,
+                    fetchedAt: Date.now(),
+                    updatedAt: data.time_last_update_utc || '',
+                    stale: false
+                };
+                writeJson(EXPENSE_RATES_KEY, expenseRates);
+            } catch (err) {
+                expenseRates = cached?.rates ? { ...cached, stale: true } : null;
+            }
+        }
+
+        function describeRates() {
+            if (!expenseRates?.rates) return '匯率讀取失敗，暫時無法換算台幣';
+            const perTwd = expenseRates.rates.TWD / expenseRates.rates.IDR;
+            const note = `1 台幣 ≈ Rp ${(1 / perTwd).toLocaleString('en-US', { maximumFractionDigits: 0 })}`;
+            const when = expenseRates.stale ? '（離線暫存匯率）' : `（${new Date(expenseRates.fetchedAt).toLocaleString('zh-TW', { hour12: false })} 更新）`;
+            return `${note} ${when}`;
+        }
+
+        function listExpensePeople(items) {
+            return [...new Set(items.map(item => item.payer).filter(Boolean))].sort();
+        }
+
+        function buildTransfers(balances) {
+            const debtors = balances.filter(entry => entry.balance < -0.5)
+                .map(entry => ({ ...entry })).sort((a, b) => a.balance - b.balance);
+            const creditors = balances.filter(entry => entry.balance > 0.5)
+                .map(entry => ({ ...entry })).sort((a, b) => b.balance - a.balance);
+
+            const transfers = [];
+            let debtorIndex = 0;
+            let creditorIndex = 0;
+            while (debtorIndex < debtors.length && creditorIndex < creditors.length) {
+                const debtor = debtors[debtorIndex];
+                const creditor = creditors[creditorIndex];
+                const amount = Math.min(-debtor.balance, creditor.balance);
+                if (amount >= 1) transfers.push({ from: debtor.name, to: creditor.name, amount });
+                debtor.balance += amount;
+                creditor.balance -= amount;
+                if (-debtor.balance < 1) debtorIndex += 1;
+                if (creditor.balance < 1) creditorIndex += 1;
+            }
+            return transfers;
+        }
+
+        function renderExpenseSplit(items) {
+            const panel = document.getElementById('expenseSplit');
+            const people = listExpensePeople(items);
+            document.getElementById('expenseRateNote').textContent = describeRates();
+
+            if (!items.length || !people.length) {
+                panel.hidden = true;
+                return;
+            }
+            panel.hidden = false;
+
+            document.getElementById('expensePeople').innerHTML = people.map(name => {
+                const active = !expenseExcluded.has(name);
+                return `<button class="expense-person" type="button" data-person="${escapeExpenseText(name)}"
+                    aria-pressed="${active}">${active ? '✓ ' : ''}${escapeExpenseText(name)}</button>`;
+            }).join('');
+
+            const sharers = people.filter(name => !expenseExcluded.has(name));
+            const balanceBox = document.getElementById('expenseBalance');
+            const transferBox = document.getElementById('expenseTransfers');
+
+            if (!expenseRates?.rates) {
+                balanceBox.innerHTML = '<div class="expense-settled">沒有匯率資料，無法換算台幣結算。連上網路後按「重新整理」再試。</div>';
+                transferBox.innerHTML = '';
+                return;
+            }
+            if (sharers.length < 2) {
+                balanceBox.innerHTML = '<div class="expense-settled">請至少選兩位分攤者才能結算。未選取的人所付的款項會被視為共用基金，不列入分帳。</div>';
+                transferBox.innerHTML = '';
+                return;
+            }
+
+            // 只結算由分攤者墊付的花費；其他人付的當作共用基金。
+            const shared = items.filter(item => sharers.includes(item.payer));
+            let skipped = 0;
+            const paid = new Map(sharers.map(name => [name, 0]));
+            let total = 0;
+            shared.forEach(item => {
+                const value = toTwd(item);
+                if (value === null) { skipped += 1; return; }
+                paid.set(item.payer, paid.get(item.payer) + value);
+                total += value;
+            });
+
+            const share = total / sharers.length;
+            const balances = sharers.map(name => ({ name, paid: paid.get(name), balance: paid.get(name) - share }));
+
+            balanceBox.innerHTML = [
+                `<div class="expense-balance-row"><span>可分攤總額</span><b>${formatTwd(total)}</b></div>`,
+                `<div class="expense-balance-row"><span>每人應分攤</span><b>${formatTwd(share)}</b></div>`,
+                ...balances.map(entry => `<div class="expense-balance-row">
+                    <span>${escapeExpenseText(entry.name)} 已付 ${formatTwd(entry.paid)}</span>
+                    <b>${entry.balance >= 0 ? '應收 ' : '應付 '}${formatTwd(Math.abs(entry.balance))}</b>
+                </div>`),
+                skipped ? `<div class="expense-settled">有 ${skipped} 筆的幣別無法換算，未列入結算。</div>` : ''
+            ].join('');
+
+            const transfers = buildTransfers(balances);
+            transferBox.innerHTML = transfers.length
+                ? transfers.map(transfer => `<div class="expense-transfer">
+                    ${escapeExpenseText(transfer.from)} → ${escapeExpenseText(transfer.to)}
+                    <span style="margin-left:auto">${formatTwd(transfer.amount)}</span>
+                </div>`).join('')
+                : '<div class="expense-settled">目前已經平帳，不用互相轉帳。</div>';
+        }
+
+        function initExpenseSplitControls() {
+            expenseExcluded = new Set(readJson(EXPENSE_SPLIT_KEY) || []);
+            document.getElementById('expensePeople').addEventListener('click', event => {
+                const button = event.target.closest('[data-person]');
+                if (!button) return;
+                const name = button.dataset.person;
+                if (expenseExcluded.has(name)) expenseExcluded.delete(name);
+                else expenseExcluded.add(name);
+                writeJson(EXPENSE_SPLIT_KEY, [...expenseExcluded]);
+                renderExpenseSplit(expenseItems);
+            });
+        }
+
+        function setExpenseStatus(message) {
+            document.getElementById('expenseStatus').textContent = message;
+        }
+
+        function readExpenseCache() {
+            return readJson(EXPENSE_CACHE_KEY);
+        }
+
         async function loadExpenseSheet() {
             setExpenseStatus('讀取中…');
+            await loadExpenseRates();
             try {
                 const response = await fetch(EXPENSE_SHEET_URL, { cache: 'no-store' });
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -4633,6 +4912,8 @@
 
         function initExpenses() {
             if (!document.getElementById('expenseList')) return;
+            initExpenseSplitControls();
+            expenseRates = readJson(EXPENSE_RATES_KEY);
             const cached = readExpenseCache();
             if (cached?.items?.length) {
                 renderExpenses(cached.items);
