@@ -4569,11 +4569,34 @@
         let expenseItems = [];
         let expenseRates = null;
         let expenseExcluded = new Set();
-        const EXPENSE_CURRENCIES = {
-            '印尼盾': { code: 'IDR', prefix: 'Rp ' },
-            '台幣': { code: 'TWD', prefix: 'NT$' },
-            '美金': { code: 'USD', prefix: 'US$' }
+        // 表單的幣別是自由填寫的中文，比對時先找完全相同、再找包含關係（「新台幣」也要對到 TWD）。
+        const EXPENSE_CURRENCY_ALIASES = [
+            ['印尼盾', 'IDR'], ['印尼幣', 'IDR'], ['IDR', 'IDR'],
+            ['新台幣', 'TWD'], ['台幣', 'TWD'], ['臺幣', 'TWD'], ['TWD', 'TWD'],
+            ['人民幣', 'CNY'], ['人民币', 'CNY'], ['CNY', 'CNY'], ['RMB', 'CNY'],
+            ['美金', 'USD'], ['美元', 'USD'], ['USD', 'USD'],
+            ['日圓', 'JPY'], ['日幣', 'JPY'], ['日元', 'JPY'], ['JPY', 'JPY'],
+            ['港幣', 'HKD'], ['HKD', 'HKD'],
+            ['歐元', 'EUR'], ['EUR', 'EUR'],
+            ['新加坡', 'SGD'], ['星幣', 'SGD'], ['SGD', 'SGD'],
+            ['馬幣', 'MYR'], ['令吉', 'MYR'], ['MYR', 'MYR'],
+            ['泰銖', 'THB'], ['THB', 'THB'],
+            ['韓元', 'KRW'], ['韓幣', 'KRW'], ['KRW', 'KRW'],
+            ['澳幣', 'AUD'], ['AUD', 'AUD']
+        ];
+        const EXPENSE_CURRENCY_PREFIXES = {
+            IDR: 'Rp ', TWD: 'NT$', CNY: 'CN¥', USD: 'US$', JPY: 'JP¥', HKD: 'HK$',
+            EUR: '€', SGD: 'S$', MYR: 'RM ', THB: '฿', KRW: '₩', AUD: 'A$'
         };
+
+        function resolveCurrencyCode(label) {
+            const value = String(label || '').trim().toUpperCase();
+            if (!value) return '';
+            const exact = EXPENSE_CURRENCY_ALIASES.find(([name]) => name.toUpperCase() === value);
+            if (exact) return exact[1];
+            const partial = EXPENSE_CURRENCY_ALIASES.find(([name]) => value.includes(name.toUpperCase()));
+            return partial ? partial[1] : value;
+        }
 
         function parseCsv(text) {
             const rows = [];
@@ -4642,9 +4665,9 @@
         }
 
         function formatExpenseAmount(item) {
-            const currency = EXPENSE_CURRENCIES[item.currency];
+            const prefix = EXPENSE_CURRENCY_PREFIXES[resolveCurrencyCode(item.currency)];
             const number = item.amount.toLocaleString('en-US', { maximumFractionDigits: 2 });
-            return currency ? `${currency.prefix}${number}` : `${number} ${item.currency}`.trim();
+            return prefix ? `${prefix}${number}` : `${number} ${item.currency}`.trim();
         }
 
         function sumExpensesByCurrency(items) {
@@ -4729,7 +4752,7 @@
 
         function toTwd(item) {
             if (!expenseRates?.rates) return null;
-            const code = EXPENSE_CURRENCIES[item.currency]?.code || item.currency;
+            const code = resolveCurrencyCode(item.currency);
             const source = code === 'TWD' ? 1 : expenseRates.rates[code];
             const target = expenseRates.rates.TWD;
             if (!Number.isFinite(source) || source <= 0 || !Number.isFinite(target)) return null;
