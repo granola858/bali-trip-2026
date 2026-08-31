@@ -2076,169 +2076,32 @@
             }
         }
 
-        .expense-sync {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 12px 14px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .expense-sync label {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
-        .expense-sync input,
-        .expense-sync textarea {
-            font-family: inherit;
-            font-size: 0.88rem;
-            padding: 9px 11px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border-color);
-            background: var(--bg-main);
-            color: var(--text-main);
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .expense-sync textarea {
-            min-height: 110px;
-            resize: vertical;
-        }
-
-        .expense-sync-status {
-            font-size: 0.74rem;
-            color: var(--text-dim);
-            margin: 0;
-        }
-
-        .expense-source {
-            font-size: 0.66rem;
-            font-weight: 700;
-            padding: 1px 6px;
-            border-radius: 999px;
-            border: 1px solid var(--border-accent);
-            color: var(--text-muted);
-            margin-left: 6px;
-            white-space: nowrap;
-        }
-
-        /* ===== 花費記錄 ===== */
         .expense-page {
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
 
-        .expense-summary {
+        .expense-actions {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 10px;
-            margin: 0;
-        }
-
-        .expense-summary>div {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 12px 14px;
-        }
-
-        .expense-summary dt {
-            font-size: 0.76rem;
-            color: var(--text-muted);
-            margin-bottom: 4px;
-        }
-
-        .expense-summary dd {
-            margin: 0;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        .expense-summary dd small {
-            display: block;
-            margin-top: 3px;
-            font-size: 0.72rem;
-            font-weight: 500;
-            color: var(--text-dim);
-        }
-
-        .expense-form,
-        .expense-rates,
-        .expense-day {
-            background: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-        }
-
-        .expense-form {
-            padding: 14px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 10px;
-        }
-
-        .expense-form label,
-        .expense-rates label {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            font-size: 0.78rem;
-            color: var(--text-muted);
-        }
-
-        .expense-form input,
-        .expense-form select,
-        .expense-rates input {
-            font-family: inherit;
-            font-size: 0.95rem;
-            padding: 9px 11px;
-            border-radius: var(--radius-sm);
-            border: 1px solid var(--border-color);
-            background: var(--bg-main);
-            color: var(--text-main);
-            min-width: 0;
-        }
-
-        .expense-form input:focus,
-        .expense-form select:focus,
-        .expense-rates input:focus {
-            outline: 2px solid var(--border-accent);
-            outline-offset: 1px;
-        }
-
-        .expense-form-actions {
-            grid-column: 1 / -1;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .expense-hint {
-            font-size: 0.74rem;
-            color: var(--text-dim);
-            line-height: 1.5;
         }
 
         .expense-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
             font-family: inherit;
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 9px 14px;
-            border-radius: var(--radius-sm);
+            font-size: 0.92rem;
+            font-weight: 700;
+            text-decoration: none;
+            padding: 14px 16px;
+            border-radius: var(--radius-md);
             border: 1px solid var(--border-color);
-            background: var(--bg-subtle);
+            background: var(--bg-card);
             color: var(--text-main);
-            cursor: pointer;
         }
 
         .expense-btn.primary {
@@ -2247,156 +2110,27 @@
             color: var(--bg-card);
         }
 
-        .expense-btn.danger {
-            color: var(--rose-accent);
-        }
-
-        .expense-rates {
-            padding: 12px 14px;
-            display: flex;
-            align-items: flex-end;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .expense-rates>span {
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            padding-bottom: 9px;
-        }
-
-        .expense-rates label {
-            flex-direction: row;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .expense-rates input {
-            width: 8.5em;
-        }
-
-        .expense-toolbar {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .expense-categories {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .expense-category {
-            font-size: 0.78rem;
-            padding: 6px 11px;
-            border-radius: 999px;
-            border: 1px solid var(--border-accent);
-            background: var(--teal-glow);
-            color: var(--text-main);
-        }
-
-        .expense-category b {
-            font-weight: 700;
-        }
-
-        .expense-day {
-            padding: 12px 14px;
-        }
-
-        .expense-day+.expense-day {
-            margin-top: 10px;
-        }
-
-        .expense-day-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            gap: 10px;
-            padding-bottom: 8px;
-            border-bottom: 1px solid var(--border-color);
-            font-size: 0.82rem;
-            color: var(--text-muted);
-        }
-
-        .expense-day-head strong {
-            color: var(--text-main);
-            font-size: 0.92rem;
-        }
-
-        .expense-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px 0;
-            border-bottom: 1px dashed var(--border-color);
-        }
-
-        .expense-row:last-child {
-            border-bottom: 0;
-            padding-bottom: 0;
-        }
-
-        .expense-row-main {
-            flex: 1;
-            min-width: 0;
-        }
-
-        .expense-row-name {
-            font-size: 0.92rem;
-            font-weight: 600;
-            color: var(--text-main);
-            overflow-wrap: anywhere;
-        }
-
-        .expense-row-meta {
-            font-size: 0.74rem;
-            color: var(--text-dim);
-            margin-top: 2px;
-        }
-
-        .expense-row-amount {
-            text-align: right;
-            white-space: nowrap;
-        }
-
-        .expense-row-amount b {
-            display: block;
-            font-size: 0.95rem;
-            color: var(--text-main);
-        }
-
-        .expense-row-amount small {
-            font-size: 0.72rem;
-            color: var(--text-dim);
-        }
-
-        .expense-delete {
-            font-family: inherit;
-            font-size: 1rem;
-            line-height: 1;
-            padding: 6px 8px;
-            border-radius: var(--radius-sm);
-            border: 1px solid transparent;
-            background: transparent;
-            color: var(--text-dim);
-            cursor: pointer;
-        }
-
-        .expense-delete:hover {
-            color: var(--rose-accent);
-            border-color: var(--border-color);
-        }
-
-        .expense-empty {
-            padding: 26px 14px;
-            text-align: center;
-            font-size: 0.86rem;
-            color: var(--text-dim);
+        .expense-sheet {
             background: var(--bg-card);
-            border: 1px dashed var(--border-color);
+            border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .expense-sheet iframe {
+            display: block;
+            width: 100%;
+            height: 68vh;
+            min-height: 420px;
+            border: 0;
+            background: var(--bg-card);
+        }
+
+        .expense-note {
+            font-size: 0.76rem;
+            line-height: 1.7;
+            color: var(--text-dim);
+            margin: 0;
         }
 
     </style>
@@ -3626,81 +3360,24 @@
                         <div class="day-title-top">
                             <span class="day-num">花費記錄</span>
                         </div>
-                        <div class="day-sub-desc">隨手記一筆，自動換算台幣並統計</div>
+                        <div class="day-sub-desc">用表單記一筆，帳單明細直接看試算表</div>
                     </div>
-                    <span class="charter-badge" id="expenseTotalBadge">NT$0</span>
                 </div>
 
-                <dl class="expense-summary" id="expenseSummary"></dl>
-
-                <form class="expense-form" id="expenseForm" autocomplete="off">
-                    <label>日期
-                        <input type="date" name="date" required>
-                    </label>
-                    <label>項目
-                        <input type="text" name="name" maxlength="40" placeholder="例：Sidewalk 午餐" required>
-                    </label>
-                    <label>金額
-                        <input type="number" name="amount" min="0" step="any" inputmode="decimal" placeholder="0"
-                            required>
-                    </label>
-                    <label>幣別
-                        <select name="currency">
-                            <option value="IDR">IDR 印尼盾</option>
-                            <option value="TWD">TWD 台幣</option>
-                            <option value="USD">USD 美金</option>
-                        </select>
-                    </label>
-                    <label>分類
-                        <select name="category"></select>
-                    </label>
-                    <label>付款人
-                        <select name="payer"></select>
-                    </label>
-                    <div class="expense-form-actions">
-                        <button class="expense-btn primary" type="submit">＋ 新增一筆</button>
-                        <span class="expense-hint">資料只存在這支手機的瀏覽器裡，清除瀏覽器資料會消失，請定期複製 CSV 備份。</span>
-                    </div>
-                </form>
-
-                <div class="expense-rates">
-                    <span>匯率換算</span>
-                    <label>1 IDR =
-                        <input type="number" id="expenseRateIdr" min="0" step="0.0001" inputmode="decimal"> TWD
-                    </label>
-                    <label>1 USD =
-                        <input type="number" id="expenseRateUsd" min="0" step="0.01" inputmode="decimal"> TWD
-                    </label>
+                <div class="expense-actions">
+                    <a class="expense-btn primary" href="https://forms.gle/6YFseJnhADMFEFjf6" target="_blank">📝 記一筆花費</a>
+                    <a class="expense-btn"
+                        href="https://docs.google.com/spreadsheets/d/1ZZMMJcD_cqY_0GvHtPCl2p7NMSCXutJWC9evIgg2t30/edit"
+                        target="_blank">📊 開啟完整帳單</a>
                 </div>
 
-                <div class="expense-categories" id="expenseCategories"></div>
-
-                <div class="expense-toolbar">
-                    <a class="expense-btn primary" href="https://forms.gle/6YFseJnhADMFEFjf6"
-                        target="_blank">☁️ 同步記到 Google 表單</a>
-                    <button class="expense-btn" type="button" id="expenseCopyCsv">⧉ 複製本機 CSV</button>
-                    <button class="expense-btn" type="button" id="expenseDownloadCsv">⤓ 下載本機 CSV</button>
-                    <button class="expense-btn danger" type="button" id="expenseClear">清除全部</button>
+                <div class="expense-sheet">
+                    <iframe src="https://docs.google.com/spreadsheets/d/1ZZMMJcD_cqY_0GvHtPCl2p7NMSCXutJWC9evIgg2t30/preview"
+                        title="峇里島花費紀錄表單 (回覆)" loading="lazy"></iframe>
                 </div>
 
-                <div class="expense-sync">
-                    <label>Google 表單資料來源（試算表「發布到網路」的 CSV 網址）
-                        <input type="url" id="expenseSheetUrl" inputmode="url"
-                            placeholder="https://docs.google.com/spreadsheets/d/e/.../pub?output=csv">
-                    </label>
-                    <div class="expense-toolbar">
-                        <button class="expense-btn" type="button" id="expenseSyncBtn">↻ 同步表單紀錄</button>
-                        <button class="expense-btn" type="button" id="expensePasteToggle">改用貼上匯入</button>
-                    </div>
-                    <p class="expense-sync-status" id="expenseSyncStatus">尚未同步。網址只存在這支手機，不會寫進網頁原始碼。</p>
-                    <label hidden id="expensePasteWrap">把試算表整段內容貼進來（含標題列）
-                        <textarea id="expensePasteArea"
-                            placeholder="時間戳記	日期	項目	金額	幣別	付款人	分類"></textarea>
-                    </label>
-                    <button class="expense-btn" type="button" id="expensePasteImport" hidden>匯入貼上的內容</button>
-                </div>
-
-                <div id="expenseList"></div>
+                <p class="expense-note">明細會即時反映表單的最新回覆。若上方表格空白或顯示需要登入，請用「開啟完整帳單」按鈕，
+                    或先在瀏覽器登入這份試算表的 Google 帳號。</p>
             </section>
 
         </main>
@@ -4663,404 +4340,6 @@
         });
 
 
-        const EXPENSE_STORAGE_KEY = 'bali_expenses_2026';
-        const EXPENSE_CATEGORIES = ['餐飲', '交通包車', '住宿', '門票活動', '購物伴手禮', 'SPA按摩', '其他'];
-        const EXPENSE_PAYERS = ['我', '老婆', '現金共用'];
-        // 匯率是預設值，不是即時牌價；頁面上可以自己改。
-        const DEFAULT_EXPENSE_RATES = { IDR: 0.002, TWD: 1, USD: 32 };
-        let expenseState = { version: 1, rates: { ...DEFAULT_EXPENSE_RATES }, items: [], sheetUrl: '', sheetItems: [], sheetSyncedAt: '' };
-
-        function loadExpenses() {
-            try {
-                const saved = JSON.parse(localStorage.getItem(EXPENSE_STORAGE_KEY) || 'null');
-                if (saved && Array.isArray(saved.items)) {
-                    expenseState = {
-                        version: 1,
-                        rates: { ...DEFAULT_EXPENSE_RATES, ...(saved.rates || {}) },
-                        items: saved.items,
-                        sheetUrl: saved.sheetUrl || '',
-                        sheetItems: Array.isArray(saved.sheetItems) ? saved.sheetItems : [],
-                        sheetSyncedAt: saved.sheetSyncedAt || ''
-                    };
-                }
-            } catch (err) {
-                console.warn('Expense load failed:', err);
-            }
-        }
-
-        function saveExpenses() {
-            try {
-                localStorage.setItem(EXPENSE_STORAGE_KEY, JSON.stringify(expenseState));
-            } catch (err) {
-                console.warn('Expense save failed:', err);
-            }
-        }
-
-        function expenseToTwd(item) {
-            const rate = expenseState.rates[item.currency];
-            return item.amount * (Number.isFinite(rate) ? rate : 1);
-        }
-
-        function formatTwd(value) {
-            return `NT$${Math.round(value).toLocaleString('en-US')}`;
-        }
-
-        function formatAmount(value) {
-            return value.toLocaleString('en-US', { maximumFractionDigits: 2 });
-        }
-
-        function renderExpenseSummary(items) {
-            const total = items.reduce((sum, item) => sum + expenseToTwd(item), 0);
-            const todayKey = getTripDateKey();
-            const todayTotal = items
-                .filter(item => item.date === todayKey)
-                .reduce((sum, item) => sum + expenseToTwd(item), 0);
-            const idrTotal = items
-                .filter(item => item.currency === 'IDR')
-                .reduce((sum, item) => sum + item.amount, 0);
-
-            document.getElementById('expenseTotalBadge').textContent = formatTwd(total);
-            document.getElementById('expenseSummary').innerHTML = [
-                ['總花費', formatTwd(total), `${items.length} 筆`],
-                ['今日花費', formatTwd(todayTotal), todayKey],
-                ['印尼盾小計', `Rp ${formatAmount(idrTotal)}`, formatTwd(idrTotal * expenseState.rates.IDR)]
-            ].map(([label, value, note]) => `<div><dt>${label}</dt><dd>${value}<small>${note}</small></dd></div>`).join('');
-        }
-
-        function renderExpenseCategories(items) {
-            const totals = new Map();
-            items.forEach(item => {
-                totals.set(item.category, (totals.get(item.category) || 0) + expenseToTwd(item));
-            });
-            document.getElementById('expenseCategories').innerHTML = [...totals.entries()]
-                .sort((a, b) => b[1] - a[1])
-                .map(([category, value]) =>
-                    `<span class="expense-category">${escapeExpenseText(category)} <b>${formatTwd(value)}</b></span>`)
-                .join('');
-        }
-
-        function escapeExpenseText(value) {
-            const holder = document.createElement('span');
-            holder.textContent = value;
-            return holder.innerHTML;
-        }
-
-        function renderExpenseList(items) {
-            const list = document.getElementById('expenseList');
-            if (!items.length) {
-                list.innerHTML = '<div class="expense-empty">還沒有任何紀錄，用上面的表單記第一筆吧。</div>';
-                return;
-            }
-
-            const byDate = new Map();
-            items.forEach(item => {
-                if (!byDate.has(item.date)) byDate.set(item.date, []);
-                byDate.get(item.date).push(item);
-            });
-
-            list.innerHTML = [...byDate.entries()]
-                .sort((a, b) => b[0].localeCompare(a[0]))
-                .map(([date, dayItems]) => {
-                    const dayTotal = dayItems.reduce((sum, item) => sum + expenseToTwd(item), 0);
-                    const rows = dayItems.map(item => `
-                        <div class="expense-row">
-                            <div class="expense-row-main">
-                                <div class="expense-row-name">${escapeExpenseText(item.name)}</div>
-                                <div class="expense-row-meta">${escapeExpenseText(item.category)} · ${escapeExpenseText(item.payer)}</div>
-                            </div>
-                            <div class="expense-row-amount">
-                                <b>${formatTwd(expenseToTwd(item))}</b>
-                                <small>${item.currency} ${formatAmount(item.amount)}</small>
-                            </div>
-                            ${item.source === 'form'
-                            ? '<span class="expense-source">表單</span>'
-                            : `<button class="expense-delete" type="button" data-expense-id="${item.id}"
-                                aria-label="刪除 ${escapeExpenseText(item.name)}">✕</button>`}
-                        </div>`).join('');
-                    return `<div class="expense-day">
-                        <div class="expense-day-head"><strong>${date}</strong><span>${formatTwd(dayTotal)}</span></div>
-                        ${rows}
-                    </div>`;
-                }).join('');
-        }
-
-        function renderExpenses() {
-            const items = getAllExpenseItems().sort((a, b) =>
-                a.date === b.date ? b.createdAt.localeCompare(a.createdAt) : b.date.localeCompare(a.date));
-            renderExpenseSummary(items);
-            renderExpenseCategories(items);
-            renderExpenseList(items);
-        }
-
-        function buildExpenseCsv() {
-            // 欄位順序對齊「峇里島花費紀錄表單 (回覆)」試算表，方便兩邊資料合併。
-            const header = ['日期', '項目', '金額', '幣別', '付款人', '分類', '台幣'];
-            const rows = [...expenseState.items]
-                .sort((a, b) => a.date.localeCompare(b.date) || a.createdAt.localeCompare(b.createdAt))
-                .map(item => [
-                    item.date,
-                    item.name,
-                    item.amount,
-                    item.currency,
-                    item.payer,
-                    item.category,
-                    Math.round(expenseToTwd(item))
-                ]);
-            return [header, ...rows]
-                .map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
-                .join('\n');
-        }
-
-        function downloadExpenseCsv() {
-            const blob = new Blob([`\ufeff${buildExpenseCsv()}`], { type: 'text/csv;charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = `bali-expenses-${getTripDateKey()}.csv`;
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-            setTimeout(() => URL.revokeObjectURL(url), 1000);
-        }
-
-        function fillExpenseOptions(select, values) {
-            select.innerHTML = values
-                .map(value => `<option value="${escapeExpenseText(value)}">${escapeExpenseText(value)}</option>`)
-                .join('');
-        }
-
-
-        // 表單回覆的欄位標題（時間戳記那欄用來去重）。
-        const SHEET_CURRENCIES = { '印尼盾': 'IDR', '台幣': 'TWD', '美金': 'USD', 'IDR': 'IDR', 'TWD': 'TWD', 'USD': 'USD' };
-
-        function getAllExpenseItems() {
-            return [...expenseState.items, ...expenseState.sheetItems];
-        }
-
-        function parseCsv(text) {
-            const rows = [];
-            let row = [];
-            let cell = '';
-            let quoted = false;
-
-            for (let index = 0; index < text.length; index += 1) {
-                const char = text[index];
-                if (quoted) {
-                    if (char !== '"') cell += char;
-                    else if (text[index + 1] === '"') { cell += '"'; index += 1; }
-                    else quoted = false;
-                    continue;
-                }
-                if (char === '"') quoted = true;
-                else if (char === ',' || char === '\t') { row.push(cell); cell = ''; }
-                else if (char === '\n' || char === '\r') {
-                    if (char === '\r' && text[index + 1] === '\n') index += 1;
-                    row.push(cell);
-                    if (row.some(value => value.trim())) rows.push(row);
-                    row = [];
-                    cell = '';
-                } else cell += char;
-            }
-            row.push(cell);
-            if (row.some(value => value.trim())) rows.push(row);
-            return rows;
-        }
-
-        function normaliseSheetDate(value) {
-            const parts = String(value).trim().split(/[\/\-]/);
-            if (parts.length < 3) return getTripDateKey();
-            const [year, month, day] = parts;
-            return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-        }
-
-        function sheetRowsToItems(rows) {
-            if (rows.length < 2) return [];
-            const header = rows[0].map(name => name.trim());
-            const columnOf = name => header.findIndex(title => title.includes(name));
-            const index = {
-                stamp: columnOf('時間戳記'),
-                date: columnOf('日期'),
-                name: columnOf('項目'),
-                amount: columnOf('金額'),
-                currency: columnOf('幣別'),
-                payer: columnOf('付款人'),
-                category: columnOf('分類')
-            };
-            if (index.name < 0 || index.amount < 0) return [];
-
-            const pick = (row, position) => (position >= 0 ? String(row[position] ?? '').trim() : '');
-            return rows.slice(1).map((row, position) => {
-                const amount = Number(pick(row, index.amount).replace(/[,\s]/g, ''));
-                if (!Number.isFinite(amount) || amount <= 0) return null;
-                const stamp = pick(row, index.stamp) || `row-${position}`;
-                return {
-                    id: `sheet-${stamp}`,
-                    date: normaliseSheetDate(pick(row, index.date) || stamp.split(' ')[0]),
-                    name: pick(row, index.name) || '(未命名)',
-                    amount,
-                    currency: SHEET_CURRENCIES[pick(row, index.currency)] || 'IDR',
-                    category: pick(row, index.category) || '其他',
-                    payer: pick(row, index.payer) || '未填',
-                    createdAt: stamp,
-                    source: 'form'
-                };
-            }).filter(Boolean);
-        }
-
-        function setSyncStatus(message) {
-            document.getElementById('expenseSyncStatus').textContent = message;
-        }
-
-        function applySheetCsv(text, origin) {
-            const items = sheetRowsToItems(parseCsv(text));
-            if (!items.length) {
-                setSyncStatus(`${origin}：沒有讀到任何紀錄，請確認標題列是否包含「項目」與「金額」。`);
-                return false;
-            }
-            expenseState.sheetItems = items;
-            expenseState.sheetSyncedAt = new Date().toLocaleString('zh-TW', { hour12: false });
-            saveExpenses();
-            syncPayerOptions();
-            renderExpenses();
-            setSyncStatus(`${origin}：已讀入 ${items.length} 筆表單紀錄（${expenseState.sheetSyncedAt}）。`);
-            return true;
-        }
-
-        async function syncExpenseSheet({ silent = false } = {}) {
-            const url = expenseState.sheetUrl;
-            if (!url) {
-                if (!silent) setSyncStatus('請先貼上試算表「發布到網路」的 CSV 網址。');
-                return;
-            }
-            if (!silent) setSyncStatus('同步中…');
-            try {
-                const response = await fetch(url, { cache: 'no-store' });
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                applySheetCsv(await response.text(), '同步');
-            } catch (err) {
-                setSyncStatus(`同步失敗（${err.message}）。可能是網址沒有發布、目前離線，或瀏覽器擋下跨網域讀取；改用下面的「貼上」一樣可以匯入。`);
-            }
-        }
-
-        // 表單的付款人選項可能跟預設不同，讀到新的就補進下拉選單。
-        function syncPayerOptions() {
-            const select = document.getElementById('expenseForm')?.elements.payer;
-            if (!select) return;
-            const known = new Set([...select.options].map(option => option.value));
-            expenseState.sheetItems.forEach(item => {
-                if (item.payer && !known.has(item.payer)) {
-                    known.add(item.payer);
-                    select.append(new Option(item.payer, item.payer));
-                }
-            });
-        }
-
-        function initExpenseSync() {
-            const urlInput = document.getElementById('expenseSheetUrl');
-            const pasteWrap = document.getElementById('expensePasteWrap');
-            const pasteArea = document.getElementById('expensePasteArea');
-            const pasteImport = document.getElementById('expensePasteImport');
-
-            urlInput.value = expenseState.sheetUrl;
-            urlInput.addEventListener('change', () => {
-                expenseState.sheetUrl = urlInput.value.trim();
-                saveExpenses();
-                if (expenseState.sheetUrl) syncExpenseSheet();
-            });
-
-            document.getElementById('expenseSyncBtn').addEventListener('click', () => syncExpenseSheet());
-            document.getElementById('expensePasteToggle').addEventListener('click', () => {
-                const showing = pasteWrap.hidden;
-                pasteWrap.hidden = !showing;
-                pasteImport.hidden = !showing;
-                if (showing) pasteArea.focus();
-            });
-            pasteImport.addEventListener('click', () => {
-                if (applySheetCsv(pasteArea.value, '貼上匯入')) pasteArea.value = '';
-            });
-
-            if (expenseState.sheetItems.length) {
-                syncPayerOptions();
-                setSyncStatus(`已載入 ${expenseState.sheetItems.length} 筆表單紀錄（上次同步 ${expenseState.sheetSyncedAt || '未知'}）。`);
-            }
-            if (expenseState.sheetUrl) syncExpenseSheet({ silent: true });
-        }
-
-        function initExpenses() {
-            const form = document.getElementById('expenseForm');
-            if (!form) return;
-
-            loadExpenses();
-            fillExpenseOptions(form.elements.category, EXPENSE_CATEGORIES);
-            fillExpenseOptions(form.elements.payer, EXPENSE_PAYERS);
-            form.elements.date.value = getTripDateKey();
-
-            const rateIdr = document.getElementById('expenseRateIdr');
-            const rateUsd = document.getElementById('expenseRateUsd');
-            rateIdr.value = expenseState.rates.IDR;
-            rateUsd.value = expenseState.rates.USD;
-
-            [[rateIdr, 'IDR'], [rateUsd, 'USD']].forEach(([input, currency]) => {
-                input.addEventListener('change', () => {
-                    const value = Number(input.value);
-                    if (!Number.isFinite(value) || value <= 0) {
-                        input.value = expenseState.rates[currency];
-                        return;
-                    }
-                    expenseState.rates[currency] = value;
-                    saveExpenses();
-                    renderExpenses();
-                });
-            });
-
-            form.addEventListener('submit', event => {
-                event.preventDefault();
-                const amount = Number(form.elements.amount.value);
-                const name = form.elements.name.value.trim();
-                if (!name || !Number.isFinite(amount) || amount <= 0) return;
-
-                expenseState.items.push({
-                    id: `exp-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
-                    date: form.elements.date.value || getTripDateKey(),
-                    name,
-                    amount,
-                    currency: form.elements.currency.value,
-                    category: form.elements.category.value,
-                    payer: form.elements.payer.value,
-                    createdAt: new Date().toISOString()
-                });
-                saveExpenses();
-                renderExpenses();
-
-                form.elements.name.value = '';
-                form.elements.amount.value = '';
-                form.elements.name.focus();
-            });
-
-            document.getElementById('expenseList').addEventListener('click', event => {
-                const button = event.target.closest('[data-expense-id]');
-                if (!button) return;
-                expenseState.items = expenseState.items.filter(item => item.id !== button.dataset.expenseId);
-                saveExpenses();
-                renderExpenses();
-            });
-
-            document.getElementById('expenseCopyCsv').addEventListener('click', event => {
-                copyTextToClipboard(buildExpenseCsv(), event.currentTarget);
-            });
-            document.getElementById('expenseDownloadCsv').addEventListener('click', downloadExpenseCsv);
-            document.getElementById('expenseClear').addEventListener('click', () => {
-                if (!expenseState.items.length) return;
-                if (!window.confirm(`確定刪除全部 ${expenseState.items.length} 筆花費紀錄？此動作無法復原。`)) return;
-                expenseState.items = [];
-                saveExpenses();
-                renderExpenses();
-            });
-
-            initExpenseSync();
-            renderExpenses();
-        }
-
         document.addEventListener('DOMContentLoaded', () => {
             // 網址列的 #dayN 是上次載入自己寫進去的，指向今天時仍要重新定位；
             // 只有刻意連到別天或某張訂房卡時才不打擾使用者。
@@ -5084,7 +4363,6 @@
             initTimelineProgress(shouldAutoLocateTimeline);
             initReservationActions();
             loadChecklistState();
-            initExpenses();
         });
     </script>
 </body>
