@@ -2110,20 +2110,131 @@
             color: var(--bg-card);
         }
 
-        .expense-sheet {
+        .expense-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .expense-reload {
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 8px 13px;
+            border-radius: var(--radius-sm);
+            border: 1px solid var(--border-color);
+            background: var(--bg-subtle);
+            color: var(--text-main);
+            cursor: pointer;
+        }
+
+        .expense-status {
+            font-size: 0.76rem;
+            color: var(--text-dim);
+        }
+
+        .expense-totals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 0;
+        }
+
+        .expense-totals>div {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius-md);
-            overflow: hidden;
+            padding: 12px 14px;
         }
 
-        .expense-sheet iframe {
-            display: block;
-            width: 100%;
-            height: 68vh;
-            min-height: 420px;
-            border: 0;
+        .expense-totals dt {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+
+        .expense-totals dd {
+            margin: 0;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .expense-day {
             background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 12px 14px;
+        }
+
+        .expense-day+.expense-day {
+            margin-top: 10px;
+        }
+
+        .expense-day-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+
+        .expense-day-head strong {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .expense-row {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .expense-row:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .expense-row-main {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .expense-row-name {
+            font-size: 0.94rem;
+            font-weight: 600;
+            color: var(--text-main);
+            overflow-wrap: anywhere;
+        }
+
+        .expense-row-meta {
+            font-size: 0.74rem;
+            color: var(--text-dim);
+            margin-top: 2px;
+        }
+
+        .expense-row-amount {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-main);
+            white-space: nowrap;
+        }
+
+        .expense-empty {
+            padding: 24px 14px;
+            text-align: center;
+            font-size: 0.85rem;
+            line-height: 1.7;
+            color: var(--text-dim);
+            background: var(--bg-card);
+            border: 1px dashed var(--border-color);
+            border-radius: var(--radius-md);
         }
 
         .expense-note {
@@ -3371,13 +3482,16 @@
                         target="_blank">📊 開啟完整帳單</a>
                 </div>
 
-                <div class="expense-sheet">
-                    <iframe src="https://docs.google.com/spreadsheets/d/1ZZMMJcD_cqY_0GvHtPCl2p7NMSCXutJWC9evIgg2t30/preview"
-                        title="峇里島花費紀錄表單 (回覆)" loading="lazy"></iframe>
+                <div class="expense-bar">
+                    <button class="expense-reload" type="button" id="expenseReload">↻ 重新整理</button>
+                    <span class="expense-status" id="expenseStatus">載入中…</span>
                 </div>
 
-                <p class="expense-note">明細會即時反映表單的最新回覆。若上方表格空白或顯示需要登入，請用「開啟完整帳單」按鈕，
-                    或先在瀏覽器登入這份試算表的 Google 帳號。</p>
+                <dl class="expense-totals" id="expenseTotals"></dl>
+
+                <div id="expenseList"></div>
+
+                <p class="expense-note">明細直接讀自表單的回覆試算表，讀到後會存在這支手機裡，沒網路時仍看得到上次的內容。</p>
             </section>
 
         </main>
@@ -4340,6 +4454,194 @@
         });
 
 
+
+        const EXPENSE_SHEET_ID = '1ZZMMJcD_cqY_0GvHtPCl2p7NMSCXutJWC9evIgg2t30';
+        const EXPENSE_SHEET_URL = `https://docs.google.com/spreadsheets/d/${EXPENSE_SHEET_ID}/gviz/tq?tqx=out:csv`;
+        const EXPENSE_CACHE_KEY = 'bali_expense_sheet_2026';
+        const EXPENSE_CURRENCIES = {
+            '印尼盾': { code: 'IDR', prefix: 'Rp ' },
+            '台幣': { code: 'TWD', prefix: 'NT$' },
+            '美金': { code: 'USD', prefix: 'US$' }
+        };
+
+        function parseCsv(text) {
+            const rows = [];
+            let row = [];
+            let cell = '';
+            let quoted = false;
+
+            for (let index = 0; index < text.length; index += 1) {
+                const char = text[index];
+                if (quoted) {
+                    if (char !== '"') cell += char;
+                    else if (text[index + 1] === '"') { cell += '"'; index += 1; }
+                    else quoted = false;
+                    continue;
+                }
+                if (char === '"') quoted = true;
+                else if (char === ',') { row.push(cell); cell = ''; }
+                else if (char === '\n' || char === '\r') {
+                    if (char === '\r' && text[index + 1] === '\n') index += 1;
+                    row.push(cell);
+                    if (row.some(value => value.trim())) rows.push(row);
+                    row = [];
+                    cell = '';
+                } else cell += char;
+            }
+            row.push(cell);
+            if (row.some(value => value.trim())) rows.push(row);
+            return rows;
+        }
+
+        function sheetRowsToExpenses(rows) {
+            if (rows.length < 2) return [];
+            const header = rows[0].map(name => name.trim());
+            const columnOf = name => header.findIndex(title => title.includes(name));
+            const index = {
+                stamp: columnOf('時間戳記'),
+                date: columnOf('日期'),
+                name: columnOf('項目'),
+                amount: columnOf('金額'),
+                currency: columnOf('幣別'),
+                payer: columnOf('付款人'),
+                category: columnOf('分類')
+            };
+            if (index.name < 0 || index.amount < 0) return [];
+
+            const pick = (row, position) => (position >= 0 ? String(row[position] ?? '').trim() : '');
+            return rows.slice(1).map(row => {
+                const amount = Number(pick(row, index.amount).replace(/[,\s]/g, ''));
+                if (!Number.isFinite(amount)) return null;
+                return {
+                    date: formatExpenseDate(pick(row, index.date) || pick(row, index.stamp)),
+                    name: pick(row, index.name) || '(未命名)',
+                    amount,
+                    currency: pick(row, index.currency),
+                    category: pick(row, index.category),
+                    payer: pick(row, index.payer)
+                };
+            }).filter(Boolean);
+        }
+
+        function formatExpenseDate(value) {
+            const parts = String(value).trim().split(' ')[0].split(/[\/\-]/);
+            if (parts.length < 3) return String(value).trim();
+            const [year, month, day] = parts;
+            return `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        }
+
+        function formatExpenseAmount(item) {
+            const currency = EXPENSE_CURRENCIES[item.currency];
+            const number = item.amount.toLocaleString('en-US', { maximumFractionDigits: 2 });
+            return currency ? `${currency.prefix}${number}` : `${number} ${item.currency}`.trim();
+        }
+
+        function sumExpensesByCurrency(items) {
+            const totals = new Map();
+            items.forEach(item => {
+                totals.set(item.currency, (totals.get(item.currency) || 0) + item.amount);
+            });
+            return [...totals.entries()].map(([currency, amount]) => ({
+                currency,
+                text: formatExpenseAmount({ currency, amount })
+            }));
+        }
+
+        function escapeExpenseText(value) {
+            const holder = document.createElement('span');
+            holder.textContent = value;
+            return holder.innerHTML;
+        }
+
+        function renderExpenses(items) {
+            const totals = document.getElementById('expenseTotals');
+            const list = document.getElementById('expenseList');
+
+            if (!items.length) {
+                totals.innerHTML = '';
+                list.innerHTML = '<div class="expense-empty">目前沒有任何花費紀錄。<br>用上面的「記一筆花費」送出第一筆吧。</div>';
+                return;
+            }
+
+            totals.innerHTML = [
+                ['筆數', `${items.length} 筆`],
+                ...sumExpensesByCurrency(items).map(total => [`合計 · ${total.currency}`, total.text])
+            ].map(([label, value]) =>
+                `<div><dt>${escapeExpenseText(label)}</dt><dd>${escapeExpenseText(value)}</dd></div>`).join('');
+
+            const byDate = new Map();
+            items.forEach(item => {
+                if (!byDate.has(item.date)) byDate.set(item.date, []);
+                byDate.get(item.date).push(item);
+            });
+
+            list.innerHTML = [...byDate.entries()]
+                .sort((a, b) => b[0].localeCompare(a[0]))
+                .map(([date, dayItems]) => {
+                    const rows = dayItems.map(item => `
+                        <div class="expense-row">
+                            <div class="expense-row-main">
+                                <div class="expense-row-name">${escapeExpenseText(item.name)}</div>
+                                <div class="expense-row-meta">${escapeExpenseText([item.category, item.payer].filter(Boolean).join(' · '))}</div>
+                            </div>
+                            <div class="expense-row-amount">${escapeExpenseText(formatExpenseAmount(item))}</div>
+                        </div>`).join('');
+                    return `<div class="expense-day">
+                        <div class="expense-day-head"><strong>${escapeExpenseText(date)}</strong>
+                            <span>${escapeExpenseText(sumExpensesByCurrency(dayItems).map(total => total.text).join('　'))}</span></div>
+                        ${rows}
+                    </div>`;
+                }).join('');
+        }
+
+        function setExpenseStatus(message) {
+            document.getElementById('expenseStatus').textContent = message;
+        }
+
+        function readExpenseCache() {
+            try {
+                return JSON.parse(localStorage.getItem(EXPENSE_CACHE_KEY) || 'null');
+            } catch (err) {
+                return null;
+            }
+        }
+
+        async function loadExpenseSheet() {
+            setExpenseStatus('讀取中…');
+            try {
+                const response = await fetch(EXPENSE_SHEET_URL, { cache: 'no-store' });
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const items = sheetRowsToExpenses(parseCsv(await response.text()));
+                const fetchedAt = new Date().toLocaleString('zh-TW', { hour12: false });
+                renderExpenses(items);
+                setExpenseStatus(`更新於 ${fetchedAt}`);
+                try {
+                    localStorage.setItem(EXPENSE_CACHE_KEY, JSON.stringify({ items, fetchedAt }));
+                } catch (err) { }
+            } catch (err) {
+                const cached = readExpenseCache();
+                if (cached?.items?.length) {
+                    renderExpenses(cached.items);
+                    setExpenseStatus(`讀取失敗，顯示 ${cached.fetchedAt} 的暫存資料`);
+                    return;
+                }
+                document.getElementById('expenseList').innerHTML =
+                    '<div class="expense-empty">讀不到帳單資料。<br>請確認試算表已設為「知道連結的任何人皆可檢視」，或改用上方的「開啟完整帳單」。</div>';
+                setExpenseStatus(`讀取失敗（${err.message}）`);
+            }
+        }
+
+        function initExpenses() {
+            if (!document.getElementById('expenseList')) return;
+            const cached = readExpenseCache();
+            if (cached?.items?.length) {
+                renderExpenses(cached.items);
+                setExpenseStatus(`暫存資料（${cached.fetchedAt}）`);
+            }
+            document.getElementById('expenseReload').addEventListener('click', loadExpenseSheet);
+            loadExpenseSheet();
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             // 網址列的 #dayN 是上次載入自己寫進去的，指向今天時仍要重新定位；
             // 只有刻意連到別天或某張訂房卡時才不打擾使用者。
@@ -4363,6 +4665,7 @@
             initTimelineProgress(shouldAutoLocateTimeline);
             initReservationActions();
             loadChecklistState();
+            initExpenses();
         });
     </script>
 </body>
