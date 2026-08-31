@@ -4560,12 +4560,12 @@
         const EXPENSE_SHEET_URL = `https://docs.google.com/spreadsheets/d/${EXPENSE_SHEET_ID}/gviz/tq?tqx=out:csv`;
         const EXPENSE_CACHE_KEY = 'bali_expense_sheet_2026';
         const EXPENSE_RATES_KEY = 'bali_expense_rates_2026';
-        const EXPENSE_SPLIT_KEY = 'bali_expense_split_2026';
+        const EXPENSE_SPLIT_KEY = 'bali_expense_split_2026_v2';
+        // 這趟固定四個人均分；其他出現在付款人欄的名字（小寶、共用基金等）預設不分攤。
+        const EXPENSE_SHARERS = ['阿猿', '培芝', '小白', '飛機'];
         // 跟「匯率換算」那頁用同一支免費 API（ExchangeRate-API 的開放端點，不需金鑰）。
         const EXPENSE_RATES_URL = 'https://open.er-api.com/v6/latest/USD';
         const EXPENSE_RATES_TTL = 6 * 60 * 60 * 1000;
-        // 共用基金之類的付款人預設不參與分攤。
-        const EXPENSE_POOL_PAYERS = /共用|公費|共同|基金/;
         let expenseItems = [];
         let expenseRates = null;
         let expenseExcluded = new Set();
@@ -4691,9 +4691,11 @@
             const totals = document.getElementById('expenseTotals');
             const list = document.getElementById('expenseList');
             expenseItems = items;
-            listExpensePeople(items).forEach(name => {
-                if (EXPENSE_POOL_PAYERS.test(name) && !readJson(EXPENSE_SPLIT_KEY)) expenseExcluded.add(name);
-            });
+            if (!readJson(EXPENSE_SPLIT_KEY)) {
+                listExpensePeople(items).forEach(name => {
+                    if (!EXPENSE_SHARERS.includes(name)) expenseExcluded.add(name);
+                });
+            }
             renderExpenseSplit(items);
 
             if (!items.length) {
@@ -4795,7 +4797,9 @@
         }
 
         function listExpensePeople(items) {
-            return [...new Set(items.map(item => item.payer).filter(Boolean))].sort();
+            const extras = [...new Set(items.map(item => item.payer).filter(Boolean))]
+                .filter(name => !EXPENSE_SHARERS.includes(name)).sort();
+            return [...EXPENSE_SHARERS, ...extras];
         }
 
         function buildTransfers(balances) {
@@ -4825,7 +4829,7 @@
             const people = listExpensePeople(items);
             document.getElementById('expenseRateNote').textContent = describeRates();
 
-            if (!items.length || !people.length) {
+            if (!items.length) {
                 panel.hidden = true;
                 return;
             }
