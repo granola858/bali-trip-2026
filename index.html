@@ -1138,6 +1138,49 @@
             color: #365c7b;
         }
 
+        .dim-btn {
+            display: inline-flex;
+            min-height: 44px;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            padding: 8px 14px;
+            border: 1px solid rgba(220, 233, 233, 0.82);
+            border-radius: 6px;
+            background: rgba(220, 233, 233, 0.94);
+            color: #365c7b;
+            font-family: var(--font-sans);
+            font-size: 0.76rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 22px rgba(35, 67, 94, 0.22);
+        }
+
+        .dim-btn:hover {
+            background: #dce9e9;
+            color: #284864;
+            transform: translateY(-1px);
+            box-shadow: 0 10px 24px rgba(35, 67, 94, 0.28);
+        }
+
+        .dim-btn>[aria-hidden="true"] {
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .dim-btn[aria-pressed="false"] {
+            border-style: dashed;
+            border-color: rgba(71, 112, 155, 0.34);
+            background: rgba(255, 255, 255, 0.92);
+            color: #6d87a3;
+        }
+
+        .dim-btn[aria-pressed="false"]>[aria-hidden="true"] {
+            filter: grayscale(1);
+            opacity: 0.65;
+        }
+
         .sticky-control-panel {
             top: 8px;
             padding: 10px;
@@ -1300,12 +1343,12 @@
             border-bottom-color: rgba(71, 112, 155, 0.18);
         }
 
-        .timeline-card.is-past {
+        body.dim-past .timeline-card.is-past {
             opacity: 0.72;
             filter: grayscale(0.8);
         }
 
-        .timeline-card.is-past:hover {
+        body.dim-past .timeline-card.is-past:hover {
             opacity: 0.86;
         }
 
@@ -1600,6 +1643,20 @@
         }
 
         @media (max-width: 520px) {
+            .dim-btn {
+                width: 44px;
+                padding-inline: 0;
+            }
+
+            .dim-btn-label {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                white-space: nowrap;
+            }
+
             .flight-route {
                 grid-template-columns: minmax(0, 1fr) 62px minmax(0, 1fr);
                 gap: 7px;
@@ -2338,7 +2395,7 @@
     </style>
 </head>
 
-<body>
+<body class="dim-past">
 
     <div class="container">
         <!-- Header -->
@@ -2352,6 +2409,10 @@
                 </a>
                 <button class="notes-btn" onclick="toggleNotesModal(true)">
                     <span>📋</span> 行李備註清單 <span class="badge-count" id="checklistCounter">0/34</span>
+                </button>
+                <button class="dim-btn" id="pastDimToggle" type="button" aria-pressed="true"
+                    onclick="togglePastDimming()">
+                    <span aria-hidden="true">🕓</span><span class="dim-btn-label" id="pastDimToggleLabel">結束轉灰：開</span>
                 </button>
             </div>
         </header>
@@ -4139,6 +4200,43 @@
             card.querySelector('.meta-tags')?.prepend(badge);
         }
 
+        const PAST_DIM_STORAGE_KEY = 'baliPastDim';
+
+        function applyPastDimming(enabled) {
+            document.body.classList.toggle('dim-past', enabled);
+
+            const button = document.getElementById('pastDimToggle');
+            if (!button) return;
+            button.setAttribute('aria-pressed', String(enabled));
+            button.title = enabled
+                ? '關閉「已結束行程轉灰」，分享給別人看時比較好讀'
+                : '開啟「已結束行程轉灰」，看得出走到哪了';
+            const label = document.getElementById('pastDimToggleLabel');
+            if (label) label.textContent = enabled ? '結束轉灰：開' : '結束轉灰：關';
+        }
+
+        function togglePastDimming() {
+            const enabled = !document.body.classList.contains('dim-past');
+            applyPastDimming(enabled);
+            try {
+                localStorage.setItem(PAST_DIM_STORAGE_KEY, enabled ? 'on' : 'off');
+            } catch (err) { }
+        }
+
+        // 網址帶 ?gray=off 時只影響這次瀏覽，方便直接分享一份不變灰的行程連結
+        function initPastDimming() {
+            const fromUrl = new URLSearchParams(window.location.search).get('gray');
+            if (fromUrl !== null) {
+                applyPastDimming(!/^(off|0|false|no)$/i.test(fromUrl));
+                return;
+            }
+            let saved = null;
+            try {
+                saved = localStorage.getItem(PAST_DIM_STORAGE_KEY);
+            } catch (err) { }
+            applyPastDimming(saved !== 'off');
+        }
+
         let autoScrolledCard = null;
         let lastProgressDayId = null;
         let timelineAutoFollow = false;
@@ -4970,6 +5068,7 @@
             const dayNav = document.querySelector('.day-nav');
             enableDragScroll(dayNav);
             initDayNav();
+            initPastDimming();
             initTimelineProgress(shouldAutoLocateTimeline);
             initReservationActions();
             loadChecklistState();
